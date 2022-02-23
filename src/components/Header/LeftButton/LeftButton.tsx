@@ -11,7 +11,7 @@ function LeftButton() {
       </div>
       <div className='flex justify-between align-center  mt-4 mb-4 ml-5 mr-5'>
             <ListIcon type="secondary" />   
-            <span className='ml-2'>Лента заказов</span>
+            <span className='ml-2 text-secondary'>Лента заказов</span>
       </div>
     </div>
   );

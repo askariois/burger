@@ -24,12 +24,18 @@ code {
   align-items: center;
 }
 
+.text-secondary {
+  color: #8585ad;
+}
+
 body {
-  font-family: "JetBrainsMonoNL";
+  font-family: "JetBrains";
   font-size: 16px;
 }
 
 @font-face {
-  font-family: "JetBrainsMonoNL", Arial, sans-serif;
-  src: url("./fonts/JetBrainsMonoNLMedium.ttf") format("ttf");
+  font-family: "JetBrains";
+  font-weight: normal;
+  font-style: normal;
+  src: url("./fonts/Jetbrainsmonomedium.woff") format("woff");
 }
