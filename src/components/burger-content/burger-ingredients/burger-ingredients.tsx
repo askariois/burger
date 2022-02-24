@@ -2,7 +2,7 @@ import React from 'react';
 import burgeringredient from  "./burgeringredient.module.css";
 import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredients';
 import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredients';
-
+import PropTypes from 'prop-types';
 
 
 function BurgerIngredients(props:any) {
@@ -44,5 +44,9 @@ function BurgerIngredients(props:any) {
         </div>
     );
 }
+
+BurgerIngredients.propTypes = {
+    card: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default BurgerIngredients;

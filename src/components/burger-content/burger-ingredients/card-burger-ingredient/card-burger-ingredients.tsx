@@ -2,6 +2,8 @@ import React from 'react';
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
 import burgeringredient from  "../burgeringredient.module.css";
 import {Counter,CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from 'prop-types';
+
 
 const CardBurgerIngredient = (props:any) => {
     return (
@@ -22,5 +24,12 @@ const CardBurgerIngredient = (props:any) => {
         </>
     );
 }
+
+CardBurgerIngredient.propTypes = {
+    title: PropTypes.string,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+};
 
 export default CardBurgerIngredient;

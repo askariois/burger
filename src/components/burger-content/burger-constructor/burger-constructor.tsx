@@ -1,7 +1,7 @@
 import { ConstructorElement } from '@ya.praktikum/react-developer-burger-ui-components';
 import burgerconstrucor from  "./burgerin-construcor.module.css";
 import Checkout from './checkout/checkout';
-
+import PropTypes from 'prop-types';
 
 
 function BurgerConstructor(props:any) {
@@ -46,5 +46,9 @@ function BurgerConstructor(props:any) {
         </div>
     );
 }
+
+BurgerConstructor.propTypes = {
+    card: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default BurgerConstructor;
