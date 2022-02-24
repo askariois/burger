@@ -6,11 +6,15 @@ import RightButton from './RightButton/RightButton';
 
 function Header() {
   return (
-    <div className={`${header_styles.bg_navbar} flex justify-between align-center pt-6 pb-6`}>
-       <LeftButton/>
-       <Logo/>
-       <RightButton/>
-    </div>
+    <header className={`${header_styles.bg_navbar}`}>
+        <div className={`container`}>
+            <div className={`flex justify-between align-center pt-6 pb-6`}>
+               <LeftButton/>
+               <Logo/>
+               <RightButton/>
+            </div>
+        </div>
+    </header>
   );
 }
 

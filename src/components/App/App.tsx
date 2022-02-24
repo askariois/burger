@@ -1,11 +1,13 @@
 import React from 'react';
-import Header from '../Header/AppHeader';
 import './App.css';
+import Header from "../Header/AppHeader";
+import BurgerContent from "../BurgerContent/BurgerContent";
 
 function App() {
   return (
     <div>
       <Header/>
+      <BurgerContent/>
     </div>
   );
 }
