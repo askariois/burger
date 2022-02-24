@@ -1,135 +1,43 @@
 import React from 'react';
-import dogImagePath from '../../../images/illustration.svg'
-import {Counter,CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import burgeringredient from  "./burgeringredient.module.css";
 import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredients';
+import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredients';
 
 
 
-function BurgerIngredients() {
+function BurgerIngredients(props:any) {
     return (
         <div className={`${burgeringredient.content_width}`}>
             <TabsBurgerIngredients/>
             <div className={`${burgeringredient.scroll}`}>
                 <div className={`mt-10`}>
-                    <h2>Булки</h2>
-                    <div className={`flex flex-wrap`}>
-                        <div className={`w-6-12 mb-8`}>
-                            <div className={`relative flex justify-center`}>
-                                <img src={dogImagePath} alt='Грустная собачка' />
-                                <Counter count={2} size="default" />
-                            </div>
-                            <div className={`flex justify-center align-center`}>
-                                <span className={`${burgeringredient.burger_counter} mt-1`}>20</span>
-                                <CurrencyIcon type="primary" />
-                            </div>
-                            <div className={`${burgeringredient.burger_name} mt-1`}>
-                                Краторная булка N-200i
-                            </div>
-                        </div>
-                        <div className={`w-6-12 mb-8`}>
-                            <div className={`relative flex justify-center`}>
-                                <img src={dogImagePath} alt='Грустная собачка' />
-                                <Counter count={2} size="default" />
-                            </div>
-                            <div className={`flex justify-center align-center`}>
-                                <span className={`${burgeringredient.burger_counter} mt-1`}>20</span>
-                                <CurrencyIcon type="primary" />
-                            </div>
-                            <div className={`${burgeringredient.burger_name} mt-1`}>
-                                Краторная булка N-200i
-                            </div>
-                        </div>
-                    </div>
+                <h2>Бургеры</h2>
+                <div className={`flex flex-wrap`}>
+                    {props.card.map((item:any , index:any) =>{
+                        if(item.type === 'bun'){                  
+                            return <CardBurgerIngredient title="Бургер" image={item.image} name={item.name} price={item.price} key={index}/>;
+                        }   
+                    })}
                 </div>
-
+                </div>
                 <div className={`mt-10`}>
                     <h2>Соусы</h2>
                     <div className={`flex flex-wrap`}>
-                        <div className={`w-6-12 mb-8`}>
-                            <div className={`relative flex justify-center`}>
-                                <img src={dogImagePath} alt='Грустная собачка' />
-                                <Counter count={2} size="default" />
-                            </div>
-                            <div className={`flex justify-center align-center`}>
-                                <span className={`${burgeringredient.burger_counter} mt-1`}>20</span>
-                                <CurrencyIcon type="primary" />
-                            </div>
-                            <div className={`${burgeringredient.burger_name} mt-1`}>
-                                Краторная булка N-200i
-                            </div>
-                        </div>
-                        <div className={`w-6-12 mb-8`}>
-                            <div className={`relative flex justify-center`}>
-                                <img src={dogImagePath} alt='Грустная собачка' />
-                                <Counter count={2} size="default" />
-                            </div>
-                            <div className={`flex justify-center align-center`}>
-                                <span className={`${burgeringredient.burger_counter} mt-1`}>20</span>
-                                <CurrencyIcon type="primary" />
-                            </div>
-                            <div className={`${burgeringredient.burger_name} mt-1`}>
-                                Краторная булка N-200i
-                            </div>
-                        </div>
-                        <div className={`w-6-12 mb-8`}>
-                            <div className={`relative flex justify-center`}>
-                                <img src={dogImagePath} alt='Грустная собачка' />
-                                <Counter count={2} size="default" />
-                            </div>
-                            <div className={`flex justify-center align-center`}>
-                                <span className={`${burgeringredient.burger_counter} mt-1`}>20</span>
-                                <CurrencyIcon type="primary" />
-                            </div>
-                            <div className={`${burgeringredient.burger_name} mt-1`}>
-                                Краторная булка N-200i
-                            </div>
-                        </div>
-                        <div className={`w-6-12 mb-8`}>
-                            <div className={`relative flex justify-center`}>
-                                <img src={dogImagePath} alt='Грустная собачка' />
-                                <Counter count={2} size="default" />
-                            </div>
-                            <div className={`flex justify-center align-center`}>
-                                <span className={`${burgeringredient.burger_counter} mt-1`}>20</span>
-                                <CurrencyIcon type="primary" />
-                            </div>
-                            <div className={`${burgeringredient.burger_name} mt-1`}>
-                                Краторная булка N-200i
-                            </div>
-                        </div>
+                        {props.card.map((item:any , index:any) =>{
+                            if(item.type === 'sauce'){                  
+                                return <CardBurgerIngredient title="Бургер" image={item.image} name={item.name} price={item.price} key={index}/>;
+                            }   
+                        })}
                     </div>
                 </div>
-
                 <div className={`mt-10`}>
-                    <h2>Начинка</h2>
+                    <h2>Начинки</h2>
                     <div className={`flex flex-wrap`}>
-                        <div className={`w-6-12 mb-8`}>
-                            <div className={`relative flex justify-center`}>
-                                <img src={dogImagePath} alt='Грустная собачка' />
-                                <Counter count={2} size="default" />
-                            </div>
-                            <div className={`flex justify-center align-center`}>
-                                <span className={`${burgeringredient.burger_counter} mt-1`}>20</span>
-                                <CurrencyIcon type="primary" />
-                            </div>
-                            <div className={`${burgeringredient.burger_name} mt-1`}>
-                                Краторная булка N-200i
-                            </div>
-                        </div>
-                        <div className={`w-6-12 mb-8`}>
-                            <div className={`relative flex justify-center`}>
-                                <img src={dogImagePath} alt='Грустная собачка' />
-                                <Counter count={2} size="default" />
-                            </div>
-                            <div className={`flex justify-center align-center`}>
-                                <span className={`${burgeringredient.burger_counter} mt-1`}>20</span>
-                                <CurrencyIcon type="primary" />
-                            </div>
-                            <div className={`${burgeringredient.burger_name} mt-1`}>
-                                Краторная булка N-200i
-                            </div>
-                        </div>
+                        {props.card.map((item:any , index:any) =>{
+                            if(item.type === 'main'){                  
+                                return <CardBurgerIngredient title="Бургер" image={item.image} name={item.name} price={item.price} key={index}/>;
+                            }   
+                        })}
                     </div>
                 </div>
             </div>
