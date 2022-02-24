@@ -1,8 +1,8 @@
 import React from 'react';
-import TabsBurgerIngredients from "./TabsBurgerIngredients/TabsBurgerIngredients";
 import dogImagePath from '../../../images/illustration.svg'
 import {Counter,CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import burgeringredient from  "./burgeringredient.module.css";
+import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredients';
 
 
 
@@ -10,7 +10,7 @@ function BurgerIngredients() {
     return (
         <div className={`${burgeringredient.content_width}`}>
             <TabsBurgerIngredients/>
-            <div>
+            <div className={`${burgeringredient.scroll}`}>
                 <div className={`mt-10`}>
                     <h2>Булки</h2>
                     <div className={`flex flex-wrap`}>
@@ -43,7 +43,7 @@ function BurgerIngredients() {
                     </div>
                 </div>
 
-                <div className={`${burgeringredient.content_width} mt-10`}>
+                <div className={`mt-10`}>
                     <h2>Соусы</h2>
                     <div className={`flex flex-wrap`}>
                         <div className={`w-6-12 mb-8`}>
@@ -101,7 +101,7 @@ function BurgerIngredients() {
                     </div>
                 </div>
 
-                <div className={`${burgeringredient.content_width} mt-10`}>
+                <div className={`mt-10`}>
                     <h2>Начинка</h2>
                     <div className={`flex flex-wrap`}>
                         <div className={`w-6-12 mb-8`}>

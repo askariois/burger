@@ -1,0 +1,9 @@
+.burger_counter {
+  font-size: 28px;
+  margin-right: 9px;
+}
+
+.scroll {
+  overflow-y: scroll;
+  height: 300px;
+}

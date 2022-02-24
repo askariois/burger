@@ -1,0 +1,18 @@
+.burger_counter {
+  font-size: 28px;
+  margin-right: 9px;
+}
+
+.burger_name {
+  text-align: center;
+  font-size: 16px;
+}
+
+.content_width {
+  width: 592px;
+}
+
+.scroll {
+  overflow-y: scroll;
+  height: 500px;
+}

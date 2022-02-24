@@ -1,7 +1,8 @@
 import React from 'react';
+import BurgerContent from '../burger-content/burger-content';
+import Header from '../header/app-header';
+import {data} from './utils/data.js';
 import './App.css';
-import Header from "../Header/AppHeader";
-import BurgerContent from "../BurgerContent/BurgerContent";
 
 function App() {
   return (

@@ -1,6 +1,6 @@
 import React from 'react';
-import BurgerIngredients from "./BurgerIngredients/BurgerIngredients";
-import BurgerConstructor from "./BurgerConstructor/BurgerConstructor";
+import BurgerConstructor from './burger-constructor/burger-constructor';
+import BurgerIngredients from './burger-ingredients/burger-ingredients';
 
 function BurgerContent() {
     return (

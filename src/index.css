@@ -11,10 +11,10 @@ code {
     monospace;
 }
 
-h1{
+h1 {
   font-size: 36px;
 }
-h2{
+h2 {
   font-size: 24px;
 }
 
@@ -22,21 +22,29 @@ h2{
   display: flex;
 }
 
-.flex-wrap{
+.flex-wrap {
   flex-wrap: wrap;
+}
+
+.flex-col {
+  flex-direction: column;
 }
 
 .justify-between {
   justify-content: space-between;
 }
-.justify-center{
+
+.justify-center {
   justify-content: center;
 }
 
 .align-center {
   align-items: center;
 }
-.justify-right{
+.align-end {
+  align-items: flex-end;
+}
+.justify-right {
   justify-content: flex-end;
 }
 
@@ -44,17 +52,17 @@ h2{
   color: #8585ad;
 }
 
-.container{
+.container {
   width: 1450px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.w-6-12{
+.w-6-12 {
   width: 50%;
 }
 
-.relative{
+.relative {
   position: relative;
 }
 
@@ -63,4 +71,24 @@ h2{
   font-weight: normal;
   font-style: normal;
   src: url("./fonts/Jetbrainsmonomedium.woff") format("woff");
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px #2f2f37;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #8585ad;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #8585ad;
 }

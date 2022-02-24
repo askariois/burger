@@ -1,8 +1,8 @@
 import React from 'react';
 import header_styles from './header.module.css';
 import {  Logo } from '@ya.praktikum/react-developer-burger-ui-components';
-import LeftButton from './LeftButton/LeftButton';
-import RightButton from './RightButton/RightButton';
+import LeftButton from './left-button/left-button';
+import RightButton from './right-button/right-button';
 
 function Header() {
   return (
