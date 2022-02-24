@@ -8,11 +8,10 @@ import burgeringredient from  "./burgeringredient.module.css";
 
 function BurgerIngredients() {
     return (
-        <div className={`w-6-12`}>
+        <div className={`${burgeringredient.content_width}`}>
             <TabsBurgerIngredients/>
-
             <div>
-                <div className={`${burgeringredient.content_width} mt-10`}>
+                <div className={`mt-10`}>
                     <h2>Булки</h2>
                     <div className={`flex flex-wrap`}>
                         <div className={`w-6-12 mb-8`}>

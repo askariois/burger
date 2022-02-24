@@ -5,7 +5,7 @@ function TabsBurgerIngredients() {
     const [current, setCurrent] = React.useState('rolls')
 
     return (
-        <div className={`w-6-12`}>
+        <div>
             <h1>Соберите бургер</h1>
             <div className={`flex`}>
                 <Tab value="rolls" active={current === 'rolls'} onClick={setCurrent}>

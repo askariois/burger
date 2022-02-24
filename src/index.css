@@ -36,6 +36,9 @@ h2{
 .align-center {
   align-items: center;
 }
+.justify-right{
+  justify-content: flex-end;
+}
 
 .text-secondary {
   color: #8585ad;
