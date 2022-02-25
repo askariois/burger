@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../header/app-header';
+import AppHeader from '../app-header/app-header';
 import {data} from '../../utils/data.js';
-import './App.css';
+import app from './app.module.css';
 import BurgerIngredients from '../burger-content/burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-content/burger-constructor/burger-constructor';
 
@@ -17,9 +17,9 @@ class App extends React.Component {
   render() {
   return (
       <>
-        <Header/>
-        <div className={`container`}>
-            <div className={`flex justify-between`}>
+        <AppHeader/>
+        <div className={`${app.container}`}>
+            <div className={`${app.flex} ${app.justify_between}`}>
               <BurgerIngredients card={data}/>
               <BurgerConstructor  card={data} />
           </div>

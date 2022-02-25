@@ -7,13 +7,13 @@ import checkout from "./checkout.module.css";
 function Checkout() {
     return (
         <div className={`mt-10`}>
-            <div className={`flex justify-right align-center`}>
+            <div className={`${checkout.flex}`}>
                 <div className={`${checkout.checkout_sum} mr-10`}>
                     <span className={`mr-2`}>610</span>
                     <CurrencyIcon type="primary" />
                 </div>
                 <Button type="primary" size="large">
-                    Оформить заказ
+                    <a href="#" className={checkout.text_white}> Оформить заказ</a>
                 </Button>
             </div>
         </div>

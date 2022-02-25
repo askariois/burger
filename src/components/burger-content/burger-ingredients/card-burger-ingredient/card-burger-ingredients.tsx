@@ -1,6 +1,6 @@
 import React from 'react';
 import {Tab} from "@ya.praktikum/react-developer-burger-ui-components";
-import burgeringredient from  "../burgeringredient.module.css";
+import burgeringredient from  "../burger-ingredient.module.css";
 import {Counter,CurrencyIcon} from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from 'prop-types';
 
