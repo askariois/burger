@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../header/app-header';
-import {data} from './utils/data.js';
+import {data} from '../../utils/data.js';
 import './App.css';
 import BurgerIngredients from '../burger-content/burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-content/burger-constructor/burger-constructor';
