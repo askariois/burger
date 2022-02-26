@@ -11,7 +11,7 @@ function BurgerConstructor(props: any) {
                 {props.card.map((item: any, index: any) => {
                     if (item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3') {
                         return (
-                            <div className='mt-4 mb-4' key={item._id}> <ConstructorElement
+                            <div className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`} key={item._id}> <ConstructorElement
                                 type="top"
                                 isLocked={true}
                                 text={`${item.name} (верх)`}
@@ -39,7 +39,7 @@ function BurgerConstructor(props: any) {
                 {props.card.map((item: any, index: any) => {
                     if (item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3') {
                         return (
-                            <div className='mt-4 mb-4'
+                            <div className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`}
                                 key={item._id}> <ConstructorElement
                                     type="bottom"
                                     isLocked={true}

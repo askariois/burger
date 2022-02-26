@@ -4,5 +4,9 @@
 }
 
 .content_width {
-  width: 592px;
+  width: 600px;
+}
+
+.mr_12 {
+  margin-right: 12px;
 }
