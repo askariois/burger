@@ -6,6 +6,7 @@ import PropTypes from 'prop-types';
 
 
 function BurgerIngredients(props: any) {
+
     return (
         <div className={`${burgeringredient.content_width}`}>
             <TabsBurgerIngredients />
@@ -15,7 +16,9 @@ function BurgerIngredients(props: any) {
                     <div className={`flex flex-wrap`}>
                         {props.card.map((item: any) => {
                             if (item.type === 'bun') {
-                                return (<CardBurgerIngredient title="Бургер" image={item.image} name={item.name} price={item.price} key={item._id} />);
+                                return (
+                                    <CardBurgerIngredient title="Бургер" image={item.image} name={item.name} price={item.price} key={item._id} />
+                                );
                             }
                         })}
                     </div>
