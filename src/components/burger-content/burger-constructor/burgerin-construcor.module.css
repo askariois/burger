@@ -1,0 +1,12 @@
+.scroll {
+  overflow-y: scroll;
+  height: 300px;
+}
+
+.content_width {
+  width: 600px;
+}
+
+.mr_12 {
+  margin-right: 12px;
+}

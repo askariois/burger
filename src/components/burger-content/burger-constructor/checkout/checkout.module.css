@@ -1,0 +1,15 @@
+.checkout_sum {
+  font-size: 36px;
+  margin-right: 9px;
+}
+
+.flex {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.text_white {
+  color: white;
+  text-decoration: none;
+}
