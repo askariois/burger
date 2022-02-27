@@ -10,15 +10,17 @@ const modalRoot = document.getElementById("root")!;
 function Modal(props: any) {
    return ReactDOM.createPortal(
       <div>
-         <ModalOverlay closeOverlay={props.close} />
-         <div className={`${modal.modal_content} pt-10 pr-10 pb-15 pl-10`}>
-            <div className='flex align-center justify-between'>
-               <h1>s</h1>
-               <a href="#" className='flex'>
-                  <img src={modal_close} alt="" onClick={props.close} />
-               </a>
+         <ModalOverlay closeOverlay={props.close} >
+            <div className={`${modal.modal_content} pt-10 pr-10 pb-15 pl-10`}>
+               <div className='flex align-center justify-between'>
+                  <h1>{props.header}</h1>
+                  <a href="#" className='flex'>
+                     <img src={modal_close} className={`${modal.img_width}`} onClick={props.close} />
+                  </a>
+               </div>
+               {props.children}
             </div>
-         </div>
+         </ModalOverlay>
       </div>,
       modalRoot
    );

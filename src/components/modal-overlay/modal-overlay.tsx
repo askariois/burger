@@ -14,7 +14,9 @@ function ModalOverlay(props: any) {
       });
    });
    return (
-      <div className={`${modal_overlay.overlay}`} onClick={props.closeOverlay}></div>
+      <div className={`${modal_overlay.overlay}`} onClick={props.closeOverlay}>
+         {props.children}
+      </div>
    );
 }
 

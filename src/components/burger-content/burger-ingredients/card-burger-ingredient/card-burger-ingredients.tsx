@@ -1,9 +1,9 @@
 import React from 'react';
-import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 import burgeringredient from "../burger-ingredient.module.css";
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from 'prop-types';
 import Modal from '../../../modal/modal';
+import IngredientDetails from '../../../ingredient-details/ingredient-details';
 
 
 const CardBurgerIngredient = (props: any) => {
@@ -11,15 +11,17 @@ const CardBurgerIngredient = (props: any) => {
 
     const handleCloseModal = (e: any) => {
         setState({ visible: false });
+        document.body.style.overflow = 'auto';
     }
 
     const handleOpenModal = () => {
         setState({ visible: true });
+        document.body.style.overflow = 'hidden';
     }
 
-
-
-    const modal = <Modal close={handleCloseModal} />;
+    const modal = <Modal header="Детали ингредиента" close={handleCloseModal}>
+        <IngredientDetails title="Бургер" image={props.image_large} name={props.name} price={props.price} key={props._id} calories={props.calories} proteins={props.proteins} fat={props.fat} carbohydrates={props.carbohydrates} />
+    </Modal>;
 
     return (
         <>
@@ -46,6 +48,11 @@ CardBurgerIngredient.propTypes = {
     image: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.number,
+    image_large: PropTypes.string,
+    calories: PropTypes.number,
+    carbohydrates: PropTypes.number,
+    fat: PropTypes.number,
+    proteins: PropTypes.number,
 };
 
 export default CardBurgerIngredient;

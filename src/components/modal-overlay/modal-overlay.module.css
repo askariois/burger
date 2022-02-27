@@ -4,6 +4,12 @@
   z-index: 3;
   position: fixed;
   top: 0;
-  background-color: rgba(0, 0, 0, 0.678);
+  bottom: 0;
+  background-color: #00000099;
   opacity: 1;
+  overflow: auto;
+}
+.overlay:target {
+  pointer-events: auto;
+  overflow-y: scroll;
 }

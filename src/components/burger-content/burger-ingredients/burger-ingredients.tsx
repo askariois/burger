@@ -17,7 +17,7 @@ function BurgerIngredients(props: any) {
                         {props.card.map((item: any) => {
                             if (item.type === 'bun') {
                                 return (
-                                    <CardBurgerIngredient title="Бургер" image={item.image} name={item.name} price={item.price} key={item._id} />
+                                    <CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />
                                 );
                             }
                         })}
@@ -28,7 +28,7 @@ function BurgerIngredients(props: any) {
                     <div className={`flex flex-wrap`}>
                         {props.card.map((item: any) => {
                             if (item.type === 'sauce') {
-                                return (<CardBurgerIngredient title="Бургер" image={item.image} name={item.name} price={item.price} key={item._id} />);
+                                return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
                             }
                         })}
                     </div>
@@ -38,7 +38,7 @@ function BurgerIngredients(props: any) {
                     <div className={`flex flex-wrap`}>
                         {props.card.map((item: any) => {
                             if (item.type === 'main') {
-                                return (<CardBurgerIngredient title="Бургер" image={item.image} name={item.name} price={item.price} key={item._id} />);
+                                return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
                             }
                         })}
                     </div>
