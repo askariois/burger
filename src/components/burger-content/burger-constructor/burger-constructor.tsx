@@ -1,7 +1,9 @@
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import burgerconstrucor from "./burgerin-construcor.module.css";
-import Checkout from './checkout/checkout';
 import PropTypes from 'prop-types';
+import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+
+import Checkout from './checkout/checkout';
+
+import burgerconstrucor from "./burgerin-construcor.module.css";
 
 
 function BurgerConstructor(props: any) {

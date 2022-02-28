@@ -1,31 +1,29 @@
 import React from 'react';
-import burgeringredient from "../burger-ingredient.module.css";
 import { Counter, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from 'prop-types';
+
 import Modal from '../../../modal/modal';
 import IngredientDetails from '../../../ingredient-details/ingredient-details';
 
+import burgeringredient from "../burger-ingredient.module.css";
+
 
 const CardBurgerIngredient = (props: any) => {
-    const [state, setState] = React.useState({ visible: false });
+    const [isModalShown, setisModalShown] = React.useState(false);
 
     const handleCloseModal = (e: any) => {
-        setState({ visible: false });
-        document.body.style.overflow = 'auto';
+        setisModalShown(false);
     }
 
     const handleOpenModal = () => {
-        setState({ visible: true });
-        document.body.style.overflow = 'hidden';
+        setisModalShown(true);
     }
 
-    const modal = <Modal header="Детали ингредиента" close={handleCloseModal}>
-        <IngredientDetails title="Бургер" image={props.image_large} name={props.name} price={props.price} key={props._id} calories={props.calories} proteins={props.proteins} fat={props.fat} carbohydrates={props.carbohydrates} />
-    </Modal>;
+
 
     return (
         <>
-            <div style={{ overflow: 'hidden' }} className={`${burgeringredient.cursor_pointer} w-6-12 mb-8`} onClick={handleOpenModal}>
+            <div className={`${burgeringredient.cursor_pointer} w-6-12 mb-8`} onClick={handleOpenModal}>
                 <div className={`relative flex justify-center`}>
                     <img src={props.image} alt='Грустная собачка' />
                     <Counter count={2} size="default" />
@@ -38,7 +36,9 @@ const CardBurgerIngredient = (props: any) => {
                     {props.name}
                 </div>
             </div>
-            {state.visible && modal}
+            {isModalShown && <Modal header="Детали ингредиента" close={handleCloseModal}>
+                <IngredientDetails title="Бургер" image={props.image_large} name={props.name} price={props.price} key={props._id} calories={props.calories} proteins={props.proteins} fat={props.fat} carbohydrates={props.carbohydrates} />
+            </Modal>}
         </>
     );
 }

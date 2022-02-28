@@ -1,14 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import modal from './modal.module.css';
-import modal_close from '../../images/close.svg';
+
 import ModalOverlay from '../modal-overlay/modal-overlay';
 
+import modal from './modal.module.css';
 
-const modalRoot = document.getElementById("root")!;
+import modal_close from '../../images/close.svg';
+
+
+
+const modalRoot = document.getElementById("main-modal");
 
 function Modal(props: any) {
-   return ReactDOM.createPortal(
+   return modalRoot ? ReactDOM.createPortal(
       <div>
          <ModalOverlay closeOverlay={props.close} >
             <div className={`${modal.modal_content} pt-10 pr-10 pb-15 pl-10`}>
@@ -23,7 +27,8 @@ function Modal(props: any) {
          </ModalOverlay>
       </div>,
       modalRoot
-   );
+   ) : null;
 }
+
 
 export default Modal;

@@ -1,11 +1,26 @@
 import React from 'react';
-import burgeringredient from "./burger-ingredient.module.css";
+import PropTypes from 'prop-types';
+
 import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredients';
 import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredients';
-import PropTypes from 'prop-types';
+
+import burgeringredient from "./burger-ingredient.module.css";
 
 
 function BurgerIngredients(props: any) {
+
+    const bun = props.card.filter((item: any) => {
+        return item.type === 'bun';
+    });
+
+    const sauce = props.card.filter((item: any) => {
+        return item.type === 'sauce';
+    });
+
+
+    const main = props.card.filter((item: any) => {
+        return item.type === 'main';
+    });
 
     return (
         <div className={`${burgeringredient.content_width}`}>
@@ -14,32 +29,26 @@ function BurgerIngredients(props: any) {
                 <div className={`mt-10`}>
                     <h2>Бургеры</h2>
                     <div className={`flex flex-wrap`}>
-                        {props.card.map((item: any) => {
-                            if (item.type === 'bun') {
-                                return (
-                                    <CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />
-                                );
-                            }
+                        {bun.map((item: any) => {
+                            return (
+                                <CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />
+                            );
                         })}
                     </div>
                 </div>
                 <div className={`mt-10`}>
                     <h2>Соусы</h2>
                     <div className={`flex flex-wrap`}>
-                        {props.card.map((item: any) => {
-                            if (item.type === 'sauce') {
-                                return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
-                            }
+                        {sauce.map((item: any) => {
+                            return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
                         })}
                     </div>
                 </div>
                 <div className={`mt-10`}>
                     <h2>Начинки</h2>
                     <div className={`flex flex-wrap`}>
-                        {props.card.map((item: any) => {
-                            if (item.type === 'main') {
-                                return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
-                            }
+                        {main.map((item: any) => {
+                            return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
                         })}
                     </div>
                 </div>

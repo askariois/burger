@@ -1,10 +1,11 @@
 import React from 'react';
+
 import AppHeader from '../app-header/app-header';
-import { data } from '../../utils/data.js';
-import app from './app.module.css';
 import BurgerIngredients from '../burger-content/burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-content/burger-constructor/burger-constructor';
-import Modal from '../modal/modal';
+
+import app from './app.module.css';
+
 
 
 function App() {
