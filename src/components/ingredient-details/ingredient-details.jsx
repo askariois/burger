@@ -1,16 +1,7 @@
 import burgerdetails from "./burger-details.module.css";
+import PropTypes from 'prop-types';
 
-interface Props {
-    title: string,
-    image: string,
-    name: string,
-    calories: number,
-    carbohydrates: number,
-    fat: number,
-    proteins: number,
-};
-
-function IngredientDetails(props: Props) {
+function IngredientDetails(props) {
    return (
       <div>
          <div className='flex justify-center'>
@@ -40,5 +31,14 @@ function IngredientDetails(props: Props) {
       </div >
    )
 }
+
+IngredientDetails.propTypes = {
+   image: PropTypes.string.isRequired,
+   name: PropTypes.string.isRequired,
+   calories: PropTypes.number.isRequired,
+   carbohydrates: PropTypes.number.isRequired,
+   fat: PropTypes.number.isRequired,
+   proteins: PropTypes.number.isRequired,
+};
 
 export default IngredientDetails;

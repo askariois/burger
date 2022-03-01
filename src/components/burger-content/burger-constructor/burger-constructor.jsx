@@ -1,19 +1,24 @@
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import PropTypes from 'prop-types';
 
-import Checkout from './checkout/checkout';
+import OrderDetails from '../../order-details/order-details';
 
 import burgerconstrucor from "./burgerin-construcor.module.css";
 
-interface ClickableProps {
-    card: {}[];
-}
 
-function BurgerConstructor(props: ClickableProps) {
+function BurgerConstructor(props) {
+    const bunTopBottom = props.ingredients.filter((item) => {
+        return item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3';
+    });
+
+    const ingredientsMiddle = props.ingredients.filter((item) => {
+        return item.type !== 'bun';
+    });
+
     return (
         <div className={`${burgerconstrucor.content_width} mt-25  mr-2`}>
             <div className='flex align-end  flex-col'>
-                {props.card.map((item: any, index: any) => {
-                    if (item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3') {
+                {bunTopBottom.map((item) => {
                         return (
                             <div className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`} key={item._id}> <ConstructorElement
                                 type="top"
@@ -23,11 +28,9 @@ function BurgerConstructor(props: ClickableProps) {
                                 thumbnail={item.image}
                             /></div>
                         );
-                    }
                 })}
                 <div className={`${burgerconstrucor.scroll}`}>
-                    {props.card.map((item: any, index: any) => {
-                        if (item.type !== 'bun') {
+                    {ingredientsMiddle.map((item) => {
                             return (
                                 <div className='mt-4 mb-4 flex align-center' key={item._id}>
                                     <DragIcon type="primary" />
@@ -37,11 +40,9 @@ function BurgerConstructor(props: ClickableProps) {
                                         thumbnail={item.image}
                                     /></div>
                             );
-                        }
                     })}
                 </div>
-                {props.card.map((item: any, index: any) => {
-                    if (item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3') {
+                {bunTopBottom.map((item) => {
                         return (
                             <div className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`}
                                 key={item._id}> <ConstructorElement
@@ -52,14 +53,15 @@ function BurgerConstructor(props: ClickableProps) {
                                     thumbnail={item.image}
                                 /></div>
                         );
-                    }
                 })}
             </div>
-            <Checkout />
+            <OrderDetails />
         </div>
     );
 }
 
-
+BurgerConstructor.propTypes = {
+    ingredients : PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+};
 
 export default BurgerConstructor;

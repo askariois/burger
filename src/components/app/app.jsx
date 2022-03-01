@@ -35,8 +35,8 @@ function App() {
       <AppHeader />
       <div className={`${app.container}`}>
         <div className={`${app.flex} ${app.justify_between}`}>
-          <BurgerIngredients card={state} />
-          <BurgerConstructor card={state} />
+          <BurgerIngredients ingredients={state} />
+          <BurgerConstructor ingredients={state} />
         </div>
       </div>
     </>

@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 import ModalOverlay from '../modal-overlay/modal-overlay';
 
@@ -11,7 +12,7 @@ import modal_close from '../../images/close.svg';
 
 const modalRoot = document.getElementById("main-modal");
 
-function Modal(props: any) {
+function Modal(props) {
    return modalRoot ? ReactDOM.createPortal(
       <div>
          <ModalOverlay closeOverlay={props.close} >
@@ -28,6 +29,12 @@ function Modal(props: any) {
       </div>,
       modalRoot
    ) : null;
+}
+
+Modal.propTypes = {
+   close:PropTypes.func.isRequired,
+   header:PropTypes.string,
+   children: PropTypes.element.isRequired ,
 }
 
 

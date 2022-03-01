@@ -8,23 +8,12 @@ import IngredientDetails from '../../../ingredient-details/ingredient-details';
 import burgeringredient from "../burger-ingredient.module.css";
 
 
-interface Props {
-    _id?: number,
-    title: string,
-    image: string,
-    name: string,
-    price: number,
-    image_large: string,
-    calories: number,
-    carbohydrates: number,
-    fat: number,
-    proteins: number,
-};
 
-const CardBurgerIngredient = (props: Props) => {
+
+const CardBurgerIngredient = (props) => {
     const [isModalShown, setIsModalShown] = React.useState(false);
 
-    const handleCloseModal = (e: any) => {
+    const handleCloseModal = (e) => {
         setIsModalShown(false);
     }
 
@@ -54,5 +43,17 @@ const CardBurgerIngredient = (props: Props) => {
     );
 }
 
+
+CardBurgerIngredient.propTypes = {
+    title: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image_large: PropTypes.string.isRequired,
+    calories: PropTypes.number.isRequired,
+    carbohydrates: PropTypes.number.isRequired,
+    fat: PropTypes.number.isRequired,
+    proteins: PropTypes.number.isRequired,
+};
 
 export default CardBurgerIngredient;
