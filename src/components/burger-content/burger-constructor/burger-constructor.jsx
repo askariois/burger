@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import OrderDetails from '../../order-details/order-details';
 
-import burgerconstrucor from "./burgerin-construcor.module.css";
+import burgerconstrucor from "./burger-construcor.module.css";
 
 
 function BurgerConstructor(props) {
