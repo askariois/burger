@@ -1,10 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import modal_overlay from './modal-overlay.module.css';
 
 
-function ModalOverlay(props: any) {
+interface Props {
+   closeOverlay: () => void;
+   children:JSX.Element;
+}
+
+function ModalOverlay(props: Props) {
 
    const keydownCloseModal = (e: any) => {
       if (e.code === "Escape") {
@@ -24,9 +28,6 @@ function ModalOverlay(props: any) {
    );
 }
 
-ModalOverlay.propTypes = {
-   closeOverlay: PropTypes.func.isRequired,
-   children: PropTypes.element.isRequired
-};
+
 
 export default ModalOverlay;

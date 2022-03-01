@@ -1,12 +1,14 @@
-import PropTypes from 'prop-types';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 
 import Checkout from './checkout/checkout';
 
 import burgerconstrucor from "./burgerin-construcor.module.css";
 
+interface ClickableProps {
+    card: {}[];
+}
 
-function BurgerConstructor(props: any) {
+function BurgerConstructor(props: ClickableProps) {
     return (
         <div className={`${burgerconstrucor.content_width} mt-25  mr-2`}>
             <div className='flex align-end  flex-col'>
@@ -58,8 +60,6 @@ function BurgerConstructor(props: any) {
     );
 }
 
-BurgerConstructor.propTypes = {
-    card: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
-};
+
 
 export default BurgerConstructor;

@@ -8,18 +8,29 @@ import IngredientDetails from '../../../ingredient-details/ingredient-details';
 import burgeringredient from "../burger-ingredient.module.css";
 
 
-const CardBurgerIngredient = (props: any) => {
-    const [isModalShown, setisModalShown] = React.useState(false);
+interface Props {
+    _id?: number,
+    title: string,
+    image: string,
+    name: string,
+    price: number,
+    image_large: string,
+    calories: number,
+    carbohydrates: number,
+    fat: number,
+    proteins: number,
+};
+
+const CardBurgerIngredient = (props: Props) => {
+    const [isModalShown, setIsModalShown] = React.useState(false);
 
     const handleCloseModal = (e: any) => {
-        setisModalShown(false);
+        setIsModalShown(false);
     }
 
     const handleOpenModal = () => {
-        setisModalShown(true);
+        setIsModalShown(true);
     }
-
-
 
     return (
         <>
@@ -37,22 +48,11 @@ const CardBurgerIngredient = (props: any) => {
                 </div>
             </div>
             {isModalShown && <Modal header="Детали ингредиента" close={handleCloseModal}>
-                <IngredientDetails title="Бургер" image={props.image_large} name={props.name} price={props.price} key={props._id} calories={props.calories} proteins={props.proteins} fat={props.fat} carbohydrates={props.carbohydrates} />
+                <IngredientDetails title="Бургер" image={props.image_large} name={props.name}  key={props._id} calories={props.calories} proteins={props.proteins} fat={props.fat} carbohydrates={props.carbohydrates} />
             </Modal>}
         </>
     );
 }
 
-CardBurgerIngredient.propTypes = {
-    title: PropTypes.string,
-    image: PropTypes.string,
-    name: PropTypes.string,
-    price: PropTypes.number,
-    image_large: PropTypes.string,
-    calories: PropTypes.number,
-    carbohydrates: PropTypes.number,
-    fat: PropTypes.number,
-    proteins: PropTypes.number,
-};
 
 export default CardBurgerIngredient;

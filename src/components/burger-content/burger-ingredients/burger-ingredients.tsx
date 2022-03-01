@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
 import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredients';
 import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredients';
@@ -7,7 +6,12 @@ import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredien
 import burgeringredient from "./burger-ingredient.module.css";
 
 
-function BurgerIngredients(props: any) {
+
+interface Props {
+    card: {}[];
+}
+
+function BurgerIngredients(props: Props) {
 
     const bun = props.card.filter((item: any) => {
         return item.type === 'bun';
@@ -57,8 +61,6 @@ function BurgerIngredients(props: any) {
     );
 }
 
-BurgerIngredients.propTypes = {
-    card: PropTypes.arrayOf(PropTypes.object.isRequired).isRequired
-};
+
 
 export default BurgerIngredients;
