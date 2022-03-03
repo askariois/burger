@@ -7,7 +7,7 @@ function TabsBurgerIngredients() {
     return (
         <div>
             <h1>Соберите бургер</h1>
-            <div className={`flex`}>
+            <div className='flex'>
                 <Tab value="rolls" active={current === 'rolls'} onClick={setCurrent}>
                     Булки
                 </Tab>

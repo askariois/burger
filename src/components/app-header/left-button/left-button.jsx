@@ -1,6 +1,7 @@
 import React from 'react';
-import left_button from './left-button.module.css';
 import { BurgerIcon, ListIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+
+import left_button from './left-button.module.css';
 
 function LeftButton() {
   return (
