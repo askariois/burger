@@ -1,13 +1,21 @@
+import React from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
 import OrderDetails from '../../order-details/order-details';
+import {IngredientContext} from '../../../services/constructorContext';
 
-import burgerconstrucor from "./burger-construcor.module.css";
+import burgerconstrucor from './burger-construcor.module.css';
+
+
 
 
 function BurgerConstructor(props) {
-    const bunTopBottom = props.ingredients.filter((item) => {
+
+    const [ingredients] = React.useContext(IngredientContext);
+
+
+    const bunTopBottom = ingredients.filter((item) => {
         return item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3';
     });
 
