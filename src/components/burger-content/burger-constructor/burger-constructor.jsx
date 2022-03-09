@@ -4,22 +4,24 @@ import PropTypes from 'prop-types';
 
 import OrderDetails from '../../order-details/order-details';
 import {IngredientContext} from '../../../services/constructorContext';
+import { BunPriceContext, OtherPriceContext } from '../../../services/constructorPriceContext';
 
 import burgerconstrucor from './burger-construcor.module.css';
 
 
 
 
-function BurgerConstructor(props) {
 
-    const [ingredients] = React.useContext(IngredientContext);
+function BurgerConstructor() {
+
+    const ingredients = React.useContext(IngredientContext);
 
 
     const bunTopBottom = ingredients.filter((item) => {
         return item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3';
     });
 
-    const ingredientsMiddle = props.ingredients.filter((item) => {
+    const ingredientsMiddle = ingredients.filter((item) => {
         return item.type !== 'bun';
     });
 
@@ -46,7 +48,8 @@ function BurgerConstructor(props) {
                                         text={item.name}
                                         price={item.price}
                                         thumbnail={item.image}
-                                    /></div>
+                                    />
+                                    </div>
                             );
                     })}
                 </div>
@@ -63,13 +66,18 @@ function BurgerConstructor(props) {
                         );
                 })}
             </div>
-            <OrderDetails />
+            <BunPriceContext.Provider value={bunTopBottom}>
+                <OtherPriceContext.Provider value={ingredientsMiddle}>
+                    <OrderDetails />
+                </OtherPriceContext.Provider>
+            </BunPriceContext.Provider>
+    
         </div>
     );
 }
 
 BurgerConstructor.propTypes = {
-    ingredients : PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    ingredients : PropTypes.arrayOf(PropTypes.object.isRequired),
 };
 
 export default BurgerConstructor;

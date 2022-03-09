@@ -35,7 +35,7 @@ function App() {
             <div className={`${app.container}`}>
                 <div className={`${app.flex} ${app.justify_between}`}>
                     <BurgerIngredients ingredients={state}/>
-                    <IngredientContext.Provider value={{state, setState}}>
+                    <IngredientContext.Provider value={state}>
                         <BurgerConstructor/>
                     </IngredientContext.Provider>
                 </div>
