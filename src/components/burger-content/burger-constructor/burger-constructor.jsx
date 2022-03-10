@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 
 import OrderDetails from '../../order-details/order-details';
 import {IngredientContext} from '../../../services/constructorContext';
-import { BunPriceContext, OtherPriceContext } from '../../../services/constructorPriceContext';
 
 import burgerconstrucor from './burger-construcor.module.css';
 
@@ -66,11 +65,7 @@ function BurgerConstructor() {
                         );
                 })}
             </div>
-            <BunPriceContext.Provider value={bunTopBottom}>
-                <OtherPriceContext.Provider value={ingredientsMiddle}>
-                    <OrderDetails />
-                </OtherPriceContext.Provider>
-            </BunPriceContext.Provider>
+                    <OrderDetails bun = {bunTopBottom} ingredients={ingredientsMiddle}/>
     
         </div>
     );

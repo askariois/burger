@@ -4,12 +4,15 @@ import AppHeader from '../app-header/app-header';
 import BurgerIngredients from '../burger-content/burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-content/burger-constructor/burger-constructor';
 import {IngredientContext} from "../../services/constructorContext";
+import { baseUrl } from '../../constants/global';
 
 import app from './app.module.css';
 
 
+
 function App() {
-    const URL = 'https://norma.nomoreparties.space/api/ingredients';
+    
+    const URL = `${baseUrl}ingredients`;
 
     const [state, setState] = React.useState([]);
 
@@ -34,8 +37,8 @@ function App() {
             <AppHeader/>
             <div className={`${app.container}`}>
                 <div className={`${app.flex} ${app.justify_between}`}>
-                    <BurgerIngredients ingredients={state}/>
                     <IngredientContext.Provider value={state}>
+                        <BurgerIngredients/>
                         <BurgerConstructor/>
                     </IngredientContext.Provider>
                 </div>

@@ -1,20 +1,14 @@
 import React from 'react';
 
-import { BunPriceContext, OtherPriceContext } from '../../../services/constructorPriceContext';
+function TotalPrice(props) {
 
+   const totalBun = 0;
+   props.bun.map(item => (totalBun += item.price));
 
+   const totalOther = 0;
+   props.ingredients.map(item => (totalOther += item.price));
 
-function TotalPrice() {
-   let bunPrice = React.useContext(BunPriceContext);
-   let otherPrice = React.useContext(OtherPriceContext);
-
-   let totalBun = 0;
-   bunPrice.map(item => (totalBun += item.price));
-
-   let totalOther = 0;
-   otherPrice.map(item => (totalOther += item.price));
-
-   let total = (totalBun * 2) + totalOther;
+   const total = (totalBun * 2) + totalOther;
    return (
       <span className='mr-2'>{total}</span>
    );

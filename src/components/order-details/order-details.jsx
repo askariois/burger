@@ -3,19 +3,20 @@ import { Button, CurrencyIcon } from "@ya.praktikum/react-developer-burger-ui-co
 
 import Modal from '../modal/modal';
 import TotalPrice from './total-price/total-price';
-import { BunPriceContext, OtherPriceContext } from '../../services/constructorPriceContext';
+import { baseUrl } from '../../constants/global';
 
 import order_details from "./order-details.module.css";
 import done from "../../images/done.svg";
 
 
 
-function OrderDetails() {
-    const URL_ORDER = 'https://norma.nomoreparties.space/api/orders';
-    let bunOrder = React.useContext(BunPriceContext);
-    let otherOrder = React.useContext(OtherPriceContext);
-    let mainOrder = [...bunOrder , ...otherOrder];
-    let mainOrderAll = [];
+
+function OrderDetails(props) {
+    const URL_ORDER = `${baseUrl}orders`;
+
+
+    const mainOrder = [...props.bun , ...props.ingredients];
+    const mainOrderAll = [];
     mainOrder.map(item => mainOrderAll.push(`${item._id}`))
 
 
@@ -24,10 +25,11 @@ function OrderDetails() {
     const [isModalShown, setIsModalShown] = React.useState(false);
      
     const handleCloseModal = () => {
-        setIsModalShown(false);
+            setIsModalShown(false);
     }
 
-    const handleOpenModal = () => {               
+    const handleOpenModal = () => {     
+         
             const getOrderData = async () => {
                 try {
                     const res = await fetch(URL_ORDER , {
@@ -54,7 +56,7 @@ function OrderDetails() {
         <div className='mt-10'>
             <div className={order_details.flex}>
                 <div className={`${order_details.checkout_sum} mr-10`}>
-                    <TotalPrice/>
+                    <TotalPrice bun={props.bun} ingredients={props.ingredients}/>
                     <CurrencyIcon type="primary" />
                 </div>
                 <Button type="primary" size="large" onClick={handleOpenModal}>
@@ -62,7 +64,7 @@ function OrderDetails() {
                 </Button>
             </div>
             {isModalShown && <Modal close={handleCloseModal}>
-                <div className={order_details.modal}>
+                <div className={order_details.modal}  id="overlayModal">
                     <h1>{order}</h1>
                     <p className='mt-8 mb-15'>идентификатор заказа</p>
                     <div className='flex justify-center'>
