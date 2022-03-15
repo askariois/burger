@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import {constructor_ingredients}  from './constructor-ingredients';
+import {ingredientsReducer}  from './index';
 
 export const rootReducer = combineReducers({
-   cs: constructor_ingredients
+   ingredient: ingredientsReducer
  });

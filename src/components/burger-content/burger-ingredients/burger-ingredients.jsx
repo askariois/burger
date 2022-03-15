@@ -1,28 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 
 import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredients';
 import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredients';
-import { IngredientContext } from '../../../services/constructorContext';
+
+import { ingredientLoad } from '../../../services/actions';
 
 import burgeringredient from "./burger-ingredient.module.css";
-
-
+import { useDispatch, useSelector } from 'react-redux';
 
 
 function BurgerIngredients() {
-    const ingredients = React.useContext(IngredientContext);
+    const ingredients = useSelector(state => state.ingredient.ingredients);
+    
+    const dispatch = useDispatch();
 
-    const bun = ingredients.filter((item) => {
+    useEffect(() => {
+        dispatch(ingredientLoad());
+    }, []);
+  
+    const bun = ingredients.data.filter((item) => {
         return item.type === 'bun';
     });
 
-    const sauce = ingredients.filter((item) => {
+    const sauce = ingredients.data.filter((item) => {
         return item.type === 'sauce';
     });
 
 
-    const main = ingredients.filter((item) => {
+    const main = ingredients.data.filter((item) => {
         return item.type === 'main';
     });
 
