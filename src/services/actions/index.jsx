@@ -7,11 +7,11 @@ export const SAUCE_INGREDIENTS = 'SAUCE_INGREDIENTS';
 export const MAIN_INGREDIENTS = 'MAIN_INGREDIENTS';
 
 export function ingredientLoad(){
-   return  function(dispatch) {
+   return async function(dispatch) {
       dispatch({
          type: GET_FEED
       })
-        fetch('https://norma.nomoreparties.space/api/ingredients').then(res  => {
+       await fetch('https://norma.nomoreparties.space/api/ingredients').then(res  => {
            return res.json();
        }).then((data) => {
            if (data && data.success)

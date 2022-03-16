@@ -26,6 +26,7 @@ function BurgerIngredients() {
         dispatch({type: BUN_INGREDIENTS});
     }, []);
 
+    console.log(feed)
     // const bun = feed.data.filter((item) => {
     //     return item.type === 'bun';
     // });
