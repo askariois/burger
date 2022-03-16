@@ -1,20 +1,49 @@
-import { INGREDIENT_LOAD } from "../actions";
+import { GET_FEED , GET_FEED_FAILED , GET_FEED_SUCCESS , BUN_INGREDIENTS , SAUCE_INGREDIENTS , MAIN_INGREDIENTS } from "../actions/index";
 
 const initialState = {
-   ingredients: [1]
+   feedRequest: false,
+   feedFailed: false,
+   feed: [],
+
+   bun: [],
+   sauce: [],
+   main: [],
 }
 
 export const ingredientsReducer = (state = initialState, action) => {
-   console.log(action.type);
+   // console.log('ingredients reducer >>>' , action);
    switch (action.type) {
-      case INGREDIENT_LOAD: {
+      case GET_FEED: {
          return {
             ...state,
-            ingredients : action.data
+            feedRequest: true,
+            feedFailed: false,
+         };
+      }
+      case GET_FEED_SUCCESS: {
+         return {
+            ...state,
+            feed: action.feed,
+            feedRequest: false
+         };
+      }
+      case GET_FEED_FAILED: {
+         return {
+            ...state,
+            feedFailed: true,
+            feedRequest: false
+         };
+      }
+      case BUN_INGREDIENTS:{
+         return {
+            ...state,
+            bun: [...state.feed].filter((item) => {
+                return item.type === 'bun';
+            }),
          };
       }
       default: {
-         return state   
+         return state
       }
    }
 } 
