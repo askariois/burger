@@ -3,17 +3,12 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import PropTypes from 'prop-types';
 
 import OrderDetails from '../../order-details/order-details';
-import {IngredientContext} from '../../../services/constructorContext';
 
 import burgerconstrucor from './burger-construcor.module.css';
 
-
-
-
-
 function BurgerConstructor() {
 
-    const ingredients = React.useContext(IngredientContext);
+    const ingredients = [];
 
 
     const bunTopBottom = ingredients.filter((item) => {

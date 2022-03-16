@@ -42,6 +42,23 @@ export const ingredientsReducer = (state = initialState, action) => {
             }),
          };
       }
+      case SAUCE_INGREDIENTS:{
+         return {
+            ...state,
+            sauce: [...state.feed].filter((item) => {
+                return item.type === 'sauce';
+            }),
+         };
+      }
+
+      case MAIN_INGREDIENTS:{
+         return {
+            ...state,
+            main: [...state.feed].filter((item) => {
+                return item.type === 'main';
+            }),
+         };
+      }
       default: {
          return state
       }

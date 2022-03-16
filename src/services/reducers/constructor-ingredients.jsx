@@ -1,55 +1,28 @@
 import {
-   DELETE_ITEM,
-   CANCEL_PROMO,
-   DECREASE_ITEM,
-   INCREASE_ITEM,
-   TAB_SWITCH,
+   BUN_TOP_BOTTOM,
+   INGREDIENT_MIDDLE,
  } from '../actions/constructor-ingredients';
 
  
  const initialState = {
-   items: [],
- 
-   recommendedItems:[],
- 
-   promoCode: '',
-   promoDiscount: null,
- 
-   currentTab: 'items'
+
+   bunConstructor: [],
+   ingredientsConstructor:[],
+
  };
  
  export const constructor_ingredients = (state = initialState, action) => {
    switch (action.type) {
-     case TAB_SWITCH: {
+     case BUN_TOP_BOTTOM: {
        return {
          ...state,
-         currentTab: state.currentTab === 'items' ? 'postponed' : 'items'
+        
        };
      }
-     case INCREASE_ITEM: {
+     case INGREDIENT_MIDDLE: {
        return {
          ...state,
-         items: [...state.items].map(item =>
-           item.id === action.id ? { ...item, qty: ++item.qty } : item
-         )
-       };
-     }
-     case DECREASE_ITEM: {
-       return {
-         ...state,
-         items: [...state.items].map(item =>
-           item.id === action.id ? { ...item, qty: --item.qty } : item
-         )
-       };
-     }
-     case DELETE_ITEM: {
-       return { ...state, items: [...state.items].filter(item => item.id !== action.id) };
-     }
-     case CANCEL_PROMO: {
-       return {
-         ...state,
-         promoCode: '',
-         promoDiscount: null
+       
        };
      }
      default: {

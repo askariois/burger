@@ -5,7 +5,7 @@ import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredi
 import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredients';
 
 import { useDispatch, useSelector } from 'react-redux';
-import {ingredientLoad , BUN_INGREDIENTS} from '../../../services/actions';
+import {ingredientLoad } from '../../../services/actions';
 
 import burgeringredient from "./burger-ingredient.module.css";
 
@@ -13,7 +13,7 @@ import burgeringredient from "./burger-ingredient.module.css";
 
 function BurgerIngredients() {
 
-    const { feed , bun } = useSelector(state => state.ingredient);
+    const { bun ,main , sauce } = useSelector(state => state.ingredient);
     
     const dispatch = useDispatch();
 
@@ -21,25 +21,7 @@ function BurgerIngredients() {
         dispatch(ingredientLoad());
     }, []);
 
-
-    useEffect(() => {
-        dispatch({type: BUN_INGREDIENTS});
-    }, []);
-
-    console.log(feed)
-    // const bun = feed.data.filter((item) => {
-    //     return item.type === 'bun';
-    // });
-    //
-    // const sauce = feed.data.filter((item) => {
-    //     return item.type === 'sauce';
-    // });
-    //
-    //
-    // const main = feed.data.filter((item) => {
-    //     return item.type === 'main';
-    // });
-
+ 
     return (
         <div className={`${burgeringredient.content_width}`}>
             <TabsBurgerIngredients />
@@ -57,17 +39,17 @@ function BurgerIngredients() {
                 <div className={`mt-10`}>
                     <h2>Соусы</h2>
                     <div className={`flex flex-wrap`}>
-                        {/*{sauce.map((item) => {*/}
-                        {/*    return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);*/}
-                        {/*})}*/}
+                       {sauce.map((item) => {
+                           return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
+                       })} 
                     </div>
                 </div>
                 <div className={`mt-10`}>
                     <h2>Начинки</h2>
                     <div className={`flex flex-wrap`}>
-                        {/*{main.map((item) => {*/}
-                        {/*    return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);*/}
-                        {/*})}*/}
+                       {main.map((item) => {
+                           return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
+                       })}
                     </div>
                 </div>
             </div>
