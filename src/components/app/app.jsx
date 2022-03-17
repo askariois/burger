@@ -6,6 +6,8 @@ import BurgerConstructor from '../burger-content/burger-constructor/burger-const
 
 import app from './app.module.css';
 
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
 
@@ -14,8 +16,10 @@ function App() {
             <AppHeader/>
             <div className={`${app.container}`}>
                 <div className={`${app.flex} ${app.justify_between}`}>
+                <DndProvider backend={HTML5Backend}>
                     <BurgerIngredients/>
                     <BurgerConstructor/>
+                    </DndProvider>
                 </div>
             </div>
         </>

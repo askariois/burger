@@ -7,6 +7,7 @@ import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredien
 import { useDispatch, useSelector } from 'react-redux';
 import {ingredientLoad } from '../../../services/actions';
 
+
 import burgeringredient from "./burger-ingredient.module.css";
 
 
@@ -25,13 +26,14 @@ function BurgerIngredients() {
     return (
         <div className={`${burgeringredient.content_width}`}>
             <TabsBurgerIngredients />
+           
             <div className={`${burgeringredient.scroll}`}>
                 <div className={`mt-10`}>
                     <h2>Бургеры</h2>
                     <div className={`flex flex-wrap`}>
                         {bun.map((item) => {
                             return (
-                                <CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />
+                                <CardBurgerIngredient  key={item._id} {...item} />
                             );
                         })}
                     </div>
@@ -40,7 +42,7 @@ function BurgerIngredients() {
                     <h2>Соусы</h2>
                     <div className={`flex flex-wrap`}>
                        {sauce.map((item) => {
-                           return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
+                           return (<CardBurgerIngredient key={item._id} {...item} />);
                        })} 
                     </div>
                 </div>
@@ -48,11 +50,12 @@ function BurgerIngredients() {
                     <h2>Начинки</h2>
                     <div className={`flex flex-wrap`}>
                        {main.map((item) => {
-                           return (<CardBurgerIngredient title="Бургер" image_large={item.image_large} image={item.image} name={item.name} price={item.price} key={item._id} calories={item.calories} proteins={item.proteins} fat={item.fat} carbohydrates={item.carbohydrates} />);
+                           return (<CardBurgerIngredient key={item._id} {...item} />);
                        })}
                     </div>
                 </div>
             </div>
+
         </div>
     );
 }
