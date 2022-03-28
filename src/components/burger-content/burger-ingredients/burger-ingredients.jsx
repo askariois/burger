@@ -5,24 +5,22 @@ import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredi
 import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredients';
 
 import { useDispatch, useSelector } from 'react-redux';
-import {ingredientLoad } from '../../../services/actions';
-
 
 import burgeringredient from "./burger-ingredient.module.css";
 
 
 
+
 function BurgerIngredients() {
 
-    const { bun ,main , sauce } = useSelector(state => state.ingredient);
-    
     const dispatch = useDispatch();
-
-    useEffect(() => {
-        dispatch(ingredientLoad());
-    }, []);
-
  
+    const { feed } = useSelector(state => state.ingredient);
+
+    const bun = feed.filter((item) => item.type === 'bun');
+    const sauce = feed.filter((item) => item.type === 'sauce');
+    const main = feed.filter((item) => item.type === 'main');
+
     return (
         <div className={`${burgeringredient.content_width}`}>
             <TabsBurgerIngredients />

@@ -2,6 +2,9 @@ import burgerdetails from "./burger-details.module.css";
 import PropTypes from 'prop-types';
 
 function IngredientDetails(props) {
+
+
+   
    return (
       <div>
          <div className='flex justify-center'>

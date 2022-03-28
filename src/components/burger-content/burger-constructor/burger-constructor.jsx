@@ -7,33 +7,20 @@ import { useDrop } from "react-dnd";
 
 import burgerconstrucor from './burger-construcor.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_BURGER_CONSTRUCTOR, DELETE_BURGER_CONSTRUCTOR } from '../../../services/actions/constructor-ingredients';
+
+import { useEffect } from 'react';
+import { ADD_BURGER_CONSTRUCTOR } from '../../../services/actions';
 
 function BurgerConstructor() {
 
 
-    const { contructor } = useSelector(state => state.constructor);
-    console.log(contructor);
+   const { contructorBurger } = useSelector(state => state.ingredient);
 
-    // const bunTopBottom = ingredients.filter((item) => {
-    //     return item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3';
-    // });
-
-    // const ingredientsMiddle = ingredients.filter((item) => {
-    //     return item.type !== 'bun';
-    // });
+   console.log(contructorBurger);
     const dispatch = useDispatch();
 
-    // const movePostponedItem = (item) =>{
-    //     dispatch({
-    //       type: ADD_ITEM,
-    //       ...item
-    //     });
-    //     dispatch({
-    //       type: DELETE_POSTPONED_ITEM,
-    //       ...item
-    //     })
-    // }
+
+
 
     const moveItem = (item) =>{
         console.log(item);
@@ -55,7 +42,7 @@ function BurgerConstructor() {
     return (
         <div className={`${burgerconstrucor.content_width} mt-25  mr-2`}  ref={dropTarget}>
             <div className='flex align-end  flex-col' >
-               {/* {contructor.map((item) => {
+               {/* {contructorBurger.map((item) => {
                         return (
                             <div className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`} key={item._id}> <ConstructorElement
                                 type="top"
