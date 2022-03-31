@@ -1,48 +1,42 @@
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
+import {
+  ConstructorElement,
+  DragIcon,
+} from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
 
-import OrderDetails from '../../order-details/order-details';
+import OrderDetails from "../../order-details/order-details";
 import { useDrop } from "react-dnd";
 
+import burgerconstrucor from "./burger-construcor.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
-import burgerconstrucor from './burger-construcor.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-
-import { useEffect } from 'react';
-import { ADD_BURGER_CONSTRUCTOR } from '../../../services/actions';
+import { useEffect } from "react";
+import { ADD_INGREDIENT } from "../../../services/actions/constructor-ingredients";
 
 function BurgerConstructor() {
+  const { construcorIngredient } = useSelector(
+    (state) => state.construcorIngredient.constructorIngredients
+  );
 
+  console.log(construcorIngredient);
+  const dispatch = useDispatch();
 
-   const { contructorBurger } = useSelector(state => state.ingredient);
+  const [, dropTarget] = useDrop({
+    accept: "ingredients",
+    drop(itemId) {
+      dispatch({
+        type: ADD_INGREDIENT,
+      });
+    },
+  });
 
-   console.log(contructorBurger);
-    const dispatch = useDispatch();
-
-
-
-
-    const moveItem = (item) =>{
-        console.log(item);
-        dispatch({
-          type: ADD_BURGER_CONSTRUCTOR,
-          ...item
-        });
-    }
-
-
-    const [, dropTarget] = useDrop({
-        accept: "ingredients",
-        drop(itemId) {
-            moveItem(itemId)
-        }
-    });
-
-
-    return (
-        <div className={`${burgerconstrucor.content_width} mt-25  mr-2`}  ref={dropTarget}>
-            <div className='flex align-end  flex-col' >
-               {/* {contructorBurger.map((item) => {
+  return (
+    <div
+      className={`${burgerconstrucor.content_width} mt-25  mr-2`}
+      ref={dropTarget}
+    >
+      <div className="flex align-end  flex-col">
+        {/* {contructorBurger.map((item) => {
                         return (
                             <div className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`} key={item._id}> <ConstructorElement
                                 type="top"
@@ -54,7 +48,7 @@ function BurgerConstructor() {
                         );
                 })} */}
 
-                {/*  <div className={`${burgerconstrucor.scroll}`}>
+        {/*  <div className={`${burgerconstrucor.scroll}`}>
                     {ingredientsMiddle.map((item) => {
                             return (
                                 <div className='mt-4 mb-4 flex align-center' key={item._id}>
@@ -80,10 +74,10 @@ function BurgerConstructor() {
                                 /></div>
                         );
                 })} */}
-            </div>
-                    {/* <OrderDetails /> */}
-        </div>
-    );
+      </div>
+      {/* <OrderDetails /> */}
+    </div>
+  );
 }
 
 // BurgerConstructor.propTypes = {
