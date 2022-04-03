@@ -4,12 +4,9 @@ const initialState = {
   feedRequest: false,
   feedFailed: false,
   feed: [],
-
-  constructorBurger: [],
 };
 
 export const ingredientsReducer = (state = initialState, action) => {
-  // console.log('ingredients reducer >>>' , action);
   switch (action.type) {
     case GET_FEED: {
       return {

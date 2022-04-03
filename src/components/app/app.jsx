@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 import AppHeader from "../app-header/app-header";
 import BurgerIngredients from "../burger-content/burger-ingredients/burger-ingredients";
@@ -9,14 +9,14 @@ import app from "./app.module.css";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { ingredientLoad } from "../../services/actions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(ingredientLoad());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
