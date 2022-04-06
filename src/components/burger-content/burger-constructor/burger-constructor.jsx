@@ -10,7 +10,8 @@ import { useDrop } from "react-dnd";
 import burgerconstrucor from "./burger-construcor.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
-import { useEffect } from "react";
+import { v4 as uuidv4 } from "uuid";
+
 import {
   ADD_INGREDIENT,
   DELETE_INGREDIENT,
@@ -29,13 +30,12 @@ function BurgerConstructor() {
     const ingredient = feed.filter((item) => item._id === payload._id);
     dispatch({
       type: ADD_INGREDIENT,
-      payload: ingredient[0],
+      payload: { ...ingredient[0], key: uuidv4() },
     });
   };
 
   const [, dropTarget] = useDrop({
     accept: "ingredients",
-
     drop(itemId) {
       moveItem(itemId);
     },
@@ -49,10 +49,10 @@ function BurgerConstructor() {
     return item.type !== "bun";
   });
 
-  const onDelete = (item) => {
+  const onDelete = (id) => () => {
     dispatch({
       type: DELETE_INGREDIENT,
-      item,
+      id,
     });
   };
 
@@ -88,7 +88,7 @@ function BurgerConstructor() {
                   <ConstructorElement
                     text={item.name}
                     price={item.price}
-                    handleClose={onDelete(item._id)}
+                    handleClose={onDelete(item.key)}
                     thumbnail={item.image}
                   />
                 </div>

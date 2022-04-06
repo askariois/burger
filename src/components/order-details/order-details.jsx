@@ -41,7 +41,7 @@ function OrderDetails() {
     <div className="mt-10">
       <div className={order_details.flex}>
         <div className={`${order_details.checkout_sum} mr-10`}>
-          {/* <TotalPrice bun={props.bun} ingredients={props.ingredients} /> */}
+          <TotalPrice />
           <CurrencyIcon type="primary" />
         </div>
         <Button type="primary" size="large" onClick={handleOpenModal}>

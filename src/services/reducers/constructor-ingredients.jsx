@@ -12,6 +12,7 @@ const initialState = {
 export const constructorIngredients = (state = initialState, action) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
+      console.log(action.payload);
       if (action.payload.type === "bun") {
         const filtered = [...state.constructorIngredients].filter(
           (item) => item.type !== "bun"
@@ -35,23 +36,11 @@ export const constructorIngredients = (state = initialState, action) => {
       return {
         ...state,
         constructorIngredients: [...state.constructorIngredients].filter(
-          (item) => item.key !== action.payload
+          (item) => item.key !== action.id
         ),
       };
     }
-    case REORDER_INGREDIENTS: {
-      const filtered = [...state.constructorIngredients].filter(
-        (item) => item.type === "bun"
-      );
-      const reordered = filtered.concat(action.payload);
-      return {
-        ...state,
-        constructorIngredients: reordered,
-      };
-    }
-    case RESET_INGREDIENTS: {
-      return initialState;
-    }
+
     default: {
       return state;
     }
