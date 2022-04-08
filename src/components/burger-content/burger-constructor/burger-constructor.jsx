@@ -1,11 +1,5 @@
-import {
-  ConstructorElement,
-  DragIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
-
 import OrderDetails from "../../order-details/order-details";
-import { useDrop } from "react-dnd";
+import { useDrag, useDrop } from "react-dnd";
 
 import burgerconstrucor from "./burger-construcor.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,6 +10,8 @@ import {
   ADD_INGREDIENT,
   DELETE_INGREDIENT,
 } from "../../../services/actions/constructor-ingredients";
+
+import ConstructorIngredientsList from "./burger-constructor-ingredient-list/burger-constructor-ingredient-list";
 
 function BurgerConstructor() {
   const construcorIngredients = useSelector(
@@ -49,78 +45,19 @@ function BurgerConstructor() {
     return item.type !== "bun";
   });
 
-  const onDelete = (id) => () => {
-    dispatch({
-      type: DELETE_INGREDIENT,
-      id,
-    });
-  };
-
   return (
     <div
       className={`${burgerconstrucor.content_width} mt-25  mr-2`}
       ref={dropTarget}
     >
-      <div className="flex align-end  flex-col">
-        {bunTopBottom.map((item) => {
-          return (
-            <div
-              className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`}
-              key={item._id}
-            >
-              <ConstructorElement
-                type="top"
-                isLocked={true}
-                text={`${item.name} (верх)`}
-                price={item.price}
-                thumbnail={item.image}
-              />
-            </div>
-          );
-        })}
+      <ConstructorIngredientsList
+        bun={bunTopBottom}
+        ingredients={ingredientsMiddle}
+      />
 
-        {ingredientsMiddle.length !== 0 && (
-          <div className={`${burgerconstrucor.scroll}`}>
-            {ingredientsMiddle.map((item, index) => {
-              return (
-                <div className="mt-4 mb-4 flex align-center" key={index}>
-                  <DragIcon type="primary" />
-                  <ConstructorElement
-                    text={item.name}
-                    price={item.price}
-                    handleClose={onDelete(item.key)}
-                    thumbnail={item.image}
-                  />
-                </div>
-              );
-            })}
-          </div>
-        )}
-
-        {bunTopBottom.map((item) => {
-          return (
-            <div
-              className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`}
-              key={item._id}
-            >
-              <ConstructorElement
-                type="bottom"
-                isLocked={true}
-                text={`${item.name} (низ)`}
-                price={item.price}
-                thumbnail={item.image}
-              />
-            </div>
-          );
-        })}
-      </div>
       <OrderDetails />
     </div>
   );
 }
-
-// BurgerConstructor.propTypes = {
-//     ingredients : PropTypes.arrayOf(PropTypes.object.isRequired),
-// };
 
 export default BurgerConstructor;

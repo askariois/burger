@@ -3,6 +3,7 @@ import {
   DELETE_INGREDIENT,
   REORDER_INGREDIENTS,
   RESET_INGREDIENTS,
+  UPDATE_CONSTRUCTOR_LIST,
 } from "../actions/constructor-ingredients";
 
 const initialState = {
@@ -12,7 +13,6 @@ const initialState = {
 export const constructorIngredients = (state = initialState, action) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
-      console.log(action.payload);
       if (action.payload.type === "bun") {
         const filtered = [...state.constructorIngredients].filter(
           (item) => item.type !== "bun"
@@ -40,7 +40,11 @@ export const constructorIngredients = (state = initialState, action) => {
         ),
       };
     }
-
+    case UPDATE_CONSTRUCTOR_LIST: {
+      return {
+        ...state,
+      };
+    }
     default: {
       return state;
     }

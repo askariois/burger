@@ -23,7 +23,6 @@ export function getNumber(orderData) {
             payload: res.order.number,
           });
         } else {
-          console.log(res.success);
           dispatch({
             type: GET_ORDER_NUMBER_FAILED,
           });

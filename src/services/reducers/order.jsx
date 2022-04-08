@@ -11,12 +11,11 @@ const initialState = {
 };
 
 export const orderReducer = (state = initialState, action) => {
-  console.log(action);
   switch (action.type) {
     case GET_ORDER_NUMBER: {
       return {
         ...state,
-        orderRequest: true,   
+        orderRequest: true,
         orderFailed: false,
       };
     }
