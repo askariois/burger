@@ -3,15 +3,16 @@ import {
   Button,
   CurrencyIcon,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import PropTypes from "prop-types";
+
+import { useDispatch, useSelector } from "react-redux";
+import { getNumber } from "../../services/actions/order";
 
 import Modal from "../modal/modal";
 import TotalPrice from "./total-price/total-price";
-import { baseUrl } from "../../constants/global";
 
 import order_details from "./order-details.module.css";
 import done from "../../images/done.svg";
-import { useDispatch, useSelector } from "react-redux";
-import { getNumber } from "../../services/actions/order";
 
 function OrderDetails() {
   const dispatch = useDispatch();
@@ -66,5 +67,9 @@ function OrderDetails() {
     </div>
   );
 }
+
+OrderDetails.propTypes = {
+  construcorIngredients: PropTypes.arrayOf(PropTypes.object.isRequired),
+};
 
 export default OrderDetails;

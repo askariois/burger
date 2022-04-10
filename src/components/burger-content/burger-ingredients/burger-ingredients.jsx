@@ -9,8 +9,6 @@ import { useDispatch, useSelector } from "react-redux";
 import burgeringredient from "./burger-ingredient.module.css";
 
 function BurgerIngredients() {
-  const dispatch = useDispatch();
-
   const { feed } = useSelector((state) => state.ingredient);
 
   const bun = useMemo(() => feed.filter((item) => item.type === "bun"), [feed]);
@@ -58,7 +56,7 @@ function BurgerIngredients() {
 }
 
 BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.object.isRequired),
+  feed: PropTypes.arrayOf(PropTypes.object.isRequired),
 };
 
 export default BurgerIngredients;

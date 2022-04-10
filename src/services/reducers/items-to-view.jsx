@@ -1,1 +1,0 @@
-export const GET_FEED = 'GET_FEED';

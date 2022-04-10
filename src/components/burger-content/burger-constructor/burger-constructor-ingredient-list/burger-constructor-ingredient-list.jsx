@@ -1,7 +1,4 @@
-import {
-  ConstructorElement,
-  DragIcon,
-} from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import PropTypes from "prop-types";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
@@ -49,6 +46,7 @@ function ConstructorIngredientsList({ bun, ingredients }) {
           {ingredients.map((item, index) => {
             return (
               <OrderedIngredient
+                key={index}
                 index={index}
                 item={item}
                 moveCard={moveCard}
