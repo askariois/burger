@@ -43,6 +43,7 @@ export const constructorIngredients = (state = initialState, action) => {
     case UPDATE_CONSTRUCTOR_LIST: {
       return {
         ...state,
+        constructorIngredients: [...action.optional],
       };
     }
     default: {

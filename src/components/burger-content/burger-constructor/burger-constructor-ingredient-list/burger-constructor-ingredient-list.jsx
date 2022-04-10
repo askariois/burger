@@ -12,28 +12,19 @@ import OrderedIngredient from "../burger-constructor-ordered-ingredient/burger-c
 
 function ConstructorIngredientsList({ bun, ingredients }) {
   const dispatch = useDispatch();
-  //   Коллбэк, в котором ингредиенты меняются местами,
-  // если один накладывается на другой
+
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
-      // Получаем перетаскиваемый ингредиент
       const dragCard = ingredients[dragIndex];
-      const newCards = [...ingredients];
-      // Удаляем перетаскиваемый элемент из массива
-      newCards.splice(dragIndex, 1);
-      // Вставляем элемент на место того элемента,
-      // над которым мы навели мышку с "перетаскиванием"
-      // Тут просто создается новый массив, в котором изменен порядок наших элементов
-      newCards.splice(hoverIndex, 0, dragCard);
-      // В примере react-dnd используется библиотека immutability-helper
-      // Которая позволяет описывать такую имутабельную логику более декларативно
-      // Но для лучше понимания обновления массива,
-      // Советую использовать стандартный splice
+      const newCards = [...ingredients, ...bun];
 
-      // dispatch({
-      //   type: UPDATE_CONSTRUCTOR_LIST,
-      //   optional: newCards,
-      // });
+      newCards.splice(dragIndex, 1);
+      newCards.splice(hoverIndex, 0, dragCard);
+
+      dispatch({
+        type: UPDATE_CONSTRUCTOR_LIST,
+        optional: newCards,
+      });
     },
     [ingredients, dispatch]
   );
@@ -57,13 +48,11 @@ function ConstructorIngredientsList({ bun, ingredients }) {
         <div className={`${burgerconstrucor.scroll}`}>
           {ingredients.map((item, index) => {
             return (
-              <>
-                <OrderedIngredient
-                  index={index}
-                  item={item}
-                  moveCard={moveCard}
-                />
-              </>
+              <OrderedIngredient
+                index={index}
+                item={item}
+                moveCard={moveCard}
+              />
             );
           })}
         </div>
@@ -87,5 +76,6 @@ function ConstructorIngredientsList({ bun, ingredients }) {
 
 ConstructorIngredientsList.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.object.isRequired),
+  bun: PropTypes.arrayOf(PropTypes.object.isRequired),
 };
 export default ConstructorIngredientsList;
