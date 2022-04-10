@@ -1,17 +1,26 @@
+import React from 'react';
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import PropTypes from 'prop-types';
 
 import OrderDetails from '../../order-details/order-details';
+import {IngredientContext} from '../../../services/constructorContext';
 
-import burgerconstrucor from "./burger-construcor.module.css";
+import burgerconstrucor from './burger-construcor.module.css';
 
 
-function BurgerConstructor(props) {
-    const bunTopBottom = props.ingredients.filter((item) => {
+
+
+
+function BurgerConstructor() {
+
+    const ingredients = React.useContext(IngredientContext);
+
+
+    const bunTopBottom = ingredients.filter((item) => {
         return item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3';
     });
 
-    const ingredientsMiddle = props.ingredients.filter((item) => {
+    const ingredientsMiddle = ingredients.filter((item) => {
         return item.type !== 'bun';
     });
 
@@ -38,7 +47,8 @@ function BurgerConstructor(props) {
                                         text={item.name}
                                         price={item.price}
                                         thumbnail={item.image}
-                                    /></div>
+                                    />
+                                    </div>
                             );
                     })}
                 </div>
@@ -55,13 +65,14 @@ function BurgerConstructor(props) {
                         );
                 })}
             </div>
-            <OrderDetails />
+                    <OrderDetails bun = {bunTopBottom} ingredients={ingredientsMiddle}/>
+    
         </div>
     );
 }
 
 BurgerConstructor.propTypes = {
-    ingredients : PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    ingredients : PropTypes.arrayOf(PropTypes.object.isRequired),
 };
 
 export default BurgerConstructor;

@@ -17,13 +17,13 @@ function Modal(props) {
       <div>
          <ModalOverlay closeOverlay={props.close} >
             <div className={`${modal.modal_content} pt-10 pr-10 pb-15 pl-10`}>
-               <div className='flex align-center justify-between'>
-                  <h1>{props.header}</h1>
-                  <a href="#" className='flex'>
-                     <img src={modal_close} className={`${modal.img_width}`} onClick={props.close} />
-                  </a>
-               </div>
-               {props.children}
+                  <div className='flex align-center justify-between'>
+                     <h1>{props.header}</h1>
+                     <a href="#" className='flex'>
+                        <img src={modal_close} className={`${modal.img_width}`} onClick={props.close} />
+                     </a>
+                  </div>
+                  {props.children}
             </div>
          </ModalOverlay>
       </div>,

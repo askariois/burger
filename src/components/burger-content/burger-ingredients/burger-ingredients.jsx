@@ -3,23 +3,26 @@ import PropTypes from 'prop-types';
 
 import TabsBurgerIngredients from './tabs-burger-ingredients/tabs-burger-ingredients';
 import CardBurgerIngredient from './card-burger-ingredient/card-burger-ingredients';
+import { IngredientContext } from '../../../services/constructorContext';
 
 import burgeringredient from "./burger-ingredient.module.css";
 
 
 
-function BurgerIngredients(props) {
 
-    const bun = props.ingredients.filter((item) => {
+function BurgerIngredients() {
+    const ingredients = React.useContext(IngredientContext);
+
+    const bun = ingredients.filter((item) => {
         return item.type === 'bun';
     });
 
-    const sauce = props.ingredients.filter((item) => {
+    const sauce = ingredients.filter((item) => {
         return item.type === 'sauce';
     });
 
 
-    const main = props.ingredients.filter((item) => {
+    const main = ingredients.filter((item) => {
         return item.type === 'main';
     });
 
@@ -59,7 +62,7 @@ function BurgerIngredients(props) {
 }
 
 BurgerIngredients.propTypes = {
-    ingredients : PropTypes.arrayOf(PropTypes.object.isRequired).isRequired,
+    ingredients : PropTypes.arrayOf(PropTypes.object.isRequired),
 };
 
 export default BurgerIngredients;
