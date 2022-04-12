@@ -70,6 +70,7 @@ function OrderDetails() {
 
 OrderDetails.propTypes = {
   construcorIngredients: PropTypes.arrayOf(PropTypes.object.isRequired),
+  order: PropTypes.number.isRequired,
 };
 
 export default OrderDetails;

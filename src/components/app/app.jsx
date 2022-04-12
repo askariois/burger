@@ -8,14 +8,14 @@ import app from "./app.module.css";
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
-import { ingredientLoad } from "../../services/actions";
+import { loadIngredients } from "../../services/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(ingredientLoad());
+    dispatch(loadIngredients());
   }, [dispatch]);
 
   return (
