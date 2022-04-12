@@ -11,7 +11,6 @@ import { DELETE_INGREDIENT } from "../../../../services/actions/constructor-ingr
 function OrderedIngredient({ item, index, moveCard }) {
   const ref = useRef(null);
   const dispatch = useDispatch();
-
   const [{ handlerId }, drop] = useDrop({
     accept: "component",
     collect(monitor) {
@@ -68,7 +67,7 @@ function OrderedIngredient({ item, index, moveCard }) {
       onDrop={preventDefault}
       data-handler-id={handlerId}
     >
-      <div className="mt-4 mb-4 flex align-center" key={index}>
+      <div className="mt-4 mb-4 flex align-center" key={item.key}>
         <DragIcon type="primary" />
         <ConstructorElement
           text={item.name}
@@ -82,7 +81,11 @@ function OrderedIngredient({ item, index, moveCard }) {
 }
 
 OrderedIngredient.propTypes = {
-  item: PropTypes.object.isRequired,
+  item: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    price: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+  }),
   index: PropTypes.number.isRequired,
   moveCard: PropTypes.func.isRequired,
 };

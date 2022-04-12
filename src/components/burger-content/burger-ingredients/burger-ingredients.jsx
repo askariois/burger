@@ -1,10 +1,9 @@
 import React, { useEffect, useMemo, useState } from "react";
-import PropTypes from "prop-types";
 
 import TabsBurgerIngredients from "./tabs-burger-ingredients/tabs-burger-ingredients";
 import CardBurgerIngredient from "./card-burger-ingredient/card-burger-ingredients";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 import burgeringredient from "./burger-ingredient.module.css";
 
@@ -27,7 +26,7 @@ function BurgerIngredients() {
 
       <div className={`${burgeringredient.scroll}`}>
         <div className={`mt-10`}>
-          <h2 id="buns">Бургеры</h2>
+          <h2 id="buns">Булки</h2>
           <div className={`flex flex-wrap`}>
             {bun.map((item) => {
               return <CardBurgerIngredient key={item._id} {...item} />;
@@ -54,9 +53,5 @@ function BurgerIngredients() {
     </div>
   );
 }
-
-BurgerIngredients.propTypes = {
-  feed: PropTypes.arrayOf(PropTypes.object.isRequired),
-};
 
 export default BurgerIngredients;

@@ -9,7 +9,6 @@ import OrderedIngredient from "../burger-constructor-ordered-ingredient/burger-c
 
 function ConstructorIngredientsList({ bun, ingredients }) {
   const dispatch = useDispatch();
-
   const moveCard = useCallback(
     (dragIndex, hoverIndex) => {
       const dragCard = ingredients[dragIndex];
@@ -46,7 +45,7 @@ function ConstructorIngredientsList({ bun, ingredients }) {
           {ingredients.map((item, index) => {
             return (
               <OrderedIngredient
-                key={index}
+                key={item.key}
                 index={index}
                 item={item}
                 moveCard={moveCard}
@@ -73,7 +72,13 @@ function ConstructorIngredientsList({ bun, ingredients }) {
 }
 
 ConstructorIngredientsList.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.object.isRequired),
-  bun: PropTypes.arrayOf(PropTypes.object.isRequired),
+  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  bun: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      price: PropTypes.number,
+      image: PropTypes.string,
+    })
+  ).isRequired,
 };
 export default ConstructorIngredientsList;

@@ -17,15 +17,15 @@ import done from "../../images/done.svg";
 function OrderDetails() {
   const dispatch = useDispatch();
 
-  const construcorIngredients = useSelector(
-    (store) => store.construcorIngredient.constructorIngredients
+  const constructorIngredients = useSelector(
+    (store) => store.constructorIngredients.constructorIngredients
   );
 
   const { order } = useSelector((store) => store.order);
 
   const mainOrderAll = [];
 
-  construcorIngredients.map((item) => mainOrderAll.push(`${item._id}`));
+  constructorIngredients.map((item) => mainOrderAll.push(`${item._id}`));
 
   const [isModalShown, setIsModalShown] = React.useState(false);
 
@@ -69,8 +69,8 @@ function OrderDetails() {
 }
 
 OrderDetails.propTypes = {
-  construcorIngredients: PropTypes.arrayOf(PropTypes.object.isRequired),
-  order: PropTypes.number.isRequired,
+  constructorIngredients: PropTypes.arrayOf(PropTypes.object.isRequired),
+  order: PropTypes.number,
 };
 
 export default OrderDetails;

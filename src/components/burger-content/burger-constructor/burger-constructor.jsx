@@ -1,6 +1,5 @@
 import OrderDetails from "../../order-details/order-details";
 import { useDrop } from "react-dnd";
-import PropTypes from "prop-types";
 
 import burgerconstrucor from "./burger-construcor.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,8 +11,8 @@ import { ADD_INGREDIENT } from "../../../services/actions/constructor-ingredient
 import ConstructorIngredientsList from "./burger-constructor-ingredient-list/burger-constructor-ingredient-list";
 
 function BurgerConstructor() {
-  const construcorIngredients = useSelector(
-    (store) => store.construcorIngredient.constructorIngredients
+  const constructorIngredients = useSelector(
+    (store) => store.constructorIngredients.constructorIngredients
   );
 
   const { feed } = useSelector((store) => store.ingredient);
@@ -35,11 +34,11 @@ function BurgerConstructor() {
     },
   });
 
-  const bunTopBottom = construcorIngredients.filter((item) => {
+  const bunTopBottom = constructorIngredients.filter((item) => {
     return item.type === "bun";
   });
 
-  const ingredientsMiddle = construcorIngredients.filter((item) => {
+  const ingredientsMiddle = constructorIngredients.filter((item) => {
     return item.type !== "bun";
   });
 
@@ -52,14 +51,9 @@ function BurgerConstructor() {
         bun={bunTopBottom}
         ingredients={ingredientsMiddle}
       />
-      {construcorIngredients.length !== 0 && <OrderDetails />}
+      {constructorIngredients.length !== 0 && <OrderDetails />}
     </div>
   );
 }
-
-BurgerConstructor.propTypes = {
-  construcorIngredients: PropTypes.arrayOf(PropTypes.object.isRequired),
-  feed: PropTypes.arrayOf(PropTypes.object.isRequired),
-};
 
 export default BurgerConstructor;

@@ -2,11 +2,11 @@ import React from "react";
 import { useSelector } from "react-redux";
 
 function TotalPrice() {
-  const construcorIngredients = useSelector(
-    (store) => store.construcorIngredient.constructorIngredients
+  const constructorIngredients = useSelector(
+    (store) => store.constructorIngredients.constructorIngredients
   );
   let total = 0;
-  construcorIngredients.map(
+  constructorIngredients.map(
     (item) => (total += item.type === "bun" ? item.price * 2 : item.price)
   );
 

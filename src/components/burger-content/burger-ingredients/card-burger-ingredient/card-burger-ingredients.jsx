@@ -11,7 +11,7 @@ import { useDrag } from "react-dnd";
 import burgeringredient from "../burger-ingredient.module.css";
 import { useSelector } from "react-redux";
 
-const CardBurgerIngredient = ({
+function CardBurgerIngredient({
   type,
   image,
   price,
@@ -22,7 +22,7 @@ const CardBurgerIngredient = ({
   fat,
   carbohydrates,
   _id,
-}) => {
+}) {
   const [isModalShown, setIsModalShown] = React.useState(false);
 
   const handleCloseModal = (e) => {
@@ -38,10 +38,10 @@ const CardBurgerIngredient = ({
     item: { _id },
   });
 
-  const construcorIngredients = useSelector(
-    (store) => store.construcorIngredient.constructorIngredients
+  const constructorIngredients = useSelector(
+    (store) => store.constructorIngredients.constructorIngredients
   );
-  const couterData = construcorIngredients.filter((item) => item._id === _id);
+  const couterData = constructorIngredients.filter((item) => item._id === _id);
   const couterDataCount = couterData.length;
 
   return (
@@ -59,9 +59,7 @@ const CardBurgerIngredient = ({
           />
         </div>
         <div className={`flex justify-center align-center`}>
-          <span className={`${burgeringredient.burger_counter} mt-1`}>
-            {price}
-          </span>
+          <span className={burgeringredient.burger_counter}>{price}</span>
           <CurrencyIcon type="primary" />
         </div>
         <div className={`${burgeringredient.burger_name} mt-1`}>{name}</div>
@@ -80,7 +78,7 @@ const CardBurgerIngredient = ({
       )}
     </>
   );
-};
+}
 
 CardBurgerIngredient.propTypes = {
   type: PropTypes.string.isRequired,
