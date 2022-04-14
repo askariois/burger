@@ -9,7 +9,7 @@ import OrderDetails from "../order-details";
 import { useDispatch, useSelector } from "react-redux";
 import { getNumber } from "../../../services/actions/order";
 import { useState } from "react";
-import { OPEN_MODAL } from "../../../services/actions/item-to-view";
+import { OPEN_MODAL, OPEN_MODAL_ORDER } from "../../../services/actions/item-to-view";
 
 function OrderPriceButton() {
   const dispatch = useDispatch();
@@ -25,8 +25,8 @@ function OrderPriceButton() {
   const handleOpenModal = () => {
     dispatch(getNumber(mainOrderAll));
     dispatch({
-      type: OPEN_MODAL,
-      modal: true,
+      type: OPEN_MODAL_ORDER,
+      modalOrder: true,
     });
   };
   return (

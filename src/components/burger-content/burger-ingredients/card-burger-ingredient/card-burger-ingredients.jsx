@@ -31,17 +31,18 @@ function CardBurgerIngredient({
   const dispatch = useDispatch();
   const isModalIngredient = useSelector((store) => store.modalWindows);
 
-  const handleCloseModal = (e) => {
+  const handleCloseModal = () => {
     dispatch({
       type: CLOSE_MODAL,
       modal: false,
     });
   };
 
-  const handleOpenModal = (e) => {
+  const handleOpenModal = () => {
     dispatch({
       type: OPEN_MODAL,
       modal: true,
+      id: _id,
     });
   };
 
@@ -76,7 +77,7 @@ function CardBurgerIngredient({
         </div>
         <div className={`${burgeringredient.burger_name} mt-1`}>{name}</div>
       </div>
-      {isModalIngredient.modal && (
+      {isModalIngredient.modal && isModalIngredient.id === _id && (
         <Modal header="Детали ингредиента" close={handleCloseModal}>
           <IngredientDetails
             image={image_large}

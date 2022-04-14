@@ -13,24 +13,27 @@ import TotalPrice from "./total-price/total-price";
 
 import order_details from "./order-details.module.css";
 import done from "../../images/done.svg";
-import { CLOSE_MODAL } from "../../services/actions/item-to-view";
+import {
+  CLOSE_MODAL,
+  CLOSE_MODAL_ORDER,
+} from "../../services/actions/item-to-view";
 
 function OrderDetails() {
   const dispatch = useDispatch();
 
   const { order } = useSelector((store) => store.order);
-  const isModalShown = useSelector((store) => store.modalWindows);
-
+  const isModalShownOrder = useSelector((store) => store.modalWindows);
+  console.log(isModalShownOrder.modalOrder);
   const handleCloseModal = () => {
     dispatch({
-      type: CLOSE_MODAL,
-      modal: false,
+      type: CLOSE_MODAL_ORDER,
+      modalOrder: false,
     });
   };
 
   return (
     <>
-      {isModalShown.modal && (
+      {isModalShownOrder.modalOrder && (
         <Modal close={handleCloseModal}>
           <div className={order_details.modal} id="overlayModal">
             <h1>{order}</h1>

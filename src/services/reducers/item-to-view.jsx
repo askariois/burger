@@ -1,7 +1,13 @@
-import { OPEN_MODAL, CLOSE_MODAL } from "../actions/item-to-view";
+import {
+  OPEN_MODAL,
+  CLOSE_MODAL,
+  OPEN_MODAL_ORDER,
+  CLOSE_MODAL_ORDER,
+} from "../actions/item-to-view";
 
 const initialState = {
   modal: false,
+  modalOrder: false,
 };
 
 export const modalReducer = (state = initialState, action) => {
@@ -10,12 +16,26 @@ export const modalReducer = (state = initialState, action) => {
       return {
         ...state,
         modal: action.modal,
+        id: action.id,
       };
     }
     case CLOSE_MODAL: {
       return {
         ...state,
         modal: action.modal,
+      };
+    }
+
+    case OPEN_MODAL_ORDER: {
+      return {
+        ...state,
+        modalOrder: action.modalOrder,
+      };
+    }
+    case CLOSE_MODAL_ORDER: {
+      return {
+        ...state,
+        modalOrder: action.modalOrder,
       };
     }
     default: {
