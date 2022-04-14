@@ -12,6 +12,7 @@ export function loadIngredients() {
     });
     await fetch("https://norma.nomoreparties.space/api/ingredients")
       .then((res) => {
+        console.log(res.ok);
         return res.json();
       })
       .then((data) => {

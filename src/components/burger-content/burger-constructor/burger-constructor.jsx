@@ -5,10 +5,10 @@ import burgerconstrucor from "./burger-construcor.module.css";
 import { useDispatch, useSelector } from "react-redux";
 
 import { v4 as uuidv4 } from "uuid";
-
 import { ADD_INGREDIENT } from "../../../services/actions/constructor-ingredients";
-
 import ConstructorIngredientsList from "./burger-constructor-ingredient-list/burger-constructor-ingredient-list";
+
+import OrderPriceButton from "../../order-details/order-buttton-price/order-button-price";
 
 function BurgerConstructor() {
   const constructorIngredients = useSelector(
@@ -51,7 +51,8 @@ function BurgerConstructor() {
         bun={bunTopBottom}
         ingredients={ingredientsMiddle}
       />
-      {constructorIngredients.length !== 0 && <OrderDetails />}
+
+      {constructorIngredients.length !== 0 && <OrderPriceButton />}
     </div>
   );
 }

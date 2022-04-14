@@ -8,8 +8,13 @@ import PropTypes from "prop-types";
 import Modal from "../../../modal/modal";
 import IngredientDetails from "../../../ingredient-details/ingredient-details";
 import { useDrag } from "react-dnd";
+import { useDispatch, useSelector } from "react-redux";
+
 import burgeringredient from "../burger-ingredient.module.css";
-import { useSelector } from "react-redux";
+import {
+  CLOSE_MODAL,
+  OPEN_MODAL,
+} from "../../../../services/actions/item-to-view";
 
 function CardBurgerIngredient({
   type,
@@ -23,14 +28,21 @@ function CardBurgerIngredient({
   carbohydrates,
   _id,
 }) {
-  const [isModalShown, setIsModalShown] = React.useState(false);
+  const dispatch = useDispatch();
+  const isModalIngredient = useSelector((store) => store.modalWindows);
 
   const handleCloseModal = (e) => {
-    setIsModalShown(false);
+    dispatch({
+      type: CLOSE_MODAL,
+      modal: false,
+    });
   };
 
-  const handleOpenModal = () => {
-    setIsModalShown(true);
+  const handleOpenModal = (e) => {
+    dispatch({
+      type: OPEN_MODAL,
+      modal: true,
+    });
   };
 
   const [, dragRef] = useDrag({
@@ -64,7 +76,7 @@ function CardBurgerIngredient({
         </div>
         <div className={`${burgeringredient.burger_name} mt-1`}>{name}</div>
       </div>
-      {isModalShown && (
+      {isModalIngredient.modal && (
         <Modal header="Детали ингредиента" close={handleCloseModal}>
           <IngredientDetails
             image={image_large}
