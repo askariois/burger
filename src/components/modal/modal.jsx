@@ -12,17 +12,17 @@ import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
 const modalRoot = document.getElementById("main-modal");
 
 function Modal(props) {
-  const keydownCloseModal = (e) => {
-    if (e.code === "Escape") {
-      props.close();
-    }
-  };
   useEffect(() => {
+    const keydownCloseModal = (e) => {
+      if (e.code === "Escape") {
+        props.close();
+      }
+    };
     document.addEventListener("keyup", keydownCloseModal);
     return () => {
       document.removeEventListener("keyup", keydownCloseModal);
     };
-  }, []);
+  }, [props.close]);
 
   return modalRoot
     ? ReactDOM.createPortal(

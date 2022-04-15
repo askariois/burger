@@ -82,6 +82,8 @@ function OrderedIngredient({ item, index, moveCard }) {
 
 OrderedIngredient.propTypes = {
   item: PropTypes.shape({
+    _id: PropTypes.string.isRequired,
+    key: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     price: PropTypes.number.isRequired,
     image: PropTypes.string.isRequired,

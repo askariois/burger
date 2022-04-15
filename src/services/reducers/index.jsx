@@ -24,9 +24,9 @@ export const ingredientsReducer = (state = initialState, action) => {
     }
     case GET_FEED_FAILED: {
       return {
-        state,
+        ...initialState,
         feedFailed: true,
-        feedRequest: false,
+        feedRequest: false
       };
     }
 

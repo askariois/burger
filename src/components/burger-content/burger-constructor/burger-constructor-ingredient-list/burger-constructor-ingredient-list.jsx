@@ -72,9 +72,18 @@ function ConstructorIngredientsList({ bun, ingredients }) {
 }
 
 ConstructorIngredientsList.propTypes = {
-  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired,
+  ingredients: PropTypes.arrayOf(
+    PropTypes.shape({
+      _id: PropTypes.string,
+      key: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      image: PropTypes.string,
+    })
+  ).isRequired,
   bun: PropTypes.arrayOf(
     PropTypes.shape({
+      _id: PropTypes.string,
       name: PropTypes.string,
       price: PropTypes.number,
       image: PropTypes.string,

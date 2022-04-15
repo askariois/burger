@@ -14,7 +14,11 @@ export function getNumber(orderData) {
 
     getOrderNumber(orderData)
       .then((res) => {
-        return res.json();
+        if (res.ok) {
+          return res.json();
+        } else {
+          console.log("Error");
+        }
       })
       .then((res) => {
         if (res && res.success) {

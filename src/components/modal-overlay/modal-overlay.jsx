@@ -13,6 +13,7 @@ function ModalOverlay(props) {
 }
 
 ModalOverlay.propTypes = {
+  closeOverlay: PropTypes.func.isRequired,
   children: PropTypes.element.isRequired,
 };
 
