@@ -1,18 +1,16 @@
-import React from 'react';
+import React from "react";
+import { useSelector } from "react-redux";
 
-function TotalPrice(props) {
+function TotalPrice() {
+  const constructorIngredients = useSelector(
+    (store) => store.constructorIngredients.constructorIngredients
+  );
+  let total = 0;
+  constructorIngredients.map(
+    (item) => (total += item.type === "bun" ? item.price * 2 : item.price)
+  );
 
-   let totalBun = 0;
-   props.bun.map(item => (totalBun += item.price));
-
-   let totalOther = 0;
-   props.ingredients.map(item => (totalOther += item.price));
-
-   let total = (totalBun * 2) + totalOther;
-   return (
-      <span className='mr-2'>{total}</span>
-   );
+  return <span className="mr-2">{total}</span>;
 }
-
 
 export default TotalPrice;

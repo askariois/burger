@@ -1,6 +1,8 @@
 .burger_counter {
+  font-family: "Iceland";
   font-size: 28px;
   margin-right: 9px;
+  line-height: 24px;
 }
 
 .burger_name {

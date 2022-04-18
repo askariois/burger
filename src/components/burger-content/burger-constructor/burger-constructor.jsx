@@ -1,78 +1,60 @@
-import React from 'react';
-import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import PropTypes from 'prop-types';
+import OrderDetails from "../../order-details/order-details";
+import { useDrop } from "react-dnd";
 
-import OrderDetails from '../../order-details/order-details';
-import {IngredientContext} from '../../../services/constructorContext';
+import burgerconstrucor from "./burger-construcor.module.css";
+import { useDispatch, useSelector } from "react-redux";
 
-import burgerconstrucor from './burger-construcor.module.css';
+import { v4 as uuidv4 } from "uuid";
+import { ADD_INGREDIENT } from "../../../services/actions/constructor-ingredients";
+import ConstructorIngredientsList from "./burger-constructor-ingredient-list/burger-constructor-ingredient-list";
 
-
-
-
+import OrderPriceButton from "../../order-details/order-buttton-price/order-button-price";
 
 function BurgerConstructor() {
+  const constructorIngredients = useSelector(
+    (store) => store.constructorIngredients.constructorIngredients
+  );
 
-    const ingredients = React.useContext(IngredientContext);
+  const { feed } = useSelector((store) => store.ingredient);
 
+  const dispatch = useDispatch();
 
-    const bunTopBottom = ingredients.filter((item) => {
-        return item.type === 'bun' && item.name === 'Флюоресцентная булка R2-D3';
+  const moveItem = (payload) => {
+    const ingredient = feed.filter((item) => item._id === payload._id);
+    dispatch({
+      type: ADD_INGREDIENT,
+      payload: { ...ingredient[0], key: uuidv4() },
     });
+  };
 
-    const ingredientsMiddle = ingredients.filter((item) => {
-        return item.type !== 'bun';
-    });
+  const [, dropTarget] = useDrop({
+    accept: "ingredients",
+    drop(itemId) {
+      moveItem(itemId);
+    },
+  });
 
-    return (
-        <div className={`${burgerconstrucor.content_width} mt-25  mr-2`}>
-            <div className='flex align-end  flex-col'>
-                {bunTopBottom.map((item) => {
-                        return (
-                            <div className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`} key={item._id}> <ConstructorElement
-                                type="top"
-                                isLocked={true}
-                                text={`${item.name} (верх)`}
-                                price={item.price}
-                                thumbnail={item.image}
-                            /></div>
-                        );
-                })}
-                <div className={`${burgerconstrucor.scroll}`}>
-                    {ingredientsMiddle.map((item) => {
-                            return (
-                                <div className='mt-4 mb-4 flex align-center' key={item._id}>
-                                    <DragIcon type="primary" />
-                                    <ConstructorElement
-                                        text={item.name}
-                                        price={item.price}
-                                        thumbnail={item.image}
-                                    />
-                                    </div>
-                            );
-                    })}
-                </div>
-                {bunTopBottom.map((item) => {
-                        return (
-                            <div className={`mt-4 mb-4 ${burgerconstrucor.mr_12}`}
-                                key={item._id}> <ConstructorElement
-                                    type="bottom"
-                                    isLocked={true}
-                                    text={`${item.name} (низ)`}
-                                    price={item.price}
-                                    thumbnail={item.image}
-                                /></div>
-                        );
-                })}
-            </div>
-                    <OrderDetails bun = {bunTopBottom} ingredients={ingredientsMiddle}/>
-    
-        </div>
-    );
+  const bunTopBottom = constructorIngredients.filter((item) => {
+    return item.type === "bun";
+  });
+
+  const ingredientsMiddle = constructorIngredients.filter((item) => {
+    return item.type !== "bun";
+  });
+
+  return (
+    <div
+      className={`${burgerconstrucor.content_width} mt-25  mr-2`}
+      ref={dropTarget}
+    >
+      <ConstructorIngredientsList
+        bun={bunTopBottom}
+        ingredients={ingredientsMiddle}
+      />
+
+      {constructorIngredients.length !== 0 && <OrderPriceButton />}
+    </div>
+  );
 }
-
-BurgerConstructor.propTypes = {
-    ingredients : PropTypes.arrayOf(PropTypes.object.isRequired),
-};
 
 export default BurgerConstructor;
