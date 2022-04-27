@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 
-import AppHeader from "../../app-header/app-header";
 import BurgerIngredients from "../../burger-content/burger-ingredients/burger-ingredients";
 import BurgerConstructor from "../../burger-content/burger-constructor/burger-constructor";
 
-import app from "./home-page.module.css";
+import home from "./home.module.css";
 
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
@@ -20,9 +19,8 @@ export default function HomePage() {
 
   return (
     <>
-      <AppHeader />
-      <div className={`${app.container}`}>
-        <div className={`${app.flex} ${app.justify_between}`}>
+      <div className={`${home.container}`}>
+        <div className={`${home.flex} ${home.justify_between}`}>
           <DndProvider backend={HTML5Backend}>
             <BurgerIngredients />
             <BurgerConstructor />

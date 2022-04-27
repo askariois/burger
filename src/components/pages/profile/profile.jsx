@@ -6,7 +6,7 @@ import {
 import login from "./login.module.css";
 import { Link } from "react-router-dom";
 
-export default function LoginPage() {
+export default function    () {
   const [value, setValue] = React.useState("value");
   const inputRef = React.useRef(null);
   const onIconClick = () => {

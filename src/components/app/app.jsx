@@ -1,33 +1,42 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import AppHeader from "../app-header/app-header";
+import ForgotPage from "../pages/forgot/forgot";
 import HomePage from "../pages/home/home";
+import LoginPage from "../pages/login/login";
+import ProfilePage from "../pages/profile/profile";
+import RegisterPage from "../pages/register/register";
+import ResetPage from "../pages/reset/reset";
 
 function App() {
   return (
-    <Router>
-      <Switch>
-        <Route path="/" exact={true}>
-          <HomePage />
-        </Route>
-        <Route path="/login" exact={true}>
-          <LoginPage />
-        </Route>
-        <Route path="/register " exact={true}>
-          <LoginPage />
-        </Route>
-        {/* <Route path="/forgot-password" exact={true}>
-          <LoginPage />
-        </Route>
-        <Route path="/reset-password" exact={true}>
-          <LoginPage />
-        </Route>
-        <Route path="/profile" exact={true}>
-          <LoginPage />
-        </Route>
-        <Route path="/ingredients/:id" exact={true}>
-          <LoginPage />
-        </Route> */}
-      </Switch>
-    </Router>
+    <>
+      <AppHeader />
+      <Router>
+        <Switch>
+          <Route path="/" exact={true}>
+            <HomePage />
+          </Route>
+          <Route path="/login" exact={true}>
+            <LoginPage />
+          </Route>
+          <Route path="/register" exact={true}>
+            <RegisterPage />
+          </Route>
+          <Route path="/forgot-password" exact={true}>
+            <ForgotPage />
+          </Route>
+          <Route path="/reset-password" exact={true}>
+            <ResetPage />
+          </Route>
+          <Route path="/profile" exact={true}>
+            <ProfilePage />
+          </Route>
+          <Route path="/ingredients/:id" exact={true}>
+            <LoginPage />
+          </Route>
+        </Switch>
+      </Router>
+    </>
   );
 }
 

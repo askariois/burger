@@ -1,10 +1,9 @@
-import React from 'react';
-import { Logo } from '@ya.praktikum/react-developer-burger-ui-components';
+import { Logo } from "@ya.praktikum/react-developer-burger-ui-components";
 
-import LeftButton from './left-button/left-button';
-import RightButton from './right-button/right-button';
+import LeftButton from "./left-button/left-button";
+import RightButton from "./right-button/right-button";
 
-import header_styles from './app-header.module.css';
+import header_styles from "./app-header.module.css";
 
 function AppHeader() {
   return (
@@ -12,7 +11,9 @@ function AppHeader() {
       <div className={`${header_styles.container}`}>
         <nav className={`flex justify-between align-center pt-6 pb-6`}>
           <LeftButton />
-          <Logo />
+          <a href="/">
+            <Logo />
+          </a>
           <RightButton />
         </nav>
       </div>
