@@ -22,7 +22,6 @@ export const passwordReset = async (email) => {
     },
     body: JSON.stringify({ email: email }),
   });
-  console.log(results);
   return results;
 };
 

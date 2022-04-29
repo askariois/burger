@@ -3,10 +3,10 @@ import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import login from "./login.module.css";
+import profile from "./profile.module.css";
 import { Link } from "react-router-dom";
 
-export default function    () {
+export default function ProfilePage() {
   const [value, setValue] = React.useState("value");
   const inputRef = React.useRef(null);
   const onIconClick = () => {
@@ -14,51 +14,58 @@ export default function    () {
     alert("Icon Click Callback");
   };
   return (
-    <div className={login.container}>
-      <div className={login.row}>
-        <h2 className="mt-0">Вход</h2>
-        <div>
-          <Input
-            type={"email"}
-            placeholder={"E-mail"}
-            onChange={(e) => setValue(e.target.value)}
-            name={"name"}
-            error={false}
-            ref={inputRef}
-            onIconClick={onIconClick}
-            errorText={"Ошибка"}
-            size={"default"}
-          />
+    <div className={profile.container}>
+      <div className={profile.row}>
+        <div className={profile.menu}>
+          <a href="#">Профиль</a>
+          <a href="#">История заказов</a>
+          <a href="#">Выход</a>
+          <div className={profile.description}>В этом разделе вы можете изменить свои персональные данные</div>
         </div>
-        <div className="mt-6">
-          <Input
-            type={"text"}
-            placeholder={"Пароль"}
-            onChange={(e) => setValue(e.target.value)}
-            icon={"ShowIcon"}
-            name={"name"}
-            error={false}
-            ref={inputRef}
-            onIconClick={onIconClick}
-            errorText={"Ошибка"}
-            size={"default"}
-          />
-        </div>
-        <div className="mt-6">
-          <Button type="primary" size="large">
-            Войти
-          </Button>
-        </div>
-        <div className={login.text}>
-          <div className="mt-20">
-            Вы — новый пользователь?{" "}
-            <Link to="/register">Зарегистрироваться</Link>
+        <form action="">
+          <div>
+            <Input
+              type={"text"}
+              placeholder={"Имя"}
+              onChange={(e) => setValue(e.target.value)}
+              icon={"EditIcon"}
+              name={"name"}
+              error={false}
+              ref={inputRef}
+              onIconClick={onIconClick}
+              errorText={"Ошибка"}
+              size={"default"}
+            />
           </div>
-          <div className="mt-4">
-            Забыли пароль?
-            <Link to="/forgot-password"> Восстановить пароль</Link>
+          <div className="mt-6">
+            <Input
+              type={"text"}
+              placeholder={"Логин"}
+              onChange={(e) => setValue(e.target.value)}
+              icon={"EditIcon"}
+              name={"name"}
+              error={false}
+              ref={inputRef}
+              onIconClick={onIconClick}
+              errorText={"Ошибка"}
+              size={"default"}
+            />
           </div>
-        </div>
+          <div className="mt-6">
+            <Input
+              type={"text"}
+              placeholder={"Пароль"}
+              onChange={(e) => setValue(e.target.value)}
+              icon={"EditIcon"}
+              name={"name"}
+              error={false}
+              ref={inputRef}
+              onIconClick={onIconClick}
+              errorText={"Ошибка"}
+              size={"default"}
+            />
+          </div>
+        </form>
       </div>
     </div>
   );

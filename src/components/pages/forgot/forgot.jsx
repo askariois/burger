@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import forgot from "./forgot.module.css";
 import { Link } from "react-router-dom";
-import { newUser, passwordReset } from "../../../utils/api";
+import { postPasswordForgot } from "../../../services/actions/forgot-password";
+import { useDispatch } from "react-redux";
 
 export default function ForgotPage() {
   const [email, setEmail] = React.useState("");
+
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
   };
+  const dispatch = useDispatch();
 
-  passwordReset(email);
+  let onForgotPassword = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(postPasswordForgot(email));
+    },
+    [email]
+  );
 
   return (
     <div className={forgot.container}>
@@ -36,7 +45,7 @@ export default function ForgotPage() {
             />
           </div>
           <div className="mt-6">
-            <Button type="primary" size="large">
+            <Button type="primary" size="large" onClick={onForgotPassword}>
               Восстановить
             </Button>
           </div>
