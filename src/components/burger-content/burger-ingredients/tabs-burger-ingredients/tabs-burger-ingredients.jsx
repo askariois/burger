@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tab } from "@ya.praktikum/react-developer-burger-ui-components";
 
-function TabsBurgerIngredients() {
+function TabsBurgerIngredients({ inViewBuns, inViewMains, inViewSauces }) {
   const [currentTab, setCurrentTab] = useState("buns");
 
   const onTabClick = (tab) => {
@@ -9,6 +9,16 @@ function TabsBurgerIngredients() {
     const element = document.getElementById(tab);
     if (element) element.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    if (inViewBuns) {
+      setCurrentTab("buns");
+    } else if (inViewMains) {
+      setCurrentTab("mains");
+    } else if (inViewSauces) {
+      setCurrentTab("sauces");
+    }
+  }, [inViewBuns, inViewMains, inViewSauces]);
 
   return (
     <>

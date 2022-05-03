@@ -7,11 +7,11 @@ import registr from "./registr.module.css";
 import { Link } from "react-router-dom";
 
 export default function RegisterPage() {
-  const [value, setValue] = React.useState("value");
+  const [show, setShow] = React.useState(false);
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
-    alert("Icon Click Callback");
+    setShow(true);
   };
   return (
     <div className={registr.container}>
@@ -21,11 +21,10 @@ export default function RegisterPage() {
           <Input
             type={"text"}
             placeholder={"Имя"}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => e.target.value}
             name={"name"}
             error={false}
             ref={inputRef}
-            onIconClick={onIconClick}
             errorText={"Ошибка"}
             size={"default"}
           />
@@ -34,20 +33,19 @@ export default function RegisterPage() {
           <Input
             type={"email"}
             placeholder={"E-mail"}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => e.target.value}
             name={"name"}
             error={false}
             ref={inputRef}
-            onIconClick={onIconClick}
             errorText={"Ошибка"}
             size={"default"}
           />
         </div>
         <div className="mt-6">
           <Input
-            type={"text"}
+            type={show ? "password" : "text"}
             placeholder={"Пароль"}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => e.target.value}
             icon={"ShowIcon"}
             name={"name"}
             error={false}

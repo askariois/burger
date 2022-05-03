@@ -1,16 +1,22 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
+import { Redirect } from "react-router-dom";
+
 import forgot from "./forgot.module.css";
 import { Link } from "react-router-dom";
-import { postPasswordForgot } from "../../../services/actions/forgot-password";
-import { useDispatch } from "react-redux";
+import {
+  EMAIL_FOTGOT_PASSOWORD,
+  postPasswordForgot,
+} from "../../../services/actions/forgot-password";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function ForgotPage() {
-  const [email, setEmail] = React.useState("");
-
+  // const [email, setEmail] = useState("");
+  const emailForgotPassword = useSelector((store) => store.forgotPassword);
+  console.log(emailForgotPassword.email);
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
@@ -20,9 +26,9 @@ export default function ForgotPage() {
   let onForgotPassword = useCallback(
     (e) => {
       e.preventDefault();
-      dispatch(postPasswordForgot(email));
+      dispatch(postPasswordForgot(emailForgotPassword.email));
     },
-    [email]
+    [emailForgotPassword.email]
   );
 
   return (
@@ -34,9 +40,14 @@ export default function ForgotPage() {
             <Input
               type={"email"}
               placeholder={"Укажите e-mail"}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={(e) =>
+                dispatch({
+                  type: EMAIL_FOTGOT_PASSOWORD,
+                  payload: e.target.value,
+                })
+              }
               name={"name"}
-              value={email}
+              value={emailForgotPassword.email}
               error={false}
               ref={inputRef}
               onIconClick={onIconClick}
