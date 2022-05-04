@@ -4,7 +4,6 @@ import {
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import profile from "./profile.module.css";
-import { Link } from "react-router-dom";
 
 export default function ProfilePage() {
   const [value, setValue] = React.useState("value");
@@ -17,7 +16,7 @@ export default function ProfilePage() {
     <div className={profile.container}>
       <div className={profile.row}>
         <div className={profile.menu}>
-          <a href="#">Профиль</a>
+          <a href="#" >Профиль</a>
           <a href="#">История заказов</a>
           <a href="#">Выход</a>
           <div className={profile.description}>В этом разделе вы можете изменить свои персональные данные</div>

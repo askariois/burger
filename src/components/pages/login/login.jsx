@@ -1,18 +1,42 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import login from "./login.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  loginUser,
+  LOGIN_EMAIL,
+  LOGIN_PASSWORD,
+} from "../../../services/actions/login";
+import { useHistory } from "react-router-dom";
 
 export default function LoginPage() {
-  const [value, setValue] = React.useState("value");
+  const loginUserData = useSelector((store) => store.loginUser);
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const [show, setShow] = React.useState(true);
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
-    alert("Icon Click Callback");
+    setShow(!show);
   };
+
+  let onLogin = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(loginUser(loginUserData.email, loginUserData.password));
+      console.log(loginUserData.loginRequest);
+      if (loginUserData.loginRequest) history.push("/");
+    },
+    [loginUserData.email, loginUserData.password]
+  );
+
+  const regex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
   return (
     <div className={login.container}>
       <div className={login.row}>
@@ -21,23 +45,39 @@ export default function LoginPage() {
           <Input
             type={"email"}
             placeholder={"E-mail"}
-            onChange={(e) => setValue(e.target.value)}
-            name={"name"}
-            error={false}
+            onChange={(e) =>
+              dispatch({
+                type: LOGIN_EMAIL,
+                payload: e.target.value,
+              })
+            }
+            name={"login_email"}
+            value={loginUserData.email}
+            error={
+              Boolean(loginUserData.email !== "") &&
+              regex.test(loginUserData.email) === false
+                ? true
+                : false
+            }
             ref={inputRef}
-            onIconClick={onIconClick}
             errorText={"Ошибка"}
             size={"default"}
           />
         </div>
         <div className="mt-6">
           <Input
-            type={"text"}
+            type={show ? "password" : "text"}
             placeholder={"Пароль"}
-            onChange={(e) => setValue(e.target.value)}
-            icon={"ShowIcon"}
-            name={"name"}
+            onChange={(e) =>
+              dispatch({
+                type: LOGIN_PASSWORD,
+                payload: e.target.value,
+              })
+            }
+            icon={show ? "ShowIcon" : "HideIcon"}
+            name={"login_password"}
             error={false}
+            value={loginUserData.password}
             ref={inputRef}
             onIconClick={onIconClick}
             errorText={"Ошибка"}
@@ -45,7 +85,7 @@ export default function LoginPage() {
           />
         </div>
         <div className="mt-6">
-          <Button type="primary" size="large">
+          <Button type="primary" size="large" onClick={onLogin}>
             Войти
           </Button>
         </div>

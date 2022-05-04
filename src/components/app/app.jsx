@@ -3,6 +3,7 @@ import AppHeader from "../app-header/app-header";
 import ForgotPage from "../pages/forgot/forgot";
 import HomePage from "../pages/home/home";
 import LoginPage from "../pages/login/login";
+import { NotFound404 } from "../pages/no-found/no-found";
 import ProfilePage from "../pages/profile/profile";
 import RegisterPage from "../pages/register/register";
 import ResetPage from "../pages/reset/reset";
@@ -33,6 +34,9 @@ function App() {
           </Route>
           <Route path="/ingredients/:id" exact={true}>
             <LoginPage />
+          </Route>
+          <Route>
+            <NotFound404 />
           </Route>
         </Switch>
       </Router>

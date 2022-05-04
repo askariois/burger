@@ -30,3 +30,9 @@
   color: #4c4cff;
   text-decoration: none;
 }
+
+.success {
+  background: #4bb543;
+  padding: 10px;
+  border-radius: 10px;
+}

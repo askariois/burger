@@ -1,4 +1,4 @@
-import { passwordReset } from "../../utils/api";
+import { forgotPassword } from "../../utils/api";
 
 export const EMAIL_FOTGOT_PASSOWORD = "EMAIL_FOTGOT_PASSOWORD";
 export const POST_FORGOT_PASSWORD = "POST_FORGOT_PASSWORD";
@@ -11,7 +11,7 @@ export function postPasswordForgot(email) {
       type: POST_FORGOT_PASSWORD,
     });
 
-    passwordReset(email)
+    forgotPassword(email)
       .then((res) => {
         if (res.ok) {
           return res.json();

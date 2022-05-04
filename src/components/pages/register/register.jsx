@@ -1,18 +1,47 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
 import registr from "./registr.module.css";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  registerUser,
+  REGISTER_EMAIL,
+  REGISTER_NAME,
+  REGISTER_PASSWORD,
+} from "../../../services/actions/register";
+import { useHistory } from "react-router-dom";
 
 export default function RegisterPage() {
-  const [show, setShow] = React.useState(false);
+  const registerUserData = useSelector((store) => store.registerUser);
+
+  const [show, setShow] = React.useState(true);
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
-    setShow(true);
+    setShow(!show);
   };
+  const history = useHistory();
+  const dispatch = useDispatch();
+  let onRegister = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(
+        registerUser(
+          registerUserData.name,
+          registerUserData.email,
+          registerUserData.password
+        )
+      );
+    },
+    [registerUserData.name, registerUserData.email, registerUserData.password]
+  );
+  if (registerUserData.registerRequest) history.push("/login");
+  const regex =
+    /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
   return (
     <div className={registr.container}>
       <div className={registr.row}>
@@ -21,9 +50,15 @@ export default function RegisterPage() {
           <Input
             type={"text"}
             placeholder={"Имя"}
-            onChange={(e) => e.target.value}
-            name={"name"}
+            onChange={(e) =>
+              dispatch({
+                type: REGISTER_NAME,
+                payload: e.target.value,
+              })
+            }
+            name={"registr_name"}
             error={false}
+            value={registerUserData.name}
             ref={inputRef}
             errorText={"Ошибка"}
             size={"default"}
@@ -33,9 +68,20 @@ export default function RegisterPage() {
           <Input
             type={"email"}
             placeholder={"E-mail"}
-            onChange={(e) => e.target.value}
-            name={"name"}
-            error={false}
+            onChange={(e) =>
+              dispatch({
+                type: REGISTER_EMAIL,
+                payload: e.target.value,
+              })
+            }
+            name={"registr_email"}
+            value={registerUserData.email}
+            error={
+              Boolean(registerUserData.email !== "") &&
+              regex.test(registerUserData.email) === false
+                ? true
+                : false
+            }
             ref={inputRef}
             errorText={"Ошибка"}
             size={"default"}
@@ -45,9 +91,15 @@ export default function RegisterPage() {
           <Input
             type={show ? "password" : "text"}
             placeholder={"Пароль"}
-            onChange={(e) => e.target.value}
-            icon={"ShowIcon"}
-            name={"name"}
+            onChange={(e) =>
+              dispatch({
+                type: REGISTER_PASSWORD,
+                payload: e.target.value,
+              })
+            }
+            icon={show ? "ShowIcon" : "HideIcon"}
+            name={"registr_password"}
+            value={registerUserData.password}
             error={false}
             ref={inputRef}
             onIconClick={onIconClick}
@@ -56,7 +108,7 @@ export default function RegisterPage() {
           />
         </div>
         <div className="mt-6">
-          <Button type="primary" size="large">
+          <Button type="primary" size="large" onClick={onRegister}>
             Зарегистрироваться
           </Button>
         </div>

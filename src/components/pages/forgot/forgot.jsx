@@ -3,10 +3,9 @@ import {
   Button,
   Input,
 } from "@ya.praktikum/react-developer-burger-ui-components";
-import { Redirect } from "react-router-dom";
 
 import forgot from "./forgot.module.css";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import {
   EMAIL_FOTGOT_PASSOWORD,
   postPasswordForgot,
@@ -14,9 +13,9 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ForgotPage() {
-  // const [email, setEmail] = useState("");
+  const history = useHistory();
   const emailForgotPassword = useSelector((store) => store.forgotPassword);
-  console.log(emailForgotPassword.email);
+
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
@@ -27,6 +26,7 @@ export default function ForgotPage() {
     (e) => {
       e.preventDefault();
       dispatch(postPasswordForgot(emailForgotPassword.email));
+      history.push("/reset-password");
     },
     [emailForgotPassword.email]
   );
