@@ -5,6 +5,7 @@ import { ingredientsReducer } from "./index";
 import { modalReducer } from "./item-to-view";
 import { loginReducer } from "./login";
 import { orderReducer } from "./order";
+import { loginDataReducer } from "./profile";
 import { registerReducer } from "./register";
 import { resetPasswordReducer } from "./reset-password";
 
@@ -17,4 +18,5 @@ export const rootReducer = combineReducers({
   resetPassword: resetPasswordReducer,
   registerUser: registerReducer,
   loginUser: loginReducer,
+  loginData: loginDataReducer,
 });

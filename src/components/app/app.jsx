@@ -5,6 +5,7 @@ import HomePage from "../pages/home/home";
 import LoginPage from "../pages/login/login";
 import { NotFound404 } from "../pages/no-found/no-found";
 import ProfilePage from "../pages/profile/profile";
+import { ProtectedRoute } from "../pages/protected-route";
 import RegisterPage from "../pages/register/register";
 import ResetPage from "../pages/reset/reset";
 
@@ -29,9 +30,9 @@ function App() {
           <Route path="/reset-password" exact={true}>
             <ResetPage />
           </Route>
-          <Route path="/profile" exact={true}>
+          <ProtectedRoute path="/">
             <ProfilePage />
-          </Route>
+          </ProtectedRoute>
           <Route path="/ingredients/:id" exact={true}>
             <LoginPage />
           </Route>

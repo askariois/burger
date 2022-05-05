@@ -3,12 +3,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGIN_EMAIL,
-  LOGIN_PASSWORD,
+  LOGIN_PASSWORD
 } from "../actions/login";
 
 const initialState = {
   loginRequest: false,
   loginFailed: false,
+  loginSuccess: "",
   email: "",
   password: "",
 };
@@ -23,9 +24,10 @@ export const loginReducer = (state = initialState, action) => {
       };
     }
     case LOGIN_SUCCESS: {
+      console.log(action.success);
       return {
         ...state,
-        order: action.payload,
+        loginSuccess: action.success,
         loginRequest: false,
       };
     }

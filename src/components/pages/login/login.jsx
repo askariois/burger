@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   Button,
   Input,
@@ -28,11 +28,13 @@ export default function LoginPage() {
     (e) => {
       e.preventDefault();
       dispatch(loginUser(loginUserData.email, loginUserData.password));
-      console.log(loginUserData.loginRequest);
-      if (loginUserData.loginRequest) history.push("/");
     },
     [loginUserData.email, loginUserData.password]
   );
+
+  useEffect(() => {
+    if (loginUserData.loginSuccess) history.push("/");
+  }, [loginUserData.loginSuccess]);
 
   const regex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
