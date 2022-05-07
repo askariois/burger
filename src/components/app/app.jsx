@@ -1,47 +1,18 @@
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AppHeader from "../app-header/app-header";
-import ForgotPage from "../pages/forgot/forgot";
-import HomePage from "../pages/home/home";
-import LoginPage from "../pages/login/login";
-import { NotFound404 } from "../pages/no-found/no-found";
-import ProfilePage from "../pages/profile/profile";
-import { ProtectedRoute } from "../pages/protected-route";
-import RegisterPage from "../pages/register/register";
-import ResetPage from "../pages/reset/reset";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
+import { loadIngredients } from "../../services/actions";
+import ModalSwitch from "../modal-switch/modal-switch";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(loadIngredients());
+  }, [dispatch]);
   return (
-    <>
-      <Router>
-        <AppHeader />
-        <Switch>
-          <Route path="/" exact={true}>
-            <HomePage />
-          </Route>
-          <Route path="/login" exact={true}>
-            <LoginPage />
-          </Route>
-          <Route path="/register" exact={true}>
-            <RegisterPage />
-          </Route>
-          <Route path="/forgot-password" exact={true}>
-            <ForgotPage />
-          </Route>
-          <Route path="/reset-password" exact={true}>
-            <ResetPage />
-          </Route>
-          <ProtectedRoute path="/">
-            <ProfilePage />
-          </ProtectedRoute>
-          <Route path="/ingredients/:id" exact={true}>
-            <LoginPage />
-          </Route>
-          <Route>
-            <NotFound404 />
-          </Route>
-        </Switch>
-      </Router>
-    </>
+    <Router>
+      <ModalSwitch />
+    </Router>
   );
 }
 

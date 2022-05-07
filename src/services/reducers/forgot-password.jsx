@@ -8,6 +8,7 @@ import {
 const initialState = {
   postForgotRequest: false,
   postForgotFailed: false,
+  postForgotSuccess: false,
   postForgot: "",
   email: "",
 };
@@ -25,6 +26,7 @@ export const forgotPasswordReducer = (state = initialState, action) => {
         ...state,
         postForgotRequest: true,
         postForgotFailed: false,
+        postForgotSuccess: true,
       };
     }
     case POST_FORGOT_PASSWORD_SUCCESS: {

@@ -14,7 +14,6 @@ export function resetPasswordRequest(password, code) {
 
     passwordReset(password, code)
       .then((res) => {
-        console.log(res);
         if (res.ok) {
           return res.json();
         } else {
@@ -22,11 +21,10 @@ export function resetPasswordRequest(password, code) {
         }
       })
       .then((res) => {
+        console.log(res);
         if (res && res.success) {
-          console.log(res);
           dispatch({
             type: RESET_PASSWORD_SUCCESS,
-            payload: res.order.number,
           });
         } else {
           dispatch({

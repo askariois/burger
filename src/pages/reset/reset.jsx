@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 import {
   Button,
   Input,
@@ -10,11 +10,18 @@ import {
   resetPasswordRequest,
   RESET_PASSWORD_CODE,
   RESET_PASSWORD_PASSWORD,
-} from "../../../services/actions/reset-password";
-import { useHistory } from "react-router-dom";
+} from "../../services/actions/reset-password";
+import { useHistory, Redirect } from "react-router-dom";
 
 export default function ResetPage() {
   const resetPassword = useSelector((store) => store.resetPassword);
+  const userData = useSelector((store) => store.loginData);
+  const forgotPasswordResult = useSelector(
+    (store) => store.forgotPassword.postForgotSuccess
+  );
+  const resetPasswordResult = useSelector(
+    (store) => store.resetPassword.resetPasswordSuccess
+  );
 
   const [show, setShow] = React.useState(true);
   const inputRef = React.useRef(null);
@@ -22,7 +29,7 @@ export default function ResetPage() {
     setTimeout(() => inputRef.current.focus(), 0);
     setShow(!show);
   };
-  console.log(resetPassword);
+
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -36,7 +43,24 @@ export default function ResetPage() {
     [resetPassword.password, resetPassword.code]
   );
 
-  if (resetPassword.resetPasswordRequest) history.push("/login");
+  useEffect(() => {
+    if (!forgotPasswordResult) history.push("/forgot-password");
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (resetPasswordResult) history.push("/login");
+  }, [resetPasswordResult, history]);
+
+  if (Object.keys(userData.data).length !== 0) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
+    );
+  }
+
   return (
     <div className={reset.container}>
       <div className={reset.row}>
@@ -72,8 +96,6 @@ export default function ResetPage() {
               }
               name={"code"}
               value={resetPassword.code}
-              error={resetPassword.resetPasswordFailed}
-              errorText={"Код не правильный"}
               size={"default"}
             />
           </div>

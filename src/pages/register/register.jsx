@@ -11,11 +11,12 @@ import {
   REGISTER_EMAIL,
   REGISTER_NAME,
   REGISTER_PASSWORD,
-} from "../../../services/actions/register";
-import { useHistory } from "react-router-dom";
+} from "../../services/actions/register";
+import { useHistory, Redirect } from "react-router-dom";
 
 export default function RegisterPage() {
   const registerUserData = useSelector((store) => store.registerUser);
+  const userData = useSelector((store) => store.loginData);
 
   const [show, setShow] = React.useState(true);
   const inputRef = React.useRef(null);
@@ -39,6 +40,17 @@ export default function RegisterPage() {
     [registerUserData.name, registerUserData.email, registerUserData.password]
   );
   if (registerUserData.registerRequest) history.push("/login");
+
+  if (Object.keys(userData.data).length !== 0) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
+    );
+  }
+
   const regex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 

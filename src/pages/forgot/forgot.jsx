@@ -5,16 +5,22 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import forgot from "./forgot.module.css";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, Redirect } from "react-router-dom";
+
+import { useDispatch, useSelector } from "react-redux";
 import {
   EMAIL_FOTGOT_PASSOWORD,
   postPasswordForgot,
-} from "../../../services/actions/forgot-password";
-import { useDispatch, useSelector } from "react-redux";
-
+} from "../../services/actions/forgot-password";
 export default function ForgotPage() {
   const history = useHistory();
   const emailForgotPassword = useSelector((store) => store.forgotPassword);
+  const userData = useSelector((store) => store.loginData);
+  const forgotPasswordResult = useSelector(
+    (store) => store.forgotPassword.postForgotSuccess
+  );
+
+  console.log(forgotPasswordResult);
 
   const inputRef = React.useRef(null);
   const onIconClick = () => {
@@ -30,6 +36,16 @@ export default function ForgotPage() {
     },
     [emailForgotPassword.email]
   );
+
+  if (Object.keys(userData.data).length !== 0) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
+    );
+  }
 
   return (
     <div className={forgot.container}>

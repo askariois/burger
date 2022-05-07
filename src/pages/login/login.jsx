@@ -10,11 +10,13 @@ import {
   loginUser,
   LOGIN_EMAIL,
   LOGIN_PASSWORD,
-} from "../../../services/actions/login";
-import { useHistory } from "react-router-dom";
+} from "../../services/actions/login";
+import { useHistory, Redirect } from "react-router-dom";
 
 export default function LoginPage() {
   const loginUserData = useSelector((store) => store.loginUser);
+  const userData = useSelector((store) => store.loginData);
+
   const dispatch = useDispatch();
   const history = useHistory();
   const [show, setShow] = React.useState(true);
@@ -31,13 +33,22 @@ export default function LoginPage() {
     },
     [loginUserData.email, loginUserData.password]
   );
-
   useEffect(() => {
     if (loginUserData.loginSuccess) history.push("/");
   }, [loginUserData.loginSuccess]);
 
   const regex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+
+  if (Object.keys(userData.data).length !== 0) {
+    return (
+      <Redirect
+        to={{
+          pathname: "/",
+        }}
+      />
+    );
+  }
 
   return (
     <div className={login.container}>

@@ -3,13 +3,13 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILED,
   LOGIN_EMAIL,
-  LOGIN_PASSWORD
+  LOGIN_PASSWORD,
 } from "../actions/login";
 
 const initialState = {
   loginRequest: false,
   loginFailed: false,
-  loginSuccess: "",
+  loginSuccess: false,
   email: "",
   password: "",
 };

@@ -9,12 +9,14 @@ import {
 const initialState = {
   resetPasswordRequest: false,
   resetPasswordFailed: false,
+  resetPasswordSuccess: false,
   resetPassword: "",
   password: "",
   code: "",
 };
 
 export const resetPasswordReducer = (state = initialState, action) => {
+  console.log(action.type);
   switch (action.type) {
     case RESET_PASSWORD: {
       return {
@@ -26,7 +28,7 @@ export const resetPasswordReducer = (state = initialState, action) => {
     case RESET_PASSWORD_SUCCESS: {
       return {
         ...state,
-        resetPasswordRequest: false,
+        resetPasswordSuccess: true,
       };
     }
     case RESET_PASSWORD_FAILED: {

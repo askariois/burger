@@ -77,12 +77,12 @@ export const loginData = async (email, password) => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
   });
-
   return results;
 };
 
 export const logoutData = async () => {
   const URL = `${baseUrl}auth/logout`;
+  const token = localStorage.getItem("refreshToken");
   const results = await fetch(URL, {
     method: "POST",
     mode: "cors",
@@ -92,17 +92,18 @@ export const logoutData = async () => {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify({
-      token: localStorage.getItem("refreshToken"),
+      token: token,
     }),
     redirect: "follow",
     referrerPolicy: "no-referrer",
   });
-
+  console.log(results);
   return results;
 };
 
 export const refreshToken = async () => {
   const URL_TOKEN = `${baseUrl}auth/token`;
+  const token = localStorage.getItem("refreshToken");
   const results = await fetch(URL_TOKEN, {
     method: "POST",
     mode: "cors",
@@ -112,7 +113,7 @@ export const refreshToken = async () => {
       "Content-Type": "application/json;charset=utf-8",
     },
     body: JSON.stringify({
-      token: localStorage.getItem("refreshToken"),
+      token: token,
     }),
     redirect: "follow",
     referrerPolicy: "no-referrer",
@@ -125,6 +126,19 @@ export const userData = async () => {
   const URL_USER = `${baseUrl}auth/user`;
   const results = await fetch(URL_USER, {
     method: "GET",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+      authorization: getCookie("accessToken"),
+    },
+  });
+
+  return results;
+};
+
+export const userUpdate = async () => {
+  const URL_USER = `${baseUrl}auth/user`;
+  const results = await fetch(URL_USER, {
+    method: "PATCH",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
       authorization: getCookie("accessToken"),
