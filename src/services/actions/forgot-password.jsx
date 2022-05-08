@@ -21,7 +21,6 @@ export function postPasswordForgot(email) {
       })
       .then((res) => {
         if (res && res.success) {
-          console.log(res);
           dispatch({
             type: POST_FORGOT_PASSWORD_SUCCESS,
             payload: res.order.number,

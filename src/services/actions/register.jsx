@@ -22,9 +22,9 @@ export function registerUser(name, email, password) {
         }
       })
       .then((res) => {
-        console.log(res);
+        res;
         if (res && res.success) {
-          console.log(res);
+          res;
           dispatch({
             type: REGISTER_SUCCESS,
             payload: res.order.number,

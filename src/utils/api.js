@@ -42,7 +42,7 @@ export const passwordReset = async (password, code) => {
 };
 
 export const registerData = async (name, email, password) => {
-  console.log(name, email, password);
+  name, email, password;
   const URL_ORDER = `${baseUrl}auth/register`;
   const results = await fetch(URL_ORDER, {
     method: "POST",
@@ -97,7 +97,7 @@ export const logoutData = async () => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
   });
-  console.log(results);
+  results;
   return results;
 };
 
@@ -135,7 +135,7 @@ export const userData = async () => {
   return results;
 };
 
-export const userUpdate = async () => {
+export const userUpdate = async (name, email, pass) => {
   const URL_USER = `${baseUrl}auth/user`;
   const results = await fetch(URL_USER, {
     method: "PATCH",
@@ -143,7 +143,12 @@ export const userUpdate = async () => {
       "Content-Type": "application/json;charset=utf-8",
       authorization: getCookie("accessToken"),
     },
+    body: JSON.stringify({
+      name: name,
+      email: email,
+      pass: pass,
+    }),
   });
-
+  results;
   return results;
 };

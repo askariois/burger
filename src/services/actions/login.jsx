@@ -21,14 +21,13 @@ export function loginUser(email, password) {
         }
       })
       .then((res) => {
-        console.log(res);
         if (res && res.success) {
           deleteCookie("accessToken");
           localStorage.removeItem("refreshToken");
           setCookie("accessToken", res.accessToken);
           localStorage.setItem("refreshToken", res.refreshToken);
           dispatch({
-            type: LOGIN_SUCCESS,  
+            type: LOGIN_SUCCESS,
             success: res.success,
           });
         } else {

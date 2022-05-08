@@ -2,8 +2,9 @@ import {
   PROFILE_ADD,
   PROFILE_SUCCESS,
   PROFILE_FAILED,
-  PROFILE_NAME,
-  PROFILE_EMAIL,
+  PROFILE_UPDATE,
+  PROFILE_UPDATE_SUCCESS,
+  PROFILE_UPDATE_FAILED,
 } from "../actions/profile";
 
 const initialState = {
@@ -11,6 +12,9 @@ const initialState = {
   loginGetDataFailed: false,
   loginGetDataRequest: false,
   data: {},
+  profileUpdate: false,
+  profileUpdateFailed: false,
+  profileUpdateRequest: false,
   newData: {},
 };
 
@@ -30,18 +34,6 @@ export const loginDataReducer = (state = initialState, action) => {
         loginGetDataFailed: false,
       };
     }
-    case PROFILE_NAME: {
-      return {
-        ...state,
-        newData: action.name,
-      };
-    }
-    case PROFILE_EMAIL: {
-      return {
-        ...state,
-        newData: { email: action.email },
-      };
-    }
     case PROFILE_FAILED: {
       return {
         ...initialState,
@@ -49,7 +41,27 @@ export const loginDataReducer = (state = initialState, action) => {
         loginGetDataRequest: false,
       };
     }
-
+    case PROFILE_UPDATE: {
+      return {
+        ...state,
+        profileUpdateRequest: true,
+        profileUpdateFailed: false,
+      };
+    }
+    case PROFILE_UPDATE_SUCCESS: {
+      return {
+        ...state,
+        newData: action.newData,
+        profileUpdateFailed: false,
+      };
+    }
+    case PROFILE_UPDATE_FAILED: {
+      return {
+        ...initialState,
+        profileUpdateFailed: true,
+        profileUpdateRequest: false,
+      };
+    }
     default: {
       return state;
     }

@@ -16,7 +16,7 @@ import { OPEN_MODAL } from "../../../../services/actions/item-to-view";
 
 function CardBurgerIngredient({ type, image, price, name, _id }) {
   const dispatch = useDispatch();
-  const location = useLocation();
+  let location = useLocation();
 
   const handleOpenModal = () => {
     dispatch({

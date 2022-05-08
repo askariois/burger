@@ -21,7 +21,7 @@ export function resetPasswordRequest(password, code) {
         }
       })
       .then((res) => {
-        console.log(res);
+        res;
         if (res && res.success) {
           dispatch({
             type: RESET_PASSWORD_SUCCESS,

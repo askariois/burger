@@ -20,8 +20,6 @@ export default function ForgotPage() {
     (store) => store.forgotPassword.postForgotSuccess
   );
 
-  console.log(forgotPasswordResult);
-
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);

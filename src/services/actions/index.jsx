@@ -15,7 +15,7 @@ export function loadIngredients() {
         if (res.ok) {
           return res.json();
         } else {
-          console.log("Error");
+       console.log("Error");
         }
       })
       .then((data) => {

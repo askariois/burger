@@ -9,8 +9,6 @@ export function ProtectedRoute({ children, ...rest }) {
     if (Object.keys(auth.data).length === 0) setUserLoaded(true);
   };
 
-  console.log(auth);
-
   useEffect(() => {
     init();
   }, []);

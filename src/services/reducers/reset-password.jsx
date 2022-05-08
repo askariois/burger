@@ -16,7 +16,7 @@ const initialState = {
 };
 
 export const resetPasswordReducer = (state = initialState, action) => {
-  console.log(action.type);
+  action.type;
   switch (action.type) {
     case RESET_PASSWORD: {
       return {

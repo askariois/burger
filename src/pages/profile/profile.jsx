@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   Button,
   Input,
@@ -7,15 +7,23 @@ import profile from "./profile.module.css";
 import { logoutUser } from "../../services/actions/login";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { PROFILE_EMAIL, PROFILE_NAME } from "../../services/actions/profile";
+import { userUpdateData } from "../../services/actions/profile";
 
 export default function ProfilePage() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const [prName, setPrName] = useState(null);
+  const [prLogin, setPrLogin] = useState(null);
+  const [prPassword, setPrPassword] = useState("");
+  const [prshow, setPrShow] = React.useState(true);
 
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
+  };
+  const onIconClickPassword = () => {
+    setTimeout(() => inputRef.current.focus(), 0);
+    setPrShow(!prshow);
   };
 
   const logout = (e) => {
@@ -24,9 +32,24 @@ export default function ProfilePage() {
     history.push("/");
   };
 
+  // Обновление пользователя
+  let onSave = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(
+        userUpdateData(
+          prName === null ? getUser.name : prName,
+          prLogin === null ? getUser.email : prLogin,
+          prPassword
+        )
+      );
+    },
+    [prName, prLogin, prPassword]
+  );
+
   const getUser = useSelector((store) => store.loginData.data);
   const getUpdateUser = useSelector((store) => store.loginData.newData);
-  console.log(getUpdateUser);
+
   return (
     <div className={profile.container}>
       <div className={profile.row}>
@@ -45,15 +68,18 @@ export default function ProfilePage() {
             <Input
               type={"text"}
               placeholder={"Имя"}
-              onChange={(e) =>
-                dispatch({
-                  type: PROFILE_NAME,
-                  name: e.target.value,
-                })
-              }
+              onChange={(e) => {
+                setPrName(e.target.value);
+              }}
               icon={"EditIcon"}
               name={"profile_name"}
-              value={getUser.name === undefined ? "" : getUser.name}
+              value={
+                prName === null
+                  ? getUser.name === undefined
+                    ? ""
+                    : getUser.name
+                  : prName
+              }
               error={false}
               ref={inputRef}
               onIconClick={onIconClick}
@@ -65,15 +91,18 @@ export default function ProfilePage() {
             <Input
               type={"email"}
               placeholder={"Логин"}
-              onChange={(e) =>
-                dispatch({
-                  type: PROFILE_EMAIL,
-                  name: e.target.value,
-                })
-              }
+              onChange={(e) => {
+                setPrLogin(e.target.value);
+              }}
               icon={"EditIcon"}
               name={"profile_email"}
-              value={getUser.email === undefined ? "" : getUser.email}
+              value={
+                prLogin === null
+                  ? getUser.email === undefined
+                    ? ""
+                    : getUser.email
+                  : prLogin
+              }
               error={false}
               ref={inputRef}
               onIconClick={onIconClick}
@@ -83,25 +112,20 @@ export default function ProfilePage() {
           </div>
           <div className="mt-6">
             <Input
-              type={"text"}
+              type={prshow ? "password" : "text"}
               placeholder={"Пароль"}
-              onChange={(e) => e.target.value}
-              icon={"EditIcon"}
+              onChange={(e) => setPrPassword(e.target.value)}
+              icon={prshow ? "ShowIcon" : "HideIcon"}
               name={"profile_password"}
-              value={""}
-              error={false}
+              value={prPassword}
               ref={inputRef}
-              onIconClick={onIconClick}
-              errorText={"Ошибка"}
+              onIconClick={onIconClickPassword}
               size={"default"}
             />
           </div>
           <div className="row mt-5">
-            <Button type="primary" size="small">
+            <Button type="primary" size="small" onClick={onSave}>
               Сохранить
-            </Button>
-            <Button type="secondary" size="small">
-              Отмена
             </Button>
           </div>
         </form>
