@@ -11,7 +11,7 @@ export const ingredientsReducer = (state = initialState, action) => {
     case GET_FEED: {
       return {
         ...state,
-        feedRequest: true,
+        feedRequest: false,
         feedFailed: false,
       };
     }
@@ -19,14 +19,14 @@ export const ingredientsReducer = (state = initialState, action) => {
       return {
         ...state,
         feed: action.feed,
-        feedRequest: false,
+        feedRequest: true,
       };
     }
     case GET_FEED_FAILED: {
       return {
         ...initialState,
         feedFailed: true,
-        feedRequest: false
+        feedRequest: false,
       };
     }
 

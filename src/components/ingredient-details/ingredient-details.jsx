@@ -12,49 +12,52 @@ function IngredientDetails() {
     dispatch(loadIngredients());
   }, [ingredientId]);
 
-  const { feed } = useSelector((state) => state.ingredient);
-
-  let ingredient = feed.find(({ _id }) => _id === ingredientId);
-
+  const feed = useSelector((state) => state.ingredient);
+  let ingredient = "";
+  if (feed.feedRequest) {
+    ingredient = feed.feed.find(({ _id }) => _id === ingredientId);
+  }
   return (
     <>
-      <div>
-        <div className="flex justify-center">
-          <img
-            src={ingredient.image_large}
-            className={`${burgerdetails.img_width}`}
-          />
+      {feed.feedRequest && (
+        <div>
+          <div className="flex justify-center">
+            <img
+              src={ingredient.image_large}
+              className={`${burgerdetails.img_width}`}
+            />
+          </div>
+          <div className={`${burgerdetails.text_center} mt-4 mb-8`}>
+            {ingredient.name}
+          </div>
+          <div className={`${burgerdetails.details} flex justify-between`}>
+            <div>
+              <span>Калории,ккал</span>
+              <span className={`${burgerdetails.details_count}`}>
+                {ingredient.calories}
+              </span>
+            </div>
+            <div>
+              <span>Белки, г</span>
+              <span className={`${burgerdetails.details_count}`}>
+                {ingredient.proteins}
+              </span>
+            </div>
+            <div>
+              <span>Жиры, г</span>
+              <span className={`${burgerdetails.details_count}`}>
+                {ingredient.fat}
+              </span>
+            </div>
+            <div>
+              <span>Углеводы, г</span>
+              <span className={`${burgerdetails.details_count}`}>
+                {ingredient.carbohydrates}
+              </span>
+            </div>
+          </div>
         </div>
-        <div className={`${burgerdetails.text_center} mt-4 mb-8`}>
-          {ingredient.name}
-        </div>
-        <div className={`${burgerdetails.details} flex justify-between`}>
-          <div>
-            <span>Калории,ккал</span>
-            <span className={`${burgerdetails.details_count}`}>
-              {ingredient.calories}
-            </span>
-          </div>
-          <div>
-            <span>Белки, г</span>
-            <span className={`${burgerdetails.details_count}`}>
-              {ingredient.proteins}
-            </span>
-          </div>
-          <div>
-            <span>Жиры, г</span>
-            <span className={`${burgerdetails.details_count}`}>
-              {ingredient.fat}
-            </span>
-          </div>
-          <div>
-            <span>Углеводы, г</span>
-            <span className={`${burgerdetails.details_count}`}>
-              {ingredient.carbohydrates}
-            </span>
-          </div>
-        </div>
-      </div>
+      )}
     </>
   );
 }

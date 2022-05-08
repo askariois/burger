@@ -42,7 +42,6 @@ export const passwordReset = async (password, code) => {
 };
 
 export const registerData = async (name, email, password) => {
-  name, email, password;
   const URL_ORDER = `${baseUrl}auth/register`;
   const results = await fetch(URL_ORDER, {
     method: "POST",
@@ -97,7 +96,6 @@ export const logoutData = async () => {
     redirect: "follow",
     referrerPolicy: "no-referrer",
   });
-  results;
   return results;
 };
 
@@ -149,6 +147,6 @@ export const userUpdate = async (name, email, pass) => {
       pass: pass,
     }),
   });
-  results;
+
   return results;
 };
