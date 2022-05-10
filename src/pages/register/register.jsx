@@ -26,7 +26,7 @@ export default function RegisterPage() {
   };
   const history = useHistory();
   const dispatch = useDispatch();
-  let onRegister = useCallback(
+  const onRegister = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(
@@ -58,72 +58,74 @@ export default function RegisterPage() {
     <div className={registr.container}>
       <div className={registr.row}>
         <h2 className="mt-0">Регистрация</h2>
-        <div>
-          <Input
-            type={"text"}
-            placeholder={"Имя"}
-            onChange={(e) =>
-              dispatch({
-                type: REGISTER_NAME,
-                payload: e.target.value,
-              })
-            }
-            name={"registr_name"}
-            error={false}
-            value={registerUserData.name}
-            ref={inputRef}
-            errorText={"Ошибка"}
-            size={"default"}
-          />
-        </div>
-        <div className="mt-6">
-          <Input
-            type={"email"}
-            placeholder={"E-mail"}
-            onChange={(e) =>
-              dispatch({
-                type: REGISTER_EMAIL,
-                payload: e.target.value,
-              })
-            }
-            name={"registr_email"}
-            value={registerUserData.email}
-            error={
-              Boolean(registerUserData.email !== "") &&
-              regex.test(registerUserData.email) === false
-                ? true
-                : false
-            }
-            ref={inputRef}
-            errorText={"Ошибка"}
-            size={"default"}
-          />
-        </div>
-        <div className="mt-6">
-          <Input
-            type={show ? "password" : "text"}
-            placeholder={"Пароль"}
-            onChange={(e) =>
-              dispatch({
-                type: REGISTER_PASSWORD,
-                payload: e.target.value,
-              })
-            }
-            icon={show ? "ShowIcon" : "HideIcon"}
-            name={"registr_password"}
-            value={registerUserData.password}
-            error={false}
-            ref={inputRef}
-            onIconClick={onIconClick}
-            errorText={"Ошибка"}
-            size={"default"}
-          />
-        </div>
-        <div className="mt-6">
-          <Button type="primary" size="large" onClick={onRegister}>
-            Зарегистрироваться
-          </Button>
-        </div>
+        <form action="" onSubmit={onRegister} className={registr.text_center}>
+          <div>
+            <Input
+              type={"text"}
+              placeholder={"Имя"}
+              onChange={(e) =>
+                dispatch({
+                  type: REGISTER_NAME,
+                  payload: e.target.value,
+                })
+              }
+              name={"registr_name"}
+              error={false}
+              value={registerUserData.name}
+              ref={inputRef}
+              errorText={"Ошибка"}
+              size={"default"}
+            />
+          </div>
+          <div className="mt-6">
+            <Input
+              type={"email"}
+              placeholder={"E-mail"}
+              onChange={(e) =>
+                dispatch({
+                  type: REGISTER_EMAIL,
+                  payload: e.target.value,
+                })
+              }
+              name={"registr_email"}
+              value={registerUserData.email}
+              error={
+                Boolean(registerUserData.email !== "") &&
+                regex.test(registerUserData.email) === false
+                  ? true
+                  : false
+              }
+              ref={inputRef}
+              errorText={"Ошибка"}
+              size={"default"}
+            />
+          </div>
+          <div className="mt-6">
+            <Input
+              type={show ? "password" : "text"}
+              placeholder={"Пароль"}
+              onChange={(e) =>
+                dispatch({
+                  type: REGISTER_PASSWORD,
+                  payload: e.target.value,
+                })
+              }
+              icon={show ? "ShowIcon" : "HideIcon"}
+              name={"registr_password"}
+              value={registerUserData.password}
+              error={false}
+              ref={inputRef}
+              onIconClick={onIconClick}
+              errorText={"Ошибка"}
+              size={"default"}
+            />
+          </div>
+          <div className="mt-6">
+            <Button type="primary" size="large">
+              Зарегистрироваться
+            </Button>
+          </div>
+        </form>
         <div className={registr.text}>
           <div className="mt-20">
             Уже зарегистрированы ? <Link to="/login">Войти</Link>

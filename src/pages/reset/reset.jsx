@@ -33,7 +33,7 @@ export default function ResetPage() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  let onResetPassword = useCallback(
+  const onResetPassword = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(
@@ -65,7 +65,7 @@ export default function ResetPage() {
     <div className={reset.container}>
       <div className={reset.row}>
         <h2 className="mt-0">Восстановление пароля</h2>
-        <form action="" className={reset.row}>
+        <form action="" className={reset.row} onSubmit={onResetPassword}>
           <div>
             <Input
               type={show ? "password" : "text"}
@@ -100,7 +100,7 @@ export default function ResetPage() {
             />
           </div>
           <div className="mt-6">
-            <Button type="primary" size="large" onClick={onResetPassword}>
+            <Button type="primary" size="large">
               Сохранить
             </Button>
           </div>

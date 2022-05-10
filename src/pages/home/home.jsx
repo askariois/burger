@@ -8,15 +8,13 @@ import home from "./home.module.css";
 
 export default function HomePage() {
   return (
-    <>
-      <div className={`${home.container}`}>
-        <div className={`${home.flex} ${home.justify_between}`}>
-          <DndProvider backend={HTML5Backend}>
-            <BurgerIngredients />
-            <BurgerConstructor />
-          </DndProvider>
-        </div>
+    <div className={`${home.container}`}>
+      <div className={`${home.flex} ${home.justify_between}`}>
+        <DndProvider backend={HTML5Backend}>
+          <BurgerIngredients />
+          <BurgerConstructor />
+        </DndProvider>
       </div>
-    </>
+    </div>
   );
 }

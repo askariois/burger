@@ -1,4 +1,5 @@
 import { registerData } from "../../utils/api";
+import { checkResponse } from "../../utils/utils";
 
 export const REGISTER_ADD = "REGISTER/ADD";
 export const REGISTER_SUCCESS = "REGISTER/SUCCESS";
@@ -14,17 +15,9 @@ export function registerUser(name, email, password) {
     });
 
     registerData(name, email, password)
+      .then(checkResponse)
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log("Error");
-        }
-      })
-      .then((res) => {
-        res;
         if (res && res.success) {
-          res;
           dispatch({
             type: REGISTER_SUCCESS,
             payload: res.order.number,

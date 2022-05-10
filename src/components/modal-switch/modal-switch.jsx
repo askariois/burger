@@ -20,14 +20,13 @@ import ResetPage from "../../pages/reset/reset";
 import { CLOSE_MODAL } from "../../services/actions/item-to-view";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
-import { loadIngredients } from "../../services/actions";
 
 function ModalSwitch() {
   const location = useLocation();
   const history = useHistory();
   const dispatch = useDispatch();
 
-  let background = location.state && location.state.background;
+  const background = location.state && location.state.background;
 
   const handleCloseModal = () => {
     dispatch({
@@ -39,7 +38,7 @@ function ModalSwitch() {
 
   useEffect(() => {
     dispatch(userGetData());
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -70,11 +69,12 @@ function ModalSwitch() {
           <NotFound404 />
         </Route>
       </Switch>
+
       {background && (
         <Route
           path="/ingredients/:ingredientId"
           children={
-            <Modal close={handleCloseModal}>
+            <Modal close={handleCloseModal} header="Детали ингредиента">
               <IngredientDetails />
             </Modal>
           }

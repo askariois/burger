@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useRef, useState } from "react";
 import {
   Button,
   Input,
@@ -15,9 +15,9 @@ export default function ProfilePage() {
   const [prName, setPrName] = useState(null);
   const [prLogin, setPrLogin] = useState(null);
   const [prPassword, setPrPassword] = useState("");
-  const [prshow, setPrShow] = React.useState(true);
+  const [prshow, setPrShow] = useState(true);
 
-  const inputRef = React.useRef(null);
+  const inputRef = useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
   };
@@ -33,7 +33,7 @@ export default function ProfilePage() {
   };
 
   // Обновление пользователя
-  let onSave = useCallback(
+  const onSave = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(
@@ -48,7 +48,6 @@ export default function ProfilePage() {
   );
 
   const getUser = useSelector((store) => store.loginData.data);
-  const getUpdateUser = useSelector((store) => store.loginData.newData);
 
   return (
     <div className={profile.container}>
@@ -63,7 +62,7 @@ export default function ProfilePage() {
             В этом разделе вы можете изменить свои персональные данные
           </div>
         </div>
-        <form action="">
+        <form action="" onSubmit={onSave}>
           <div>
             <Input
               type={"text"}
@@ -124,7 +123,7 @@ export default function ProfilePage() {
             />
           </div>
           <div className="row mt-5">
-            <Button type="primary" size="small" onClick={onSave}>
+            <Button type="primary" size="small">
               Сохранить
             </Button>
           </div>

@@ -1,4 +1,5 @@
 import { getOrderNumber } from "../../utils/api";
+import { checkResponse } from "../../utils/utils";
 
 export const CREATE_ORDER = "CREATE_ORDER";
 export const GET_ORDER_NUMBER = "GET_ORDER_NUMBER";
@@ -13,13 +14,7 @@ export function getNumber(orderData) {
     });
 
     getOrderNumber(orderData)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log("Error");
-        }
-      })
+      .then(checkResponse)
       .then((res) => {
         if (res && res.success) {
           dispatch({

@@ -1,4 +1,5 @@
 import { passwordReset } from "../../utils/api";
+import { checkResponse } from "../../utils/utils";
 
 export const RESET_PASSWORD = "RESET_PASSWORD";
 export const RESET_PASSWORD_SUCCESS = "RESET_PASSWORD/SUCCESS";
@@ -13,15 +14,8 @@ export function resetPasswordRequest(password, code) {
     });
 
     passwordReset(password, code)
+      .then(checkResponse)
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log("Error");
-        }
-      })
-      .then((res) => {
-        res;
         if (res && res.success) {
           dispatch({
             type: RESET_PASSWORD_SUCCESS,

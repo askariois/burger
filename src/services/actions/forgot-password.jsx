@@ -1,4 +1,5 @@
 import { forgotPassword } from "../../utils/api";
+import { checkResponse } from "../../utils/utils";
 
 export const EMAIL_FOTGOT_PASSOWORD = "EMAIL_FOTGOT_PASSOWORD";
 export const POST_FORGOT_PASSWORD = "POST_FORGOT_PASSWORD";
@@ -12,13 +13,7 @@ export function postPasswordForgot(email) {
     });
 
     forgotPassword(email)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log("Error");
-        }
-      })
+      .then(checkResponse)
       .then((res) => {
         if (res && res.success) {
           dispatch({

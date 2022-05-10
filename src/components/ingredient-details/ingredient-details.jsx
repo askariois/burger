@@ -7,11 +7,6 @@ import { loadIngredients } from "../../services/actions";
 
 function IngredientDetails() {
   const { ingredientId } = useParams();
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(loadIngredients());
-  }, [ingredientId]);
-
   const feed = useSelector((state) => state.ingredient);
   let ingredient = "";
   if (feed.feedRequest) {

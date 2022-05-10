@@ -3,6 +3,10 @@
   margin: 180px auto;
 }
 
+.text_center {
+  text-align: center;
+}
+
 .row,
 .text {
   display: flex;

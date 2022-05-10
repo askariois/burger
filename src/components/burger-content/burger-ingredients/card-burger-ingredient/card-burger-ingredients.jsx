@@ -16,7 +16,7 @@ import { OPEN_MODAL } from "../../../../services/actions/item-to-view";
 
 function CardBurgerIngredient({ type, image, price, name, _id }) {
   const dispatch = useDispatch();
-  let location = useLocation();
+  const location = useLocation();
 
   const handleOpenModal = () => {
     dispatch({
@@ -38,31 +38,29 @@ function CardBurgerIngredient({ type, image, price, name, _id }) {
   const couterDataCount = couterData.length;
 
   return (
-    <>
-      <Link
-        key={_id}
-        to={{
-          pathname: `/ingredients/${_id}`,
-          state: { background: location },
-        }}
-        className={`${burgeringredient.cursor_pointer} w-6-12 mb-8`}
-        ref={dragRef}
-        onClick={handleOpenModal}
-      >
-        <div className={`relative flex justify-center`}>
-          <img src={image} alt="Грустная собачка" />
-          <Counter
-            count={type === "bun" ? couterDataCount * 2 : couterDataCount}
-            size="default"
-          />
-        </div>
-        <div className={`flex justify-center align-center`}>
-          <span className={burgeringredient.burger_counter}>{price}</span>
-          <CurrencyIcon type="primary" />
-        </div>
-        <div className={`${burgeringredient.burger_name} mt-1`}>{name}</div>
-      </Link>
-    </>
+    <Link
+      key={_id}
+      to={{
+        pathname: `/ingredients/${_id}`,
+        state: { background: location },
+      }}
+      className={`${burgeringredient.cursor_pointer} w-6-12 mb-8`}
+      ref={dragRef}
+      onClick={handleOpenModal}
+    >
+      <div className={`relative flex justify-center`}>
+        <img src={image} alt="Грустная собачка" />
+        <Counter
+          count={type === "bun" ? couterDataCount * 2 : couterDataCount}
+          size="default"
+        />
+      </div>
+      <div className={`flex justify-center align-center`}>
+        <span className={burgeringredient.burger_counter}>{price}</span>
+        <CurrencyIcon type="primary" />
+      </div>
+      <div className={`${burgeringredient.burger_name} mt-1`}>{name}</div>
+    </Link>
   );
 }
 

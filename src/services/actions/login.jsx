@@ -1,5 +1,5 @@
 import { loginData, logoutData } from "../../utils/api";
-import { deleteCookie, getCookie, setCookie } from "../../utils/utils";
+import { checkResponse, deleteCookie, getCookie, setCookie } from "../../utils/utils";
 export const LOGIN_ADD = "LOGIN/ADD";
 export const LOGIN_SUCCESS = "LOGIN/SUCCESS";
 export const LOGIN_FAILED = "LOGIN/FAILED";
@@ -13,13 +13,7 @@ export function loginUser(email, password) {
     });
 
     await loginData(email, password)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log("Error");
-        }
-      })
+      .then(checkResponse)
       .then((res) => {
         if (res && res.success) {
           deleteCookie("accessToken");

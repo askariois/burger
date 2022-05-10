@@ -1,5 +1,5 @@
 import { refreshToken, userData, userUpdate } from "../../utils/api";
-import { setCookie } from "../../utils/utils";
+import { checkResponse, setCookie } from "../../utils/utils";
 
 export const PROFILE_ADD = "PROFILE/ADD";
 export const PROFILE_SUCCESS = "PROFILE/SUCCESS";
@@ -15,15 +15,8 @@ export function userGetData() {
       type: PROFILE_ADD,
     });
     await userData()
+      .then(checkResponse)
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log("Error");
-        }
-      })
-      .then((res) => {
-        res;
         if (res && res.success) {
           dispatch({
             type: PROFILE_SUCCESS,
@@ -45,14 +38,14 @@ export function userGetData() {
 function userRefreshData(afterRefresh) {
   return async function (dispatch) {
     await refreshToken()
-      .then((res) => {
-        return res.json();
-      })
+      .then(checkResponse)
       .then((json) => {
-        json;
         localStorage.setItem("refreshToken", json.refreshToken);
         setCookie("accessToken", json.accessToken);
         dispatch(afterRefresh);
+      })
+      .catch((err) => {
+        console.log("Error");
       });
   };
 }
@@ -63,15 +56,8 @@ export function userUpdateData(name, email, pass) {
       type: PROFILE_UPDATE,
     });
     await userUpdate(name, email, pass)
+      .then(checkResponse)
       .then((res) => {
-        if (res.ok) {
-          return res.json();
-        } else {
-          console.log("Error");
-        }
-      })
-      .then((res) => {
-        res;
         if (res && res.success) {
           dispatch({
             type: PROFILE_UPDATE_SUCCESS,

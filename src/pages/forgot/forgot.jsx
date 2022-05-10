@@ -5,7 +5,7 @@ import {
 } from "@ya.praktikum/react-developer-burger-ui-components";
 
 import forgot from "./forgot.module.css";
-import { Link, useHistory, Redirect } from "react-router-dom";
+import { Link, useHistory, Redirect, useLocation } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -14,6 +14,8 @@ import {
 } from "../../services/actions/forgot-password";
 export default function ForgotPage() {
   const history = useHistory();
+  const dispatch = useDispatch();
+  const location = useLocation();
   const emailForgotPassword = useSelector((store) => store.forgotPassword);
   const userData = useSelector((store) => store.loginData);
   const forgotPasswordResult = useSelector(
@@ -24,9 +26,8 @@ export default function ForgotPage() {
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
   };
-  const dispatch = useDispatch();
 
-  let onForgotPassword = useCallback(
+  const onForgotPassword = useCallback(
     (e) => {
       e.preventDefault();
       dispatch(postPasswordForgot(emailForgotPassword.email));
@@ -36,20 +37,14 @@ export default function ForgotPage() {
   );
 
   if (Object.keys(userData.data).length !== 0) {
-    return (
-      <Redirect
-        to={{
-          pathname: "/",
-        }}
-      />
-    );
+    return <Redirect to={{ pathname: "/", state: { from: location } }} />;
   }
 
   return (
     <div className={forgot.container}>
       <div className={forgot.row}>
         <h2 className="mt-0">Восстановление пароля</h2>
-        <form action="" className={forgot.row}>
+        <form action="" className={forgot.row} onSubmit={onForgotPassword}>
           <div>
             <Input
               type={"email"}
@@ -70,7 +65,7 @@ export default function ForgotPage() {
             />
           </div>
           <div className="mt-6">
-            <Button type="primary" size="large" onClick={onForgotPassword}>
+            <Button type="primary" size="large">
               Восстановить
             </Button>
           </div>
