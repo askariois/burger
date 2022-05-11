@@ -6,8 +6,8 @@ import {
 import profile from "./profile.module.css";
 import { logoutUser } from "../../services/actions/login";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
-import { userUpdateData } from "../../services/actions/profile";
+import { Link, useLocation, useHistory, useRouteMatch } from "react-router-dom";
+import { userGetData, userUpdateData } from "../../services/actions/profile";
 
 export default function ProfilePage() {
   const history = useHistory();
@@ -16,6 +16,11 @@ export default function ProfilePage() {
   const [prLogin, setPrLogin] = useState(null);
   const [prPassword, setPrPassword] = useState("");
   const [prshow, setPrShow] = useState(true);
+
+  const getUser = useSelector((store) => store.loginData.data);
+
+  const isProfile = !!useRouteMatch("/profile");
+  const isOrder = !!useRouteMatch("/profile/orders");
 
   const inputRef = useRef(null);
   const onIconClick = () => {
@@ -26,11 +31,14 @@ export default function ProfilePage() {
     setPrShow(!prshow);
   };
 
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(logoutUser());
-    history.push("/");
-  };
+  const logout = useCallback(
+    (e) => {
+      e.preventDefault();
+      dispatch(logoutUser());
+      history.replace({ pathname: "/" });
+    },
+    [history]
+  );
 
   // Обновление пользователя
   const onSave = useCallback(
@@ -47,14 +55,19 @@ export default function ProfilePage() {
     [prName, prLogin, prPassword]
   );
 
-  const getUser = useSelector((store) => store.loginData.data);
-
   return (
     <div className={profile.container}>
       <div className={profile.row}>
         <div className={profile.menu}>
-          <a href="#">Профиль</a>
-          <a href="#">История заказов</a>
+          <Link to="/profile" className={isProfile ? `${profile.active}` : ""}>
+            Профиль
+          </Link>
+          <Link
+            to="/profile/orders"
+            className={isOrder ? `${profile.active}` : ""}
+          >
+            История заказов
+          </Link>
           <Link to="" onClick={logout}>
             Выход
           </Link>

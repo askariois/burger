@@ -1,5 +1,11 @@
 import { loginData, logoutData } from "../../utils/api";
-import { checkResponse, deleteCookie, getCookie, setCookie } from "../../utils/utils";
+import {
+  checkResponse,
+  deleteCookie,
+  getCookie,
+  setCookie,
+} from "../../utils/utils";
+import { userGetData } from "./profile";
 export const LOGIN_ADD = "LOGIN/ADD";
 export const LOGIN_SUCCESS = "LOGIN/SUCCESS";
 export const LOGIN_FAILED = "LOGIN/FAILED";
@@ -51,6 +57,7 @@ export function logoutUser() {
       .then((res) => {
         deleteCookie("accessToken");
         localStorage.removeItem("refreshToken");
+        dispatch(userGetData());
       })
       .catch((err) => {
         console.log("Ошибка");

@@ -19,7 +19,9 @@ export default function LoginPage() {
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
+  const { from } = location.state || { from: { pathname: "/" } };
   const [show, setShow] = React.useState(true);
+
   const inputRef = React.useRef(null);
   const onIconClick = () => {
     setTimeout(() => inputRef.current.focus(), 0);
@@ -35,14 +37,14 @@ export default function LoginPage() {
   );
 
   useEffect(() => {
-    if (loginUserData.loginSuccess) history.push("/");
+    if (loginUserData.loginSuccess) history.push(from.pathname);
   }, [loginUserData.loginSuccess]);
 
   const regex =
     /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
 
   if (Object.keys(userData.data).length !== 0) {
-    return <Redirect to={{ pathname: "/", state: { from: location } }} />;
+    return <Redirect to={from.pathname} />;
   }
 
   return (

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Route, Redirect, useLocation } from "react-router-dom";
+import { userGetData } from "../services/actions/profile";
 
 export function ProtectedRoute({ children, ...rest }) {
   const location = useLocation();
+  const dispatch = useDispatch();
+
   const auth = useSelector((store) => store.loginData);
   const [isUserLoaded, setUserLoaded] = useState(false);
 
@@ -13,7 +16,7 @@ export function ProtectedRoute({ children, ...rest }) {
 
   useEffect(() => {
     init();
-  }, []);
+  }, [dispatch]);
 
   return (
     <Route

@@ -41,7 +41,6 @@ function OrderPriceButton() {
     if (Object.keys(userData.data).length === 0) {
       history.push({
         pathname: "/login",
-        state: { prevPathname: history.location.pathname },
       });
       return;
     }

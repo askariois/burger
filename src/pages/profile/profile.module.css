@@ -38,3 +38,7 @@
   opacity: 0.4;
   margin-top: 80px;
 }
+
+.active {
+  color: white !important;
+}

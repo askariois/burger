@@ -20,6 +20,7 @@ import ResetPage from "../../pages/reset/reset";
 import { CLOSE_MODAL } from "../../services/actions/item-to-view";
 import IngredientDetails from "../ingredient-details/ingredient-details";
 import Modal from "../modal/modal";
+import OrdersPage from "../../pages/profile/orders/orders";
 
 function ModalSwitch() {
   const location = useLocation();
@@ -38,7 +39,7 @@ function ModalSwitch() {
 
   useEffect(() => {
     dispatch(userGetData());
-  }, [dispatch]);
+  }, [dispatch, location, history]);
 
   return (
     <>
@@ -62,6 +63,10 @@ function ModalSwitch() {
         <ProtectedRoute path="/profile" exact={true}>
           <ProfilePage />
         </ProtectedRoute>
+        <ProtectedRoute path="/profile/orders" exact={true}>
+          <OrdersPage />
+        </ProtectedRoute>
+
         <Route path="/ingredients/:ingredientId" exact={true}>
           <IngredientDetails />
         </Route>

@@ -2,8 +2,6 @@ import { useParams, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import burgerdetails from "./burger-details.module.css";
-import { useEffect } from "react";
-import { loadIngredients } from "../../services/actions";
 
 function IngredientDetails() {
   const { ingredientId } = useParams();
@@ -15,7 +13,7 @@ function IngredientDetails() {
   return (
     <>
       {feed.feedRequest && (
-        <div>
+        <div className={burgerdetails.container}>
           <div className="flex justify-center">
             <img
               src={ingredient.image_large}
