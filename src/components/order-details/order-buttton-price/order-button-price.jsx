@@ -5,25 +5,26 @@ import {
 
 import TotalPrice from "../total-price/total-price";
 import Modal from "../../modal/modal";
-
+import { useHistory } from "react-router-dom";
+import {
+  CLOSE_MODAL_ORDER,
+  OPEN_MODAL_ORDER,
+} from "../../../services/actions/item-to-view";
 import order_details from "../order-details.module.css";
 import OrderDetails from "../order-details";
 import { useDispatch, useSelector } from "react-redux";
 import { getNumber } from "../../../services/actions/order";
 
-import {
-  CLOSE_MODAL_ORDER,
-  OPEN_MODAL_ORDER,
-} from "../../../services/actions/item-to-view";
-
 function OrderPriceButton() {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const constructorIngredients = useSelector(
     (store) => store.constructorIngredients.constructorIngredients
   );
+  const userData = useSelector((store) => store.loginData);
 
-  const mainOrderAll = [];
+  let mainOrderAll = [];
 
   constructorIngredients.map((item) => mainOrderAll.push(`${item._id}`));
 
@@ -37,6 +38,12 @@ function OrderPriceButton() {
   };
 
   const handleOpenModal = () => {
+    if (Object.keys(userData.data).length === 0) {
+      history.push({
+        pathname: "/login",
+      });
+      return;
+    }
     dispatch(getNumber(mainOrderAll));
     dispatch({
       type: OPEN_MODAL_ORDER,
@@ -62,5 +69,5 @@ function OrderPriceButton() {
     </div>
   );
 }
-  
+
 export default OrderPriceButton;

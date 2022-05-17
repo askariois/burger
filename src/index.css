@@ -93,3 +93,7 @@ h2 {
 ::-webkit-scrollbar-thumb:hover {
   background: #8585ad;
 }
+
+.input_size_default {
+  width: 480px !important;
+}

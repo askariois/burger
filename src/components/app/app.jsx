@@ -1,35 +1,20 @@
-import React, { useEffect, useState } from "react";
-
-import AppHeader from "../app-header/app-header";
-import BurgerIngredients from "../burger-content/burger-ingredients/burger-ingredients";
-import BurgerConstructor from "../burger-content/burger-constructor/burger-constructor";
-
-import app from "./app.module.css";
-
-import { DndProvider } from "react-dnd";
-import { HTML5Backend } from "react-dnd-html5-backend";
-import { loadIngredients } from "../../services/actions";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { BrowserRouter as Router, useHistory } from "react-router-dom";
+import { loadIngredients } from "../../services/actions";
+import { userGetData } from "../../services/actions/profile";
+import ModalSwitch from "../modal-switch/modal-switch";
 
 function App() {
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(loadIngredients());
   }, [dispatch]);
 
   return (
-    <>
-      <AppHeader />
-      <div className={`${app.container}`}>
-        <div className={`${app.flex} ${app.justify_between}`}>
-          <DndProvider backend={HTML5Backend}>
-            <BurgerIngredients />
-            <BurgerConstructor />
-          </DndProvider>
-        </div>
-      </div>
-    </>
+    <Router>
+      <ModalSwitch />
+    </Router>
   );
 }
 
