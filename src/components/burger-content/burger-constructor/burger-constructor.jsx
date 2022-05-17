@@ -11,9 +11,16 @@ import ConstructorIngredientsList from "./burger-constructor-ingredient-list/bur
 import OrderPriceButton from "../../order-details/order-buttton-price/order-button-price";
 
 function BurgerConstructor() {
+  interface constructorIngredients {
+    constructorIngredients: {}[];
+  }
+
   const constructorIngredients = useSelector(
-    (store) => store.constructorIngredients.constructorIngredients
+    (store: constructorIngredients) =>
+      store.constructorIngredients.constructorIngredients
   );
+
+  console.log(constructorIngredients);
 
   const { feed } = useSelector((store) => store.ingredient);
 
