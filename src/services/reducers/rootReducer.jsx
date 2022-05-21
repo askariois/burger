@@ -20,3 +20,4 @@ export const rootReducer = combineReducers({
   loginUser: loginReducer,
   loginData: loginDataReducer,
 });
+

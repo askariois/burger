@@ -20,7 +20,7 @@ function OrderPriceButton() {
   const history = useHistory();
 
   const constructorIngredients = useSelector(
-    (store) => store.constructorIngredients.constructorIngredients
+    (store) => store.constructorIngredients.ingredients
   );
   const userData = useSelector((store) => store.loginData);
 

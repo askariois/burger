@@ -1,11 +1,4 @@
-export interface LocationState {
-   from: {
-      pathname: string;
-   };
-}
-
-
-export interface IElement {
+export interface IFeed {
    _id: string;
    type: string;
    proteins: number;
@@ -18,4 +11,16 @@ export interface IElement {
    fat: number;
    carbohydrates: number;
    calories: number;
+}
+
+export interface IFeedArray {
+   ingredient: Array<IFeed>;
+}
+
+export interface IIngredients {
+   ingredient: {
+      feedRequest: boolean;
+      feedFailed: boolean;
+      feed: IFeedArray;
+   }
 }

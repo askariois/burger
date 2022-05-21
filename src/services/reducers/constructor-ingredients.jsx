@@ -7,35 +7,32 @@ import {
 } from "../actions/constructor-ingredients";
 
 const initialState = {
-  constructorIngredients: [],
+  ingredients: [],
 };
 
 export const constructorIngredients = (state = initialState, action) => {
   switch (action.type) {
     case ADD_INGREDIENT: {
       if (action.payload.type === "bun") {
-        const filtered = [...state.constructorIngredients].filter(
+        const filtered = [...state.ingredients].filter(
           (item) => item.type !== "bun"
         );
 
         return {
           ...state,
-          constructorIngredients: [...filtered, action.payload],
+          ingredients: [...filtered, action.payload],
         };
       }
 
       return {
         ...state,
-        constructorIngredients: [
-          ...state.constructorIngredients,
-          action.payload,
-        ],
+        ingredients: [...state.ingredients, action.payload],
       };
     }
     case DELETE_INGREDIENT: {
       return {
         ...state,
-        constructorIngredients: [...state.constructorIngredients].filter(
+        ingredients: [...state.ingredients].filter(
           (item) => item.key !== action.id
         ),
       };
@@ -43,7 +40,7 @@ export const constructorIngredients = (state = initialState, action) => {
     case UPDATE_CONSTRUCTOR_LIST: {
       return {
         ...state,
-        constructorIngredients: [...action.optional],
+        ingredients: [...action.optional],
       };
     }
     default: {

@@ -32,7 +32,7 @@ function CardBurgerIngredient({ type, image, price, name, _id }) {
   });
 
   const constructorIngredients = useSelector(
-    (store) => store.constructorIngredients.constructorIngredients
+    (store) => store.constructorIngredients.ingredients
   );
   const couterData = constructorIngredients.filter((item) => item._id === _id);
   const couterDataCount = couterData.length;
