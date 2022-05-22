@@ -3,7 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { Route, Redirect, useLocation } from "react-router-dom";
 import { TRootState } from "../services/types/redux";
 
-export function ProtectedRoute({ children, ...rest }: { children: React.ReactNode }) {
+export function ProtectedRoute({ children, ...rest }: any) {
+
+
   const location = useLocation();
   const dispatch = useDispatch();
 

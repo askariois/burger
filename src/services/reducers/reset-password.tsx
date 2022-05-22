@@ -17,7 +17,6 @@ const initialState = {
 };
 
 export const resetPasswordReducer = (state = initialState, action: TReduxReset) => {
-  action.type;
   switch (action.type) {
     case RESET_PASSWORD: {
       return {

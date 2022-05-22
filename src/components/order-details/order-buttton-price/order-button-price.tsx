@@ -30,7 +30,9 @@ function OrderPriceButton() {
 
   constructorIngredients.map((item) => mainOrderAll.push(`${item._id}`));
 
-  const isModalShownOrder = useSelector((store: TRootState) => store.modalWindows);
+  const isModalShownOrder: { modal: boolean, modalOrder: boolean } = useSelector((store: TRootState) => store.modalWindows);
+
+
 
   const handleCloseModal = () => {
     dispatch({

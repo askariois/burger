@@ -14,14 +14,15 @@ import { useHistory, Redirect, Link, useLocation } from "react-router-dom";
 import { TRootState } from "../../services/types/redux";
 
 export default function LoginPage() {
-  const loginUserData = useSelector((store: TRootState) => store.loginUser);
+  const loginUserData: { loginRequest: boolean, loginFailed: boolean, loginSuccess: boolean, email: string, password: string } = useSelector((store: TRootState) => store.loginUser);
+
+
   const userData = useSelector((store: TRootState) => store.loginData);
 
   const dispatch = useDispatch();
   const history = useHistory();
   const location = useLocation();
   const { from }: any = location.state || { from: { pathname: "/" } };
-  console.log(location.state);
 
   const [show, setShow] = React.useState(true);
 

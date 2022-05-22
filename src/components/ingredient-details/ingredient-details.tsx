@@ -3,10 +3,13 @@ import { useSelector } from "react-redux";
 
 import burgerdetails from "./burger-details.module.css";
 import { TRootState } from "../../services/types/redux";
+import { IFeed } from "../../services/types/burger-constructor";
 
 function IngredientDetails() {
   const { ingredientId }: { ingredientId: string } = useParams();
-  const feed = useSelector((state: TRootState) => state.ingredient);
+  const feed: { feedRequest: boolean, feed: IFeed[] } = useSelector((state: TRootState) => state.ingredient);
+
+
   let ingredient: any = "";
   if (feed.feedRequest) {
     ingredient = feed.feed.find(({ _id }: { _id: string }) => _id === ingredientId);

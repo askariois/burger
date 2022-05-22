@@ -18,7 +18,8 @@ export default function ProfilePage() {
   const [prPassword, setPrPassword] = useState("");
   const [prshow, setPrShow] = useState(true);
 
-  const getUser = useSelector((store: TRootState) => store.loginData.data);
+  const getUser: any = useSelector((store: TRootState) => store.loginData.data);
+
 
   const isProfile = !!useRouteMatch("/profile");
   const isOrder = !!useRouteMatch("/profile/orders");
