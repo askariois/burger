@@ -15,7 +15,7 @@ import { IFeed, IIngredients } from "../../../services/types/burger-constructor"
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
-  const constructorIngredients = useSelector((store: TRootState) => store.constructorIngredients['ingredients']);
+  const constructorIngredients: IFeed[] = useSelector((store: TRootState) => store.constructorIngredients['ingredients']);
 
   const { feed } = useSelector((store: IIngredients) => {
     return store.ingredient;
@@ -36,11 +36,11 @@ function BurgerConstructor() {
     },
   });
 
-  const bunTopBottom = constructorIngredients.filter((item) => {
+  const bunTopBottom = constructorIngredients.filter((item: IFeed) => {
     return item.type === "bun";
   });
 
-  const ingredientsMiddle = constructorIngredients.filter((item) => {
+  const ingredientsMiddle = constructorIngredients.filter((item: IFeed) => {
     return item.type !== "bun";
   });
 

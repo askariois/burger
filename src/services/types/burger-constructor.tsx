@@ -14,13 +14,26 @@ export interface IFeed {
 }
 
 export interface IFeedArray {
-   ingredient: Array<IFeed>;
+   ingredient: IFeed[];
 }
 
 export interface IIngredients {
    ingredient: {
       feedRequest: boolean;
       feedFailed: boolean;
-      feed: IFeedArray;
+      feed: IFeed[];
    }
 }
+
+
+export interface IConstructorIngredientsList {
+   bun: IFeed[];
+   ingredients: IFeed[];
+}
+
+export interface IClientOffset {
+   x: number | null;
+   y: number | null;
+}
+
+export type TMoveCard = (ragIndex: number, hoverIndex: number) => void;

@@ -1,16 +1,18 @@
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
-import PropTypes from "prop-types";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { UPDATE_CONSTRUCTOR_LIST } from "../../../../services/actions/constructor-ingredients";
+import { IFeed, TMoveCard } from "../../../../services/types/burger-constructor";
 
 import burgerconstrucor from "../burger-construcor.module.css";
 import OrderedIngredient from "../burger-constructor-ordered-ingredient/burger-constructor-ordered-ingredient";
 
-function ConstructorIngredientsList({ bun, ingredients }) {
+function ConstructorIngredientsList({ bun, ingredients }: { bun: IFeed[], ingredients: IFeed[] }) {
   const dispatch = useDispatch();
-  const moveCard = useCallback(
-    (dragIndex, hoverIndex) => {
+
+  const moveCard = useCallback<TMoveCard>(
+    (dragIndex: number, hoverIndex: number) => {
+
       const dragCard = ingredients[dragIndex];
       const newCards = [...ingredients, ...bun];
 
@@ -24,6 +26,7 @@ function ConstructorIngredientsList({ bun, ingredients }) {
     },
     [ingredients, dispatch]
   );
+
 
   return (
     <div className="flex align-end  flex-col">
@@ -71,23 +74,4 @@ function ConstructorIngredientsList({ bun, ingredients }) {
   );
 }
 
-ConstructorIngredientsList.propTypes = {
-  ingredients: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string,
-      key: PropTypes.string,
-      name: PropTypes.string,
-      price: PropTypes.number,
-      image: PropTypes.string,
-    })
-  ).isRequired,
-  bun: PropTypes.arrayOf(
-    PropTypes.shape({
-      _id: PropTypes.string,
-      name: PropTypes.string,
-      price: PropTypes.number,
-      image: PropTypes.string,
-    })
-  ).isRequired,
-};
 export default ConstructorIngredientsList;
