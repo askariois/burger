@@ -13,8 +13,8 @@ import { TRootState } from "../../services/types/redux";
 export default function ProfilePage() {
   const history = useHistory();
   const dispatch = useDispatch();
-  const [prName, setPrName] = useState(null);
-  const [prLogin, setPrLogin] = useState(null);
+  const [prName, setPrName] = useState("");
+  const [prLogin, setPrLogin] = useState("");
   const [prPassword, setPrPassword] = useState("");
   const [prshow, setPrShow] = useState(true);
 
@@ -82,7 +82,7 @@ export default function ProfilePage() {
             <Input
               type={"text"}
               placeholder={"Имя"}
-              onChange={(e: any) => {
+              onChange={(e) => {
                 setPrName(e.target.value);
               }}
               icon={"EditIcon"}
@@ -105,7 +105,7 @@ export default function ProfilePage() {
             <Input
               type={"email"}
               placeholder={"Логин"}
-              onChange={(e: any) => {
+              onChange={(e) => {
                 setPrLogin(e.target.value);
               }}
               icon={"EditIcon"}

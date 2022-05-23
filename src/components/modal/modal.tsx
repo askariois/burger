@@ -13,7 +13,7 @@ const modalRoot = document.getElementById("main-modal");
 
 function Modal(props: IModalProps) {
   useEffect(() => {
-    const keydownCloseModal = (e: any) => {
+    const keydownCloseModal = (e: KeyboardEvent) => {
       if (e.code === "Escape") {
         props.close();
       }

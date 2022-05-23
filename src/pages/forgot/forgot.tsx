@@ -27,7 +27,7 @@ export default function ForgotPage() {
   };
 
   const onForgotPassword = useCallback(
-    (e) => {
+    (e: React.FormEvent) => {
       e.preventDefault();
       dispatch(postPasswordForgot(emailForgotPassword.email));
       history.push("/reset-password");

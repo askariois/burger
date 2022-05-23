@@ -63,7 +63,7 @@ function OrderedIngredient({ item, index, moveCard }: { item: IFeed, index: numb
   if (item.type !== "bun") drag(drop(ref));
 
 
-  const preventDefault: any = (e: Event) => e.preventDefault();
+  const preventDefault = (e: React.FormEvent) => e.preventDefault();
 
   const onDelete = (id: string) => () => {
     dispatch({

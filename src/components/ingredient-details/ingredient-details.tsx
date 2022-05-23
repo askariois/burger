@@ -10,7 +10,7 @@ function IngredientDetails() {
   const feed: { feedRequest: boolean, feed: IFeed[] } = useSelector((state: TRootState) => state.ingredient);
 
 
-  let ingredient: any = "";
+  let ingredient: IFeed | undefined = {} as IFeed;
   if (feed.feedRequest) {
     ingredient = feed.feed.find(({ _id }: { _id: string }) => _id === ingredientId);
   }
@@ -20,36 +20,36 @@ function IngredientDetails() {
         <div className={burgerdetails.container}>
           <div className="flex justify-center">
             <img
-              src={ingredient.image_large}
+              src={ingredient !== undefined ? ingredient.image_large : ''}
               className={`${burgerdetails.img_width}`}
             />
           </div>
           <div className={`${burgerdetails.text_center} mt-4 mb-8`}>
-            {ingredient.name}
+            {ingredient !== undefined ? ingredient.name : ''}
           </div>
           <div className={`${burgerdetails.details} flex justify-between`}>
             <div>
               <span>Калории,ккал</span>
               <span className={`${burgerdetails.details_count}`}>
-                {ingredient.calories}
+                {ingredient !== undefined ? ingredient.calories : ''}
               </span>
             </div>
             <div>
               <span>Белки, г</span>
               <span className={`${burgerdetails.details_count}`}>
-                {ingredient.proteins}
+                {ingredient !== undefined ? ingredient.proteins : ''}
               </span>
             </div>
             <div>
               <span>Жиры, г</span>
               <span className={`${burgerdetails.details_count}`}>
-                {ingredient.fat}
+                {ingredient !== undefined ? ingredient.fat : ''}
               </span>
             </div>
             <div>
               <span>Углеводы, г</span>
               <span className={`${burgerdetails.details_count}`}>
-                {ingredient.carbohydrates}
+                {ingredient !== undefined ? ingredient.carbohydrates : ''}
               </span>
             </div>
           </div>

@@ -1,11 +1,16 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Redirect, useLocation } from "react-router-dom";
+import { Route, Redirect, useLocation, RouterProps, RouteComponentProps } from "react-router-dom";
 import { TRootState } from "../services/types/redux";
 
-export function ProtectedRoute({ children, ...rest }: any) {
+interface ILayoutProps {
+  children: React.ReactNode;
+  path: string;
+  exact: boolean;
+}
 
 
+export function ProtectedRoute({ children, ...rest }: ILayoutProps) {
   const location = useLocation();
   const dispatch = useDispatch();
 
