@@ -1,17 +1,25 @@
-export function getCookie(name) {
+export function getCookie(name: string) {
   const matches = document.cookie.match(
     new RegExp(
       "(?:^|; )" +
-        name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
-        "=([^;]*)"
+      name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, "\\$1") +
+      "=([^;]*)"
     )
   );
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 
-export function setCookie(name, value, props) {
+export type TCookie = {
+  [name: string]: string | number | boolean | Date | undefined;
+  expires?: Date | number | string;
+  path?: string;
+};
+
+export function setCookie(name: string, value: string | number | boolean, props: TCookie = {}) {
   props = props || {};
-  let exp = props.expires;
+  let exp: any = props.expires;
+
+
   if (typeof exp == "number" && exp) {
     const d = new Date();
     d.setTime(d.getTime() + exp * 1000);
@@ -22,6 +30,7 @@ export function setCookie(name, value, props) {
   }
   value = encodeURIComponent(value);
   let updatedCookie = name + "=" + value;
+
   for (const propName in props) {
     updatedCookie += "; " + propName;
     const propValue = props[propName];
@@ -32,11 +41,11 @@ export function setCookie(name, value, props) {
   document.cookie = updatedCookie;
 }
 
-export function deleteCookie(name) {
-  setCookie(name, null, { expires: -1 });
+export function deleteCookie(name: string): void {
+  setCookie(name, "", { expires: -1 });
 }
 
-export function checkResponse(res) {
+export function checkResponse(res: Response) {
   if (res.ok) {
     return res.json();
   }
