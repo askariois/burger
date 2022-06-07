@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 function TotalPrice() {
   const constructorIngredients = useSelector(
-    (store) => store.constructorIngredients.constructorIngredients
+    (store) => store.constructorIngredients.ingredients
   );
   let total = 0;
   constructorIngredients.map(

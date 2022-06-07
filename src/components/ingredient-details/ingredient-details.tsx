@@ -1,0 +1,62 @@
+import { useParams } from "react-router-dom";
+import { useSelector } from "react-redux";
+
+import burgerdetails from "./burger-details.module.css";
+import { TRootState } from "../../services/types/redux";
+import { IFeed } from "../../services/types/burger-constructor";
+
+function IngredientDetails() {
+  const { ingredientId }: { ingredientId: string } = useParams();
+  const feed: { feedRequest: boolean, feed: IFeed[] } = useSelector((state: TRootState) => state.ingredient);
+
+
+  let ingredient: IFeed | undefined = {} as IFeed;
+  if (feed.feedRequest) {
+    ingredient = feed.feed.find(({ _id }: { _id: string }) => _id === ingredientId);
+  }
+  return (
+    <>
+      {feed.feedRequest && (
+        <div className={burgerdetails.container}>
+          <div className="flex justify-center">
+            <img
+              src={ingredient !== undefined ? ingredient.image_large : ''}
+              className={`${burgerdetails.img_width}`}
+            />
+          </div>
+          <div className={`${burgerdetails.text_center} mt-4 mb-8`}>
+            {ingredient !== undefined ? ingredient.name : ''}
+          </div>
+          <div className={`${burgerdetails.details} flex justify-between`}>
+            <div>
+              <span>Калории,ккал</span>
+              <span className={`${burgerdetails.details_count}`}>
+                {ingredient !== undefined ? ingredient.calories : ''}
+              </span>
+            </div>
+            <div>
+              <span>Белки, г</span>
+              <span className={`${burgerdetails.details_count}`}>
+                {ingredient !== undefined ? ingredient.proteins : ''}
+              </span>
+            </div>
+            <div>
+              <span>Жиры, г</span>
+              <span className={`${burgerdetails.details_count}`}>
+                {ingredient !== undefined ? ingredient.fat : ''}
+              </span>
+            </div>
+            <div>
+              <span>Углеводы, г</span>
+              <span className={`${burgerdetails.details_count}`}>
+                {ingredient !== undefined ? ingredient.carbohydrates : ''}
+              </span>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default IngredientDetails;
