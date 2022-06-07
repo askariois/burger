@@ -1,11 +1,52 @@
-.bg_navbar {
-  background: #1c1c21;
-  box-shadow: 0px 24px 32px rgba(0, 0, 0, 0.04),
-    0px 16px 24px rgba(0, 0, 0, 0.04), 0px 4px 8px rgba(0, 0, 0, 0.04),
-    0px 0px 1px rgba(0, 0, 0, 0.04);
+.header {
+  margin: auto;
+  max-width: 1920px;
+  height: 88px;
+  background-color: #1c1c21;
+  box-sizing: border-box;
 }
 .container {
+  height: 100%;
+  min-width: 320px;
   max-width: 1280px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+  position: relative;
+}
+.logo {
+  position: absolute;
+  z-index: 1;
+  top: calc((100% - 56px) / 2);
+  left: calc((100% - 290px) / 2);
+  cursor: pointer;
+}
+.nav {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navMenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navMenuItem {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  color: white;
+  text-decoration: none;
+}
+.navIcon {
+  line-height: 0.5;
+}
+.link {
+  color: white;
+  text-decoration: none;
+}
+.navText:hover {
+  color: white;
+  transition: 0.5s ease-out;
 }
