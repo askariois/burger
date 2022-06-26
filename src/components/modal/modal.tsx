@@ -1,48 +1,50 @@
-import { useEffect } from "react";
-import ReactDOM from "react-dom";
-
+//libs
+import React, { useEffect } from "react";
+import { createPortal } from "react-dom";
+import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components/dist/ui/icons/close-icon";
+//components
 import ModalOverlay from "../modal-overlay/modal-overlay";
+//styles
+import style from "./modal.module.css";
 
-import modal from "./modal.module.css";
-
-import { CloseIcon } from "@ya.praktikum/react-developer-burger-ui-components";
-import { IModalProps } from "../../services/types/modal";
-
-const modalRoot = document.getElementById("main-modal");
-
-
-function Modal(props: IModalProps) {
-  useEffect(() => {
-    const keydownCloseModal = (e: KeyboardEvent) => {
-      if (e.code === "Escape") {
-        props.close();
-      }
-    };
-    document.addEventListener("keyup", keydownCloseModal);
-    return () => {
-      document.removeEventListener("keyup", keydownCloseModal);
-    };
-  }, [props.close]);
-
-  return modalRoot
-    ? ReactDOM.createPortal(
-      <div>
-        <ModalOverlay closeOverlay={props.close}>
-          <div className={`${modal.modal_content} pt-10 pr-10 pb-15 pl-10`}>
-            <div className="flex align-center justify-between">
-              <h1>{props.header}</h1>
-              <a href="#" className="flex">
-                <CloseIcon type="primary" onClick={props.close} />
-              </a>
-            </div>
-            {props.children}
-          </div>
-        </ModalOverlay>
-      </div>,
-      modalRoot
-    )
-    : null;
+interface IModal {
+  children: React.ReactNode;
+  title?: string;
+  isModalOpen: boolean;
+  onClose: () => void;
 }
 
+const Modal: React.FC<IModal> = ({ children, isModalOpen, title, onClose }) => {
+  const handleEscPress = (e: KeyboardEvent) => {
+    if (e.key === "Escape") onClose();
+  };
 
-export default Modal;
+  useEffect(() => {
+    document.addEventListener("keydown", handleEscPress);
+    return () => document.removeEventListener("keydown", handleEscPress);
+  });
+
+  return createPortal(
+    <>
+      <ModalOverlay onClose={onClose} isModalOpen={isModalOpen} />
+      <div
+        className={`${
+          !isModalOpen ? style.container_hidden : style.container
+        } pl-10 pt-10 pr-10 pb-15`}
+      >
+        <div className={`${style.header}`}>
+          <div className="title text text_type_main-large">
+            {title ? title : ""}
+          </div>
+          <div className={style.close_icon}>
+            <CloseIcon type="primary" onClick={onClose} />
+          </div>
+        </div>
+        {children}
+      </div>
+    </>,
+    document.getElementById("modal")!
+  );
+};
+
+export default React.memo(Modal);

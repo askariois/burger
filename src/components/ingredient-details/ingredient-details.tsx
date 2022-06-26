@@ -1,62 +1,92 @@
+//helpers
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { useSelector } from "react-redux";
-
-import burgerdetails from "./burger-details.module.css";
-import { TRootState } from "../../services/types/redux";
-import { IFeed } from "../../services/types/burger-constructor";
+import { useAppDispatch, useAppSelector } from "../../services/app-hooks";
+import { openIngredientDetails } from "../../services/modal-slice";
+//styles
+import styles from "./ingredient-details.module.css";
 
 function IngredientDetails() {
-  const { ingredientId }: { ingredientId: string } = useParams();
-  const feed: { feedRequest: boolean, feed: IFeed[] } = useSelector((state: TRootState) => state.ingredient);
-
-
-  let ingredient: IFeed | undefined = {} as IFeed;
-  if (feed.feedRequest) {
-    ingredient = feed.feed.find(({ _id }: { _id: string }) => _id === ingredientId);
-  }
+  const dispatch = useAppDispatch();
+  const { id } = useParams();
+  const { detailedInfo } = useAppSelector((store) => store.modal);
+  const { burgerIngredients } = useAppSelector(
+    (store) => store.burgerIngredients
+  );
+  useEffect(() => {
+    if (!detailedInfo._id) {
+      let detailedObject = burgerIngredients.find((item) => item._id === id);
+      if (detailedObject) {
+        dispatch(openIngredientDetails(detailedObject));
+      }
+    }
+  }, [dispatch, detailedInfo, id, burgerIngredients]);
   return (
-    <>
-      {feed.feedRequest && (
-        <div className={burgerdetails.container}>
-          <div className="flex justify-center">
-            <img
-              src={ingredient !== undefined ? ingredient.image_large : ''}
-              className={`${burgerdetails.img_width}`}
-            />
+    <div className={`${styles.container}`}>
+      {detailedInfo && (
+        <>
+          <div className={styles.image}>
+            <img src={detailedInfo.image_large} alt={detailedInfo.name} />
           </div>
-          <div className={`${burgerdetails.text_center} mt-4 mb-8`}>
-            {ingredient !== undefined ? ingredient.name : ''}
+          <span
+            className={`${styles.name} text text_type_main-medium mt-4 mb-8`}
+          >
+            {detailedInfo.name}
+          </span>
+          <div className={`${styles.nutrition}`}>
+            <div className={`${styles.nutritionItem} text_color_inactive`}>
+              <span
+                className={`${styles.detailsName} text text_type_main-default`}
+              >
+                Калории,ккал
+              </span>
+              <span
+                className={`${styles.detailsValue} text_type_digits-default`}
+              >
+                {detailedInfo.calories}
+              </span>
+            </div>
+            <div className={`${styles.nutritionItem} text_color_inactive`}>
+              <span
+                className={`${styles.detailsName} text text_type_main-default`}
+              >
+                Белки, г
+              </span>
+              <span
+                className={`${styles.detailsValue} text_type_digits-default`}
+              >
+                {detailedInfo.proteins}
+              </span>
+            </div>
+            <div className={`${styles.nutritionItem} text_color_inactive`}>
+              <span
+                className={`${styles.detailsName} text text_type_main-default`}
+              >
+                Жиры, г
+              </span>
+              <span
+                className={`${styles.detailsValue} text_type_digits-default`}
+              >
+                {detailedInfo.fat}
+              </span>
+            </div>
+            <div className={`${styles.nutritionItem} text_color_inactive`}>
+              <span
+                className={`${styles.detailsName} text text_type_main-default`}
+              >
+                Углеводы, г
+              </span>
+              <span
+                className={`${styles.detailsValue} text_type_digits-default`}
+              >
+                {detailedInfo.carbohydrates}
+              </span>
+            </div>
           </div>
-          <div className={`${burgerdetails.details} flex justify-between`}>
-            <div>
-              <span>Калории,ккал</span>
-              <span className={`${burgerdetails.details_count}`}>
-                {ingredient !== undefined ? ingredient.calories : ''}
-              </span>
-            </div>
-            <div>
-              <span>Белки, г</span>
-              <span className={`${burgerdetails.details_count}`}>
-                {ingredient !== undefined ? ingredient.proteins : ''}
-              </span>
-            </div>
-            <div>
-              <span>Жиры, г</span>
-              <span className={`${burgerdetails.details_count}`}>
-                {ingredient !== undefined ? ingredient.fat : ''}
-              </span>
-            </div>
-            <div>
-              <span>Углеводы, г</span>
-              <span className={`${burgerdetails.details_count}`}>
-                {ingredient !== undefined ? ingredient.carbohydrates : ''}
-              </span>
-            </div>
-          </div>
-        </div>
+        </>
       )}
-    </>
+    </div>
   );
 }
 
-export default IngredientDetails;
+export default React.memo(IngredientDetails);

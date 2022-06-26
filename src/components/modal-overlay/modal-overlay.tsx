@@ -1,15 +1,23 @@
-import { IModalOverlayProps } from "../../services/types/modal";
-import modal_overlay from "./modal-overlay.module.css";
+//libs
+import React from "react";
+//styles
+import style from "./modal-overlay.module.css";
 
-
-
-function ModalOverlay(props: IModalOverlayProps) {
-  return (
-    <div>
-      <div className={modal_overlay.overlay} onClick={props.closeOverlay}></div>
-      {props.children}
-    </div>
-  );
+interface ModalOverlayProps {
+  isModalOpen: boolean;
+  onClose: () => void;
 }
 
-export default ModalOverlay;
+const ModalOverlay: React.FC<ModalOverlayProps> = ({
+  isModalOpen,
+  onClose,
+}) => {
+  return (
+    <div
+      className={!isModalOpen ? style.container_hidden : style.container}
+      onClick={onClose}
+    ></div>
+  );
+};
+
+export default React.memo(ModalOverlay);

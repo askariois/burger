@@ -1,99 +1,13 @@
 body {
   margin: 0;
-  font-family: "JetBrains";
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-
-h1 {
-  font-size: 36px;
-}
-h2 {
-  font-size: 24px;
-}
-
-.flex {
-  display: flex;
-}
-
-.flex-wrap {
-  flex-wrap: wrap;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.justify-between {
-  justify-content: space-between;
-}
-
-.justify-center {
-  justify-content: center;
-}
-
-.align-center {
-  align-items: center;
-}
-.align-end {
-  align-items: flex-end;
-}
-.justify-right {
-  justify-content: flex-end;
-}
-
-.text-secondary {
-  color: #8585ad;
-}
-
-.w-6-12 {
-  width: 50%;
-}
-
-.relative {
-  position: relative;
-}
-
-@font-face {
-  font-family: "JetBrains";
-  font-weight: normal;
-  font-style: normal;
-  src: url("./fonts/Jetbrainsmonomedium.woff") format("woff");
-}
-
-@font-face {
-  font-family: "Iceland";
-  font-weight: normal;
-  font-style: normal;
-  src: url("./fonts/Iceland-Regular.woff") format("woff");
-}
-
-/* width */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px #2f2f37;
-}
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #8585ad;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #8585ad;
-}
-
-.input_size_default {
-  width: 480px !important;
+.input {
+  width: 480px;
 }
