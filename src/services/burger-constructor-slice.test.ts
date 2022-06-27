@@ -17,14 +17,7 @@ const previousState = {
 };
 
 test("should return the initial state", () => {
-  expect(reducer(undefined, {} as AnyAction)).toEqual({
-    ingredientsCommon: [] as IIngredient[],
-    ingredientBun: {} as IIngredient,
-    orderId: 0,
-    isLoading: false,
-    hasError: false,
-    countIngredients: [] as TCountIngredients[],
-  });
+  expect(reducer(undefined, {} as AnyAction)).toEqual(previousState);
 });
 test("should add bun ingredient to burger constructor", () => {
   expect(
@@ -296,12 +289,8 @@ test("should remove ingredient and decrease count of ingredient in burger constr
 });
 test("should add order number to state", () => {
   expect(reducer(previousState, addOrder(123))).toEqual({
-    ingredientsCommon: [] as IIngredient[],
-    ingredientBun: {} as IIngredient,
+    ...previousState,
     orderId: 123,
-    isLoading: false,
-    hasError: false,
-    countIngredients: [] as TCountIngredients[],
   });
 });
 

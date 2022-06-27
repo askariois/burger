@@ -38,7 +38,7 @@ This is an educational project Yandex Practicum:
 - Real-time refreshing data in order feed (./feed) with websocket
 
 3. **How to install**
-   1. Clone project `https://github.com/askariois/burger`
+   1. Clone project `https://github.com/askariois/burger.git`
    2. Install all dependencies `npm install`
    3. Start dev project `npm start`
    4. Launch unit tests `npm test`
